@@ -40,25 +40,14 @@ use {
 ```
 ## Usage
 Command example:
-
-<<<<<<< HEAD
-![Command Example](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/LazyDeveloperHelper/images/command_example.png)
-
-Example output:
-
-![Installation Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/LazyDeveloperHelper/images/output_example.png)
-=======
 ![Command Example](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/command_example.png)
 
 Example output:
-
 ![Installation Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/output_example.png)
->>>>>>> c81319b (	new file:   LICENSE)
 
 ## Status
 
 Status as of July 1st, 2025:
 🎉 Plugin released successfully!
 If you spot bugs or have ideas for improvements, feel free to open an issue or PR.
-
 
