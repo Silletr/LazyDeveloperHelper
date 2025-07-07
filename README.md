@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# LazyDevHelper
-=======
 # Lazy Developer Helper [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 [![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua\logoColor=white)](https://www.lua.org/)
@@ -68,4 +65,3 @@ Output example:
 Status as of 01/07/2025:
 Plugin released successfully.
 If you have ideas or spot bugs, open an issue or PR—if it works, I will merge it.
->>>>>>> 2096444 (	new file:   .gitignore)
