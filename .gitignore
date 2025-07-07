@@ -1,0 +1,9 @@
+.pre-commit-config.yaml
+.env
+__pycache__
+*.pyc
+LazyEnv/
+requirements.txt
+package_lock.json
+package.json
+node_modules/
