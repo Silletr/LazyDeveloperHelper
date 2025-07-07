@@ -29,9 +29,7 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 ### Installation Methods
 ## Install using Packer
 ```lua
-use {
-    'Silletr/LazyDevHelper'
-}
+use 'Silletr/LazyDevHelper'
 ```
 ## Usage
 Command example:
