@@ -1,6 +1,4 @@
 {
-  "ignore": ["LICENSE", "contributing.md"]
-  "files": [
-    "README.MD"
-  ]
+  "ignore": ["LICENSE"]
 }
+
