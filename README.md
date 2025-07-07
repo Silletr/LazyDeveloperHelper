@@ -30,12 +30,7 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 ## Install using Packer
 ```lua
 use {
-    'Silletr/LazyDevHelper',
-    config = function()
-        require('lazy-dev-helper').setup({
-            -- Configuration options here
-        })
-    end
+    'Silletr/LazyDevHelper'
 }
 ```
 ## Usage
