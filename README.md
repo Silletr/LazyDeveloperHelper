@@ -6,13 +6,13 @@
 
 ## Table of Contents
 <!-- toc -->
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation Requirements](#installation-requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Status](#status)
-- [Contributing](#contributing)
+<<<<<<< HEAD
+  - [Introduction](#introduction)
+  - [Errors](#errors)
+  - [Installation Requirements](#installation-requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Status](#status)
 <!-- tocstop -->
 
 ## Introduction
@@ -27,19 +27,16 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 ✨ Manage dependencies without leaving your editor
 ✨ Compatible with modern Neovim configurations
 
-## Installation Requirements
-
-- Neovim 0.9+
-- Python 3.10+
-
-## Installation
-
 ### Using Packer
 
 Add this to your Packer configuration:
 
 ```lua
 use {
+=======
+- With Packer:
+  ```lua
+  use {
     'Silletr/LazyDevHelper',
     config = function()
         require('LazyDevHelper.plugin.commands').commands()
@@ -50,6 +47,10 @@ use {
 ## Usage
 
 Install packages using the command palette:
+  }
+  ```
+## Usage
+Command example:
 
 ![Command Example](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/command_example.png)
 
