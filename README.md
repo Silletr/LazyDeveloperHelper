@@ -9,7 +9,7 @@
 <!-- toc -->
 - [Introduction](#introduction)
 - [Features](#features)
-- [Installation](#using-packer)
+- [Installation Using Packer](#using-packer)
 - [Usage](#usage)
 - [Status](#status)
 <!-- tocstop -->
