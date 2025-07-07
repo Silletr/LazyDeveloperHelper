@@ -4,16 +4,13 @@
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org)
 [![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=flat-square\&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/Silletr/LazyDevHelper/pulls)
-
 ## Table of Contents
-
 - [Introduction](#introduction)
 - [Errors](#errors)
 - [Installation Requirements](#installation-requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Status](#status)
-
 ## Introduction
 
 Have you ever been in a situation like this?
