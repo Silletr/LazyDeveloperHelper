@@ -1,8 +1,7 @@
 # Lazy Developer Helper [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-
-[![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua\logoColor=white)](https://www.lua.org/)
+[![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua&logoColor=white)](https://www.lua.org/)
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org)
-[![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=flat-square\color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
+[![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=flat-square&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/Silletr/LazyDevHelper/pulls)
 
 ## Table of Contents
@@ -14,6 +13,7 @@
 - [Usage](#usage)
 - [Status](#status)
 <!-- tocstop -->
+
 ## Introduction
 
 Have you ever been in a situation like this?
@@ -54,11 +54,11 @@ use {
 
 Command example:
 
-![Input example](https://github.com/Silletr/LazyDevHelper/blob/2fb656ff2060d6ac842ee69cd3e63e44a5c67796/images/command_example.png)
+![Input example](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/command_example.png)
 
 Output example:
 
-![Output](https://github.com/Silletr/LazyDevHelper/blob/2fb656ff2060d6ac842ee69cd3e63e44a5c67796/images/output_example.png)
+![Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/output_example.png)
 
 ## Status
 
