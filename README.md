@@ -34,8 +34,8 @@ Cause – I fixed this error and now the plugin does its main function (installi
 
 ## Installation Requirements
 
-* Neovim 0.9+
-* Python 3.10+
+- Neovim 0.9+
+- Python 3.10+
 
 ## Installation
 
