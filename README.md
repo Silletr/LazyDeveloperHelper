@@ -6,7 +6,6 @@
 
 ## Table of Contents
 <!-- toc -->
-<<<<<<< HEAD
   - [Introduction](#introduction)
   - [Errors](#errors)
   - [Installation Requirements](#installation-requirements)
@@ -33,7 +32,6 @@ Add this to your Packer configuration:
 
 ```lua
 use {
-=======
 - With Packer:
   ```lua
   use {
@@ -63,19 +61,3 @@ Example output:
 Status as of July 1st, 2025:
 🎉 Plugin released successfully!
 If you spot bugs or have ideas for improvements, feel free to open an issue or PR.
-
-## Contributing
-
-Contributions are welcome! Here's how you can help:
-
-1. Bug Reports
-- Open an issue describing the problem
-- Include steps to reproduce
-- Mention your Neovim version
-
-2. Pull Requests
-- Fork the repository
-- Make your changes
-- Submit a PR with a brief description
-
-All contributions will be reviewed promptly.
