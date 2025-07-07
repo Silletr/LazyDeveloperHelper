@@ -1,5 +1,4 @@
-# Lazy Developer Helper
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+# Lazy Developer Helper [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 [![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua&logoColor=white)](https://www.lua.org/)
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org)
 [![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=flat-square&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
@@ -30,8 +29,8 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 
 ## Installation Requirements
 
-* Neovim 0.9+
-* Python 3.10+
+- Neovim 0.9+
+- Python 3.10+
 
 ## Installation
 
