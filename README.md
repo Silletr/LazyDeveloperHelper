@@ -54,11 +54,11 @@ use {
 
 Command example:
 
-![Input example](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/LazyDevHelper/images/command_example.png)
+![Input example](images/command_example.png)
 
 Output example:
 
-![Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/LazyDevHelper/images/output_example.png)
+![Output](images/output_example.png)
 
 ## Status
 
