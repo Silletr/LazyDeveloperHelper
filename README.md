@@ -41,11 +41,19 @@ use {
 ## Usage
 Command example:
 
+<<<<<<< HEAD
 ![Command Example](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/LazyDeveloperHelper/images/command_example.png)
 
 Example output:
 
 ![Installation Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/LazyDeveloperHelper/images/output_example.png)
+=======
+![Command Example](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/command_example.png)
+
+Example output:
+
+![Installation Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/output_example.png)
+>>>>>>> c81319b (	new file:   LICENSE)
 
 ## Status
 
