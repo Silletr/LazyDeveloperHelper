@@ -9,7 +9,7 @@
 <!-- toc -->
 - [Introduction](#introduction)
 - [Features](#features)
-- [Installation Using Packer](#using-packer)
+- [Using Packer](#install-using-packer)
 - [Usage](#usage)
 - [Status](#status)
 <!-- tocstop -->
@@ -27,7 +27,7 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 ✨ Compatible with modern Neovim configurations
 
 ### Installation Methods
-## Using Packer
+## Install using Packer
 ```lua
 use {
     'Silletr/LazyDevHelper',
