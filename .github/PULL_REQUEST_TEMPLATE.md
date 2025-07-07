@@ -1,5 +1,3 @@
-# Changes category (NEW FILE/DIR, BUG FIX, DOC CHANGES, CHANGED/DELETED FILE/DIR, MERGING FROM: {branch1} TO: {branch2})
-
 ## Category
 - [ ] NEW FILE/DIR, 
 - [ ] BUG FIX, 
