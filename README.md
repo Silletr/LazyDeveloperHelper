@@ -7,12 +7,12 @@
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Errors](#errors)
-* [Installation Requirements](#installation-requirements)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Status](#status)
+- [Introduction](#introduction)
+- [Errors](#errors)
+- [Installation Requirements](#installation-requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Status](#status)
 
 ## Introduction
 
