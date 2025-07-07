@@ -22,8 +22,8 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 
 ## Features
 
-✨ Install Python packages directly from Neovim
-✨ Manage dependencies without leaving your editor
+✨ Install Python packages directly from Neovim  
+✨ Manage dependencies without leaving your editor  
 ✨ Compatible with modern Neovim configurations
 
 ### Installation Methods
