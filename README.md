@@ -1,18 +1,18 @@
 # Lazy Developer Helper [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-[![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua&logoColor=white)](https://www.lua.org/)
+
+[![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua\&logoColor=white)](https://www.lua.org/)
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org)
-[![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=flat-square&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
+[![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=flat-square\&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/Silletr/LazyDevHelper/pulls)
 
 ## Table of Contents
-<!-- toc -->
-- [Introduction](#introduction)
-- [Errors](#errors)
-- [Installation Requirements](#installation-requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Status](#status)
-<!-- tocstop -->
+
+* [Introduction](#introduction)
+* [Errors](#errors)
+* [Installation Requirements](#installation-requirements)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Status](#status)
 
 ## Introduction
 
@@ -34,21 +34,20 @@ Cause – I fixed this error and now the plugin does its main function (installi
 
 ## Installation Requirements
 
-- Neovim 0.9+
-- Python 3.10+
+* Neovim 0.9+
+* Python 3.10+
 
 ## Installation
 
-With Packer:
-
-```lua
-use {
-  'Silletr/LazyDevHelper',
-  config = function()
-    require('LazyDevHelper.plugin.commands').commands()
-  end
-}
-```
+* With Packer:
+  ```lua
+  use {
+    'Silletr/LazyDevHelper',
+    config = function()
+      require('LazyDevHelper.plugin.commands').commands()
+    end
+  }
+  ```
 
 ## Usage
 
