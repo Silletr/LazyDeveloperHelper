@@ -11,6 +11,7 @@ M.commands = function()
         print("Commands: \n:IsWorking - for check plugin status\n")
         print(":SuggestImports {lib_names (can be multiply)} - well.. main functional, maybe")
     end, {})
+
     vim.api.nvim_create_user_command("SuggestImports", function(opts)
         local args = opts.fargs
         local script_path = vim.fn.stdpath("config") .. "/lua/LazyDevHelper/python/pip_install.py"
@@ -29,20 +30,19 @@ M.commands = function()
                 print("❌ Error executing command")
             end
         end
-end, { nargs = "+" })
-    
+    end, { nargs = "+" })
+
+    -- Check commands immediately after creation
     local commands = vim.api.nvim_get_commands({ scope = 'all' })
-    local found = false
     for _, cmd in ipairs(commands) do
-        if cmd.name == 'SuggestImports' then
-            found = true
-            break
+        -- Commands are prefixed with 'User '
+        if string.match(cmd.name, '^User SuggestImports$') then
+            vim.notify('Command registered successfully', vim.log.levels.INFO)
+            return
         end
     end
-    if not found then
-        vim.notify('Error: SuggestImports command not registered', vim.log.levels.ERROR)
-    end
-
+    
+    vim.notify('Error: Command registration failed', vim.log.levels.ERROR)
 end
 
 M.commands()
