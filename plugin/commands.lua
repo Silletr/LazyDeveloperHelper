@@ -14,7 +14,7 @@ M.commands = function()
 
     vim.api.nvim_create_user_command("SuggestImports", function(opts)
         local args = opts.fargs
-        local script_path = vim.fn.stdpath("config") .. "/lua/LazyDevHelper/python/pip_install.py"
+        local script_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/pip_install.py"
 
         for _, lib in ipairs(args) do
             local cmd = string.format(
