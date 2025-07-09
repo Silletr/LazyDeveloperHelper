@@ -10,6 +10,7 @@
 - [Video example](#video-example)
 - [Introduction](#introduction)
 - [Features](#features)
+- [Future Features](#future-features)
 - [Install using Packer](#install-using-packer)
 - [Usage](#usage)
 - [Status](#status)
@@ -25,9 +26,13 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 
 ## Features
 
-✨ Install Python packages directly from Neovim  
-✨ Manage dependencies without leaving your editor  
-✨ Compatible with modern Neovim configurations
+✨ Install Python packages directly from Neovim.
+✨ Manage dependencies without leaving your editor.
+✨ Compatible with modern Neovim configurations.
+
+## Future Features
+- Will be added supporting Rust-, Lua- library manager.
+- Code will be optimized better.
 
 ### Installation Methods
 ## Install using Packer
@@ -47,3 +52,5 @@ Status as of July 1st, 2025:
 🎉 Plugin released successfully!
 If you spot bugs or have ideas for improvements, feel free to open an issue or PR.
 
+Status as of: 09/07/2025:
+Added Future Features section, PR to Awesome-NeoVim accepted, waiting to merge.
