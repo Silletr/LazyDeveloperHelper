@@ -12,6 +12,7 @@
 - [Features](#features)
 - [Future Features](#future-features)
 - [Install using Packer](#install-using-packer)
+- [Avaible in](#available-in)
 - [Usage](#usage)
 - [Status](#status)
 <!-- tocstop -->
@@ -33,6 +34,11 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 ## Future Features
 - Will be added supporting Rust-, Lua- library manager.
 - Code will be optimized better.
+  
+## Available in
+- [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
+- [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper) (somehow all plugins not updated already one week)
+- Soon will be in neovimcraft.
 
 ### Installation Methods
 ## Install using Packer
