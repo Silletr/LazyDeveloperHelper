@@ -5,7 +5,7 @@ print("<< LuaRocks installer started >>\n")
 
 # luarocks upload {lib_name}
 def install_lib(lib_name):
-    result = subprocess.run("luarocks", "install", lib_name,
+    result = subprocess.run("luarocks", "upload", lib_name,
             check=True,
             text=True,
             capture_output=True, 
