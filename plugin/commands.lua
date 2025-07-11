@@ -15,37 +15,51 @@ M.commands = function()
     vim.api.nvim_create_user_command("SuggestImports", function(opts)
         local args = opts.fargs
         local lang = vim.api.nvim_buf_get_option(0, "filetype")
-        print("Detected filetype: ".. lang)
-        local script_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/pip_install.py"
+        print("Detected filetype: " .. lang)
+    
+        -- Define script paths relative to config directory
+        local python_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/pip_install.py"
+        local lua_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/luarocks_install.py"
 
-        for _, lib in ipairs(args) do
+        -- Function to safely execute external commands
+        local function execute_command(script_path, lib)
             local cmd = string.format(
                 'python3 -c "import subprocess; print(subprocess.run([\'%s\', \'%s\'], capture_output=True, text=True).stdout)"',
                 script_path, lib
             )
-            local result = vim.fn.system(cmd)
+            return vim.fn.system(cmd)
+        end
 
+        -- Process each library argument
+        for _, lib in ipairs(args) do
+            local result
+        
+            -- Determine which installer to use based on filetype
+            if lang == "python" then
+                print("🐍 Installing Python package: " .. lib)
+                result = execute_command(python_script, lib)
+            
+            elseif lang == "lua" then
+                print("💎 Installing Lua package: " .. lib)
+                result = execute_command(lua_script, lib)
+            
+            else
+                print(string.format("❌ Unsupported filetype '%s'", lang))
+                print("Supported filetypes: python, lua")
+            goto continue
+            end
+
+            -- Handle command output
             print("📦 Result for: " .. lib)
             if result then
                 print(result)
             else
                 print("❌ Error executing command")
             end
+        ::continue::
         end
-    end, { nargs = "+" })
-
-    -- Check commands immediately after creation
-    local commands = vim.api.nvim_get_commands({ scope = 'all' })
-    for _, cmd in ipairs(commands) do
-        -- Commands are prefixed with 'User '
-        if string.match(cmd.name, '^User SuggestImports$') then
-            vim.notify('Command registered successfully', vim.log.levels.INFO)
-            return
-        end
-    end
-    
-    vim.notify('Error: Command registration failed', vim.log.levels.ERROR)
+    end, { nargs = "+" })    
+    -- vim.notify('Error: Command registration failed', vim.log.levels.ERROR)
 end
 
-M.commands()
 return M
