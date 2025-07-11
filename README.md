@@ -60,3 +60,7 @@ If you spot bugs or have ideas for improvements, feel free to open an issue or P
 
 Status as of: 09/07/2025:
 Added Future Features section, PR to Awesome-NeoVim accepted, waiting to merge.
+
+
+Status as of: 11/07/2025:
+Does first steps to auto-detecting languages and separating libraries manager. Also waiting merge to Awesome-NeoVim.
