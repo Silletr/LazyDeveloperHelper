@@ -3,12 +3,10 @@ import sys
 import subprocess
 import os
 
-def install_luarock(lib_name: str):
-    print(f"📦 Installing LuaRocks package {lib_name} ...\n")
 
-    try:
-        result = subprocess.run(
-            ["luarocks", "install", lib_name],
+def install_lib(lib_name):
+    print(f"📦 Installing LuaRocks package {lib_name} ...\n")
+    result = subprocess.run("luarocks", "install", lib_name,
             check=True,
             text=True,
             capture_output=True,

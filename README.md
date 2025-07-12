@@ -1,7 +1,7 @@
 # Lazy Developer Helper [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 [![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua&logoColor=white)](https://www.lua.org/)
-[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org)
+[![Python](https://img.shields.io/badge/python-3.11+-blue)](https://www.python.org)
 [![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=flat-square&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/Silletr/LazyDevHelper/pulls)
 
@@ -27,8 +27,8 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 
 ## Features
 
-✨ Install Python packages directly from Neovim.
-✨ Manage dependencies without leaving your editor.
+✨ Install Python packages directly from Neovim.  
+✨ Manage dependencies without leaving your editor.  
 ✨ Compatible with modern Neovim configurations.
 
 ## Future Features
@@ -60,3 +60,7 @@ If you spot bugs or have ideas for improvements, feel free to open an issue or P
 
 Status as of: 09/07/2025:
 Added Future Features section, PR to Awesome-NeoVim accepted, waiting to merge.
+
+
+Status as of: 11/07/2025:
+Does first steps to auto-detecting languages and separating libraries manager. Also waiting merge to Awesome-NeoVim.
