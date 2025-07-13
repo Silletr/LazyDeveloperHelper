@@ -1,3 +1,4 @@
+release.sh
 .env
 python/__pycache__
 *.pyc
