@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-
-print(">>> pip_install started <<<")
-import os 
+import os
 import subprocess
 import sys
 
-libs_list = set() 
+
+print(">>> pip_install started <<<")
+libs_list = set()
+
 
 def install_lib(lib_name: str):
     print(f"📦 Installing {lib_name} ...\n")
     global libs_list
     req_path = "requirements.txt"
     if not os.path.exists(req_path):
-        # Creating file if not exists 
+        # Creating file if not exists
         with open(req_path, "w") as f:
             f.write("")  # just empty
 
@@ -27,20 +28,27 @@ def install_lib(lib_name: str):
     try:
         global result
         result = subprocess.run(
-            [sys.executable, "-m", "pip", "install", "--upgrade", lib_name, "--break-system-packages"],
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--upgrade",
+                lib_name,
+                "--break-system-packages",
+            ],
             check=True,
             text=True,
-            capture_output=True, 
+            capture_output=True,
         )
-        
-       
+
         if "requirement already satisfied" in result.stdout.lower():
             print("\nInstallation Output:")
             print(result.stdout)
             print(f"✅ {lib_name} already installed")
         elif "successfully installed" in result.stdout.lower():
             print(f"✅ {lib_name} successfully installed")
-           
+
     except subprocess.CalledProcessError as e:
         print(f"❌ Failed to install {lib_name}")
         print(e.output)
