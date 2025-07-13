@@ -37,8 +37,8 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 - Code will be optimized better.
 
 
-## Roadmap
-Check my [TODO.md](./TODO.md) for upcoming features! Want to help - contributions are welcome.
+## 📋 Roadmap
+Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributions are welcome.
 
 
 ## Available in
