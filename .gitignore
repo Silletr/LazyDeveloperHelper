@@ -1,5 +1,5 @@
 .env
-__pycache__
+python/__pycache__
 *.pyc
 LazyEnv/
 requirements.txt
