@@ -8,7 +8,8 @@ rm -rf /tmp/ldh_release
 
 mkdir -p /tmp/ldh_release/LazyDeveloperHelper
 cp -r plugin /tmp/ldh_release/LazyDeveloperHelper/
-cp README.md LICENSE requirements.txt /tmp/ldh_release/LazyDeveloperHelper/
+cp -r python /tmp/ldh_release/LazyDeveloperHelper/
+cp README.md LICENSE contributing.md requirements.txt /tmp/ldh_release/LazyDeveloperHelper/
 
 echo "[*] Zipping..."
 cd /tmp/ldh_release
