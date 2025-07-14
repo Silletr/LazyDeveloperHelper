@@ -3,6 +3,8 @@
 - [ ] BUG FIX, 
 - [ ] DOC CHANGES, 
 - [ ] CHANGED/DELETED FILE/DIR
+- [ ] TYPO FIX
+
 ---
 ## What changed:
 
