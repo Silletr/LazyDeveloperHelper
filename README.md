@@ -43,7 +43,8 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 
 ## Available in
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
-- [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper) (somehow all plugins not updated already one week)
+- [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper) (somehow all plugins not updated already one week),
+- [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#utility)
 - Soon will be in neovimcraft.
 
 ### Installation Methods
@@ -70,3 +71,6 @@ Added Future Features section, PR to Awesome-NeoVim accepted, waiting to merge.
 
 Status as of: 11/07/2025:
 Does first steps to auto-detecting languages and separating libraries manager. Also waiting merge to Awesome-NeoVim.
+
+Status as of: 14/07/2025:
+Plugin repository was merged in Awesome-NeoVim succefully, waiting for merge in NeoVimCraft.
