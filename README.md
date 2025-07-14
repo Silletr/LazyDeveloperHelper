@@ -71,3 +71,6 @@ Added Future Features section, PR to Awesome-NeoVim accepted, waiting to merge.
 
 Status as of: 11/07/2025:
 Does first steps to auto-detecting languages and separating libraries manager. Also waiting merge to Awesome-NeoVim.
+
+Status as of: 14/07/2025:
+Plugin repository was merged in Awesome-NeoVim succefully, waiting for merge in NeoVimCraft.
