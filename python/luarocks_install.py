@@ -6,9 +6,7 @@ import sys
 def install_luarocks(lib_name):
     print(f"📦 Installing LuaRocks package {lib_name} ...\n")
     result = subprocess.run(
-        "luarocks",
-        "install",
-        lib_name,
+        ["luarocks", "install", lib_name, "--local"],
         check=True,
         text=True,
         capture_output=True,
