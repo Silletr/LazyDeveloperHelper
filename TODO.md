@@ -4,6 +4,6 @@
     - [x] If filetype is python = call plugin/pip_install.py, or if lua - call luarocks upload {package_name}
 2. Add supporting: 
     - [x] Lua (`luarocks install ...`)
-    - [ ] Rust (`cargo add ...`)
+    - [x] Rust (`cargo add ...`)
     - [ ] Node.js (`npm install ...`)
     - [ ] C/C++ (`conan`, `vckpg`, `cmake`, fallback: `make`)
