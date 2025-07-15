@@ -3,10 +3,11 @@ name: Auto Release
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
 
 jobs:
   release:
+    name: Create GitHub Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
