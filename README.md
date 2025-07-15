@@ -60,17 +60,5 @@ Example output:
 ![Installation Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/output_example.png)
 
 ## Status
+Want to see status of plugin at any day? ![Thats file for u](STATUS.md)
 
-Status as of July 1st, 2025:
-🎉 Plugin released successfully!
-If you spot bugs or have ideas for improvements, feel free to open an issue or PR.
-
-Status as of: 09/07/2025:
-Added Future Features section, PR to Awesome-NeoVim accepted, waiting to merge.
-
-
-Status as of: 11/07/2025:
-Does first steps to auto-detecting languages and separating libraries manager. Also waiting merge to Awesome-NeoVim.
-
-Status as of: 14/07/2025:
-Plugin repository was merged in Awesome-NeoVim succefully, waiting for merge in NeoVimCraft.
