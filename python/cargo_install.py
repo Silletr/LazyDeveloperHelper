@@ -28,7 +28,7 @@ def cargo_install(lib_name):
             capture_output=True,
             text=True,
         )
-        print("📦 Cargo output:\n", result.stdout)
+       print("📦 Cargo output:\n", result.stdout)
     except Exception as e:
         print("❌ cargo add failed:", e)
         return
