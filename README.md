@@ -33,8 +33,8 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 ✨ Compatible with modern Neovim configurations.
 
 ## Future Features
-- Will be added supporting Rust-, Lua- library manager.
-- Code will be optimized better.
+- [x] Will be added supporting Rust-, Lua- library manager.
+- [ ] Code will be optimized better.
 
 
 ## Roadmap
@@ -43,7 +43,7 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 
 ## Available in
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
-- [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper) (somehow all plugins not updated already one week),
+- [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
 - [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#utility)
 - Soon will be in neovimcraft.
 
