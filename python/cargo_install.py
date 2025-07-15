@@ -1,35 +1,38 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
-from tomlkit import parse
+from tomlkit import parse, dumps
 import sys
 import os
 from subprocess import run
 
-"""
-HINTS:
-example = '''
-[dependecies]
-serde = "1.0"
-'''
-
-subprocess.run(
-    ["cargo", "add", lib_name],
-    check=True,
-    capture_output=True,
-    text=True,
-)
-"""
 def cargo_install(lib_name):
+    cargo_path = "Cargo.toml"
+    if not os.path.exists(cargo_path):
+        print("❌ Cargo.toml not found in expected location.")
+        return
+
+    # Read TOML
+    with open(cargo_path, "r", encoding="utf-8") as f:
+        try:
+            doc = parse(f.read())
+        except Exception as e:
+            print("❌ Failed to parse Cargo.toml:", e)
+            return
+
+    # Start installing from Cargo
+    print(f"🔧 Running cargo add {lib_name} ...")
     try:
-        doc = parse("../Cargo.toml")
+       result = run(
+            ["cargo", "add", lib_name],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        print("📦 Cargo output:\n", result.stdout)
     except Exception as e:
-        print(e)
-    result = run(
-        ["cargo", "add", lib_name],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
+        print("❌ cargo add failed:", e)
+        return
+
 
 def main():
     if len(sys.argv) < 2:
@@ -39,6 +42,6 @@ def main():
     for lib in sys.argv[1:]:
         cargo_install(lib)
 
-
 if __name__ == "__main__":
     main()
+
