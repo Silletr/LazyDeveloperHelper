@@ -25,6 +25,7 @@
 Have you ever found yourself adding multiple dependencies to your code before installing them? Do you hate switching between your editor and terminal? 🤔
 
 LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Python dependencies directly from your editor, eliminating the need to switch to the terminal.
+And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 ## Features
 
