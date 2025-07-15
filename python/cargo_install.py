@@ -21,7 +21,7 @@ subprocess.run(
 """
 def cargo_install(lib_name):
     try:
-        doc = parse("Cargo.toml")
+        doc = parse("../Cargo.toml")
     except Exception as e:
         print(e)
     result = run(
