@@ -3,3 +3,9 @@ python/__pycache__
 *.pyc
 LazyEnv/
 requirements.txt
+src/
+main.rs
+Cargo.lock
+Cargo.toml
+# Added by cargo
+/target
