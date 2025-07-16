@@ -19,7 +19,7 @@
 <!-- tocstop -->
 
 ## Video example
-![Video example of commands](https://github.com/Silletr/LazyDevHelper/blob/05be3ec2aac191741eb6ba27b89d761317eaefa8/images/video_example.gif)
+![Video example of commands](https://github.com/Silletr/LazyDevHelper/blob/05be3ec2aac191741eb6ba27b89d761317eaefa8/images/example.gif)
 ## Introduction
 
 Have you ever found yourself adding multiple dependencies to your code before installing them? Do you hate switching between your editor and terminal? 🤔
