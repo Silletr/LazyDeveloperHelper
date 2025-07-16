@@ -23,10 +23,7 @@ M.commands = function()
         local rust_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/cargo_install.py"
         -- Function to safely execute external commands
         local function execute_command(script_path, lib)
-            local cmd = string.format(
-                'python3 -c "import subprocess; print(subprocess.run([\'%s\', \'%s\'], capture_output=True, text=True).stdout)"',
-                script_path, lib
-            )
+            local cmd = string.format('python3 "%s" "%s"', script_path, lib)
             return vim.fn.system(cmd)
         end
 
