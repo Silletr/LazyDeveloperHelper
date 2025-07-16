@@ -14,3 +14,7 @@
 
 <b>Status as of: 15/07/2025</b>:
 *Added Rust libraries supporting, but available one minus - your Cargo.toml need to be in one folder with your .rs file. Sorry, and i`ll fix it soon!*
+
+<b>Status as of 16/07/2025</b>:
+![downloads screenshot](images/downloads.png)
+*Our first 100 downloads! Thanks you all, guys!
