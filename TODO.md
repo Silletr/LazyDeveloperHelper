@@ -5,5 +5,5 @@
 2. Add supporting: 
     - [x] Lua (`luarocks install ...`)
     - [x] Rust (`cargo add ...`)
-    - [ ] Node.js (`npm install ...`)
+    - [x] Node.js (`npm install ...`)
     - [ ] C/C++ (`conan`, `vckpg`, `cmake`, fallback: `make`)
