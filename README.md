@@ -51,7 +51,12 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 ### Installation Methods
 ## Install using Packer
 ```lua
-use 'Silletr/LazyDevHelper'
+  use {
+    'Silletr/LazyDevHelper',
+    config = function()
+      require("LazyDeveloperHelper")
+    end
+  }
 ```
 ## Usage
 Command example:
