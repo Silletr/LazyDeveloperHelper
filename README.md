@@ -61,5 +61,5 @@ Example output:
 ![Installation Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/output_example.png)
 
 ## Status
-Want to see status of plugin at any day? ![Thats file for u](STATUS.md)
+Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 
