@@ -1,3 +1,6 @@
+package.json
+package-lock.json
+test_files/node_modules/
 .env
 python/__pycache__
 *.pyc
