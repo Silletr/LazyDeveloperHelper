@@ -20,7 +20,9 @@ M.commands = function()
         -- Define script paths relative to config directory
         local python_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/pip_install.py"
         local lua_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/luarocks_install.py"
+
         local rust_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/cargo_install.py"
+        local js_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/npm_install.py"
         -- Function to safely execute external commands
         local function execute_command(script_path, lib)
             local cmd = string.format('python3 "%s" "%s"', script_path, lib)
@@ -37,14 +39,17 @@ M.commands = function()
                 result = execute_command(python_script, lib)
             
             elseif lang == "lua" then
-                print("💎 Installing Lua package: " .. lib)
+                vim.notify("💎 Installing Lua package: " .. lib)
                 result = execute_command(lua_script, lib)
             elseif lang == "rust" then
-                print ("🦀 Installing Rust package: ".. lib)
+                vim.notify("🦀 Installing Rust package: ".. lib)
                 result = execute_command(rust_script, lib)
+            elseif lang == "javascript" then 
+                vim.notify("☕ Installing JS package: ".. lib)
+                result = execute_command(js_script, lib)
             else
                 print(string.format("❌ Unsupported filetype '%s'", lang))
-                print("Supported filetypes: python, lua")
+                print("Supported filetypes: python, lua, rust, javasript")
             goto continue
             end
 

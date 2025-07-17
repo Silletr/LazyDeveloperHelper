@@ -44,7 +44,7 @@ M.commands = function()
                 result = execute_command(rust_script, lib)
             else
                 print(string.format("❌ Unsupported filetype '%s'", lang))
-                print("Supported filetypes: python, lua")
+                print("Supported filetypes: python, lua, rust")
             goto continue
             end
 

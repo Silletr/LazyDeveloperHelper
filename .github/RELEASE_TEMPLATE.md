@@ -1,5 +1,6 @@
 ### What changed 
-Descript major changes in this release
+- Descript major changes in this release
+- Etc.,
 
 --- 
 ### Supporting languages
