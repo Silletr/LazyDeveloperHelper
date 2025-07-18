@@ -10,7 +10,7 @@ assignees: ''
 ## Category
 
 - [ ] Issue with supporting languages
-- [ ] Issue with Lua code 
+- [ ] Issue with Lua code
 
 ## Detailed issue:
 

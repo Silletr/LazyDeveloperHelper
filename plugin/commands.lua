@@ -16,7 +16,7 @@ M.commands = function()
         local args = opts.fargs
         local lang = vim.api.nvim_buf_get_option(0, "filetype")
         print("Detected filetype: " .. lang)
-    
+
         -- Define script paths relative to config directory
         local python_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/pip_install.py"
         local lua_script = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/luarocks_install.py"
@@ -32,19 +32,19 @@ M.commands = function()
         -- Process each library argument
         for _, lib in ipairs(args) do
             local result
-        
+
             -- Determine which installer to use based on filetype
             if lang == "python" then
                 print("🐍 Installing Python package: " .. lib)
                 result = execute_command(python_script, lib)
-            
+
             elseif lang == "lua" then
                 vim.notify("💎 Installing Lua package: " .. lib)
                 result = execute_command(lua_script, lib)
             elseif lang == "rust" then
                 vim.notify("🦀 Installing Rust package: ".. lib)
                 result = execute_command(rust_script, lib)
-            elseif lang == "javascript" then 
+            elseif lang == "javascript" then
                 vim.notify("☕ Installing JS package: ".. lib)
                 result = execute_command(js_script, lib)
             else
@@ -62,7 +62,7 @@ M.commands = function()
             end
         ::continue::
         end
-    end, { nargs = "+" })    
+    end, { nargs = "+" })
     -- vim.notify('Error: Command registration failed', vim.log.levels.ERROR)
 end
 
