@@ -29,8 +29,8 @@ And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 ## Features
 
-✨ Install Python packages directly from Neovim.  
-✨ Manage dependencies without leaving your editor.  
+✨ Install Python packages directly from Neovim.
+✨ Manage dependencies without leaving your editor.
 ✨ Compatible with modern Neovim configurations.
 
 ## Future Features
@@ -67,4 +67,3 @@ Example output:
 
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
-

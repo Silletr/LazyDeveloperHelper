@@ -1,7 +1,7 @@
 ## Category
-- [ ] NEW FILE/DIR, 
-- [ ] BUG FIX, 
-- [ ] DOC CHANGES, 
+- [ ] NEW FILE/DIR,
+- [ ] BUG FIX,
+- [ ] DOC CHANGES,
 - [ ] CHANGED/DELETED FILE/DIR
 - [ ] TYPO FIX
 

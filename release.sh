@@ -6,10 +6,13 @@ echo "[*] Preparing clean release…"
 rm -f dist/LazyDeveloperHelper.zip
 rm -rf /tmp/ldh_release
 
+echo "[*] Copying folders"
 mkdir -p /tmp/ldh_release/LazyDeveloperHelper
 cp -r plugin /tmp/ldh_release/LazyDeveloperHelper/
 cp -r python /tmp/ldh_release/LazyDeveloperHelper/
-cp README.md LICENSE contributing.md requirements.txt /tmp/ldh_release/LazyDeveloperHelper/
+cp -r test_files /tmp/ldh_release/LazyDeveloperHelper/
+echo "[*] Copying README.md, License, contributing.md"
+cp README.md LICENSE contributing.md  /tmp/ldh_release/LazyDeveloperHelper/
 
 echo "[*] Zipping..."
 cd /tmp/ldh_release
