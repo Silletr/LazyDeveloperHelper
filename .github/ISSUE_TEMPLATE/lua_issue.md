@@ -18,11 +18,7 @@ assignees: ''
 
 ## What need to change
 filename.lua:
-```
-
-...
-
-```
+Your suggestion...
 
 ## Why need to change
 etc.,
