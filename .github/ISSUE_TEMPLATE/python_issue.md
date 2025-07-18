@@ -13,7 +13,6 @@ assignees: ''
 
 
 ## What need to change: 
-
-...
+Your suggestion...
 
 ## Why need change:
