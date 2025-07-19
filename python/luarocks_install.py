@@ -5,6 +5,7 @@ import sys
 
 def install_luarocks(lib_name):
     print(f"📦 Installing LuaRocks package {lib_name} ...\n")
+    # Starting luarocks install process
     result = subprocess.run(
         ["luarocks", "install", lib_name, "--local"],
         check=True,
@@ -12,6 +13,7 @@ def install_luarocks(lib_name):
         capture_output=True,
     )
     try:
+        # checking already installed lib 
         stdout_lower = result.stdout.lower()
         if "installed" in stdout_lower or "already installed" in stdout_lower:
             print(result.stdout)
