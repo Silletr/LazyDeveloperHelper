@@ -5,6 +5,7 @@ from subprocess import run, PIPE
 
 def install_npm(lib):
     print(f"📦 Installing npm package: {lib} ...")
+    # Checking npm list for already installed libs
     result = run(["npm", "list", lib], stdout=PIPE, stderr=PIPE, text=True)
     if lib in result.stdout:
         print(f"✅ {lib} already installed")
