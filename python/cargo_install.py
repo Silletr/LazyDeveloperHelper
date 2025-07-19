@@ -1,3 +1,4 @@
+# for Unix systems (Ubuntu, Debian, Arch, etc.,)
 #!/usr/bin/env python3
 
 import sys
@@ -6,6 +7,7 @@ from subprocess import run
 
 
 def cargo_install(lib_name):
+    # Getting cargo file path
     cargo_path = "Cargo.toml"
     if not os.path.exists(cargo_path):
         print("❌ Cargo.toml not found in expected location.")
