@@ -23,7 +23,9 @@ def install_luarocks(lib_name):
             print(f"✅ {lib_name} installation output above")
     except subprocess.CalledProcessError as e:
         print(f"❌ Failed to install {lib_name}")
-        print(e.output)
+        print("🔻 stdout:\n", e.stdout)
+        print("🔻 stderr:\n", e.stderr)
+        print("🔚 Return code:", e.returncode)
 
 
 def main():
