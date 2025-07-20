@@ -19,10 +19,10 @@ M.commands = function()
 
         -- Define script paths relative to config directory
         local scripts_path = {
-            python_script = vim.fn.stdpath("config") .. 'lua/LazyDeveloperHelper/python/pip_install.py',
-            lua_script = vim.fn.stdpath("config") .. 'lua/LazyDeveloperHelper/python/luarocks_install.py',
-            rust_script = vim.fn.stdpath("config") .. 'lua/LazyDeveloperHelper/python/cargo_install.py',
-            js_script = vim.fn.stdpath("config") .. 'lua/LazyDeveloperHelper/python/npm_install.py'}
+            python_script = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/pip_install.py',
+            lua_script = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/luarocks_install.py',
+            rust_script = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/cargo_install.py',
+            js_script = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/npm_install.py'}
 
         -- Function to safely execute external commands
         local function execute_command(script_path, lib)
@@ -44,7 +44,7 @@ M.commands = function()
                 result = execute_command(scripts_path["lua_script"], lib)
             elseif lang == "rust" then
                 vim.notify("🦀 Installing Rust package: ".. lib)
-                result = execute_comamnd(scripts_path["rust_script"], lib)
+                result = execute_command(scripts_path["rust_script"], lib)
             elseif lang == "javascript" then
                 vim.notify("☕ Installing JS package: ".. lib)
                 result = execute_command(scripts_path["js_script"], lib)
