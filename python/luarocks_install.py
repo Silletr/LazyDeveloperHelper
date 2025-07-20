@@ -5,13 +5,13 @@ import sys
 
 def install_luarocks(lib_name):
     print(f"📦 Installing LuaRocks package {lib_name} ...\n")
-    result = subprocess.run(
-        ["luarocks", "install", lib_name, "--local"],
-        check=True,
-        text=True,
-        capture_output=True,
-    )
     try:
+        result = subprocess.run(
+            ["luarocks", "install", lib_name, "--local"],
+            check=True,
+            text=True,
+            capture_output=True,
+        )
         stdout_lower = result.stdout.lower()
         if "installed" in stdout_lower or "already installed" in stdout_lower:
             print(result.stdout)
@@ -21,7 +21,9 @@ def install_luarocks(lib_name):
             print(f"✅ {lib_name} installation output above")
     except subprocess.CalledProcessError as e:
         print(f"❌ Failed to install {lib_name}")
-        print(e.output)
+        print("🔻 stdout:\n", e.stdout)
+        print("🔻 stderr:\n", e.stderr)
+        print("🔚 Return code:", e.returncode)
 
 
 def main():
