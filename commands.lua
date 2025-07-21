@@ -44,7 +44,7 @@ M.commands = function()
                 result = execute_command(scripts_path["lua_script"], lib)
             elseif lang == "rust" then
                 vim.notify("🦀 Installing Rust package: ".. lib)
-                result = execute_comamnd(scripts_path["rust_script"], lib)
+                result = execute_command(scripts_path["rust_script"], lib)
             elseif lang == "javascript" then
                 vim.notify("☕ Installing JS package: ".. lib)
                 result = execute_command(scripts_path["js_script"], lib)
