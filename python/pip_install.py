@@ -9,7 +9,6 @@ libs_list = set()
 
 def install_lib(lib_name: str):
     print(f"📦 Installing {lib_name} ...\n")
-    # checking requirements txt file, if not exists - creating and filling of installed libs from command
     global libs_list
     req_path = "requirements.txt"
     if not os.path.exists(req_path):
@@ -41,7 +40,7 @@ def install_lib(lib_name: str):
             text=True,
             capture_output=True,
         )
-        # check already installed lib in current environment
+
         if "requirement already satisfied" in result.stdout.lower():
             print("\nInstallation Output:")
             print(result.stdout)
