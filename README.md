@@ -2,8 +2,8 @@
 
 [![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua&logoColor=white)](https://www.lua.org/)
 [![Python](https://img.shields.io/badge/python-3.11+-blue)](https://www.python.org)
-[![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=flat-square&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/Silletr/LazyDevHelper/pulls)
+[![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=round-square&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/Silletr/LazyDevHelper/pulls)
 
 ## Contents
 <!-- toc -->
