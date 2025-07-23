@@ -19,3 +19,7 @@
 
 *Our first 100 downloads! Thanks you all, guys!*
 ![downloads screenshot](images/downloads.png)
+
+<b>Status as of 23/07/2025</b>:
+
+*Recently added JavaScript libraries manager, I need 2 weeks break, so I will return at 06/07/2025*
