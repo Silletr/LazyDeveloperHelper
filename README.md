@@ -33,9 +33,9 @@ And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 ## Features
 
-✨ Install Python packages directly from Neovim.
-✨ Manage dependencies without leaving your editor.
-✨ Compatible with modern Neovim configurations.
+✨ Install Python packages directly from Neovim.  
+✨ Manage dependencies without leaving your editor.  
+✨ Compatible with modern Neovim configurations.  
 
 ## Future Features
 - [x] Will be added supporting Rust-, Lua- library manager.
