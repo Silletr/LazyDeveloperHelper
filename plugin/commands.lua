@@ -18,7 +18,6 @@ M.commands = function()
         print("Detected filetype: " .. lang)
 
         local config_path = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/'
-<<<<<<< HEAD
         local installers = {
             python = "pip_install.py",
             lua = "luarocks_install.py",
@@ -43,41 +42,6 @@ M.commands = function()
             execute_command(script_path, lib)
         end
     end, nargs = '+'
-=======
-
-        -- table with format "lang name = installer file"
-        local installers = {
-            python = "pip_install.py",
-            lua = "luarocks_install.py",
-            rust = "cargo_install.py",
-            javascript = "npm_install.py",
-        }
-
-        local script_name = installers[lang]
-        if not script_name then
-            print("No installer configured for filetype: " .. lang)
-            return
-        end
-
-        local script_path = config_path .. script_name
-
-        local function execute_command(script_path, lib)
-            local cmd = string.format('python3 "%s" "%s"', script_path, lib)
-            local output = vim.fn.system(cmd)
-            return output
-        end
-
-        for _, lib in ipairs(args) do
-            print("📦 Installing: " .. lib)
-            local result = execute_command(script_path, lib)
-            if result then
-                print(result)
-            else
-                print("❌ Error executing command for " .. lib)
-            end
-        end
-    end, { nargs = '+' })
->>>>>>> 8824c84 ([CHANGED FILE/DIR: plugin/commands.lua] Optimized logic with starting installers-files)
 end
     
 return M
