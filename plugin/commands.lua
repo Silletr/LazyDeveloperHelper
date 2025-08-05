@@ -26,7 +26,7 @@ M.commands = function()
         }
         local script_name = installers[lang]
         if not script_name then
-            print("No installer configured for filetype: " .. lang)
+            vim.notify("No installer configured for filetype: " .. lang)
             return
         end
 
@@ -35,11 +35,26 @@ M.commands = function()
         local function execute_command(script_path, lib)
             local cmd = string.format('python3 "%s" "%s"', script_path, lib)
             local output = vim.fn.system(cmd)
+<<<<<<< HEAD
             print(output)
         end
 
         for _, lib in ipairs(args) do
             execute_command(script_path, lib)
+=======
+            vim.notify(output)
+            return output
+        end
+
+        for _, lib in ipairs(args) do
+            vim.notify("📦 Installing: " .. lib)
+            local result = execute_command(script_path, lib)
+            if result then
+                vim.notify(result)
+            else
+                print("❌ Error executing command for " .. lib)
+            end
+>>>>>>> 43ff997 (	modified:   plugin/commands.lua)
         end
     end, nargs = '+'
 end
