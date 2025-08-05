@@ -35,13 +35,6 @@ M.commands = function()
         local function execute_command(script_path, lib)
             local cmd = string.format('python3 "%s" "%s"', script_path, lib)
             local output = vim.fn.system(cmd)
-<<<<<<< HEAD
-            print(output)
-        end
-
-        for _, lib in ipairs(args) do
-            execute_command(script_path, lib)
-=======
             vim.notify(output)
             return output
         end
@@ -54,7 +47,6 @@ M.commands = function()
             else
                 print("❌ Error executing command for " .. lib)
             end
->>>>>>> 43ff997 (	modified:   plugin/commands.lua)
         end
     end, nargs = '+'
 end
