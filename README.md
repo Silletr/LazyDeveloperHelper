@@ -8,6 +8,7 @@
 ## Contents
 <!-- toc -->
 - [Video example](#video-example)
+- [Status](#status)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Future Features](#future-features)
@@ -15,11 +16,14 @@
 - [Install using Packer](#install-using-packer)
 - [Avaible in](#available-in)
 - [Usage](#usage)
-- [Status](#status)
 <!-- tocstop -->
 
 ## Video example
 ![Video example of commands](images/example.gif)
+
+## Status
+Want to see status of plugin at any day? [Thats file for u](STATUS.md)
+
 ## Introduction
 
 Have you ever found yourself adding multiple dependencies to your code before installing them? Do you hate switching between your editor and terminal? 🤔
@@ -29,9 +33,9 @@ And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 ## Features
 
-✨ Install Python packages directly from Neovim.
-✨ Manage dependencies without leaving your editor.
-✨ Compatible with modern Neovim configurations.
+✨ Install Python packages directly from Neovim.  
+✨ Manage dependencies without leaving your editor.  
+✨ Compatible with modern Neovim configurations.  
 
 ## Future Features
 - [x] Will be added supporting Rust-, Lua- library manager.
@@ -64,6 +68,3 @@ Command example:
 
 Example output:
 ![Installation Output](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/output_example.png)
-
-## Status
-Want to see status of plugin at any day? [Thats file for u](STATUS.md)
