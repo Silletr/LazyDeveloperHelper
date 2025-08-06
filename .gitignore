@@ -10,6 +10,12 @@ src/
 main.rs
 Cargo.lock
 Cargo.toml
+
+
+# for sonarcloud scanner, only on my system for better code quality
+.scannerwork/
+
+
 # Added by cargo
 /target
 
