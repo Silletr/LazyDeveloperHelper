@@ -18,7 +18,7 @@ def install_lib(lib_name: str):
 
     with open(req_path, "r") as file:
         all_libs = file.readlines()
-        libs_list = set(line.strip().split("==")[0].lower() for line in all_libs)
+        libs_list = {line.strip().split("==")[0].lower() for line in all_libs}
 
     if lib_name.lower() not in libs_list:
         with open(req_path, "a") as file:
