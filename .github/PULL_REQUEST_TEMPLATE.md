@@ -9,15 +9,20 @@
 - [ ] 🗃️ STRUCTURE
 
 ---
-## What changed:
+## 📝 Description
+**Describe what you changed and why**
 
-- Change 1
-- Change 2
----
-## Why changed?
+## 🧾 Related Issues / Tickets
+**Link any related issue or task if available**
 
-Why u changed this file/files
+## ✅ Checklist
+- [ ] Code compiles
+- [ ] All tests passed
+- [ ] Documentation updated (leave blank if not changed) 
+- [ ] Manually tested
 
----
-## Additionally
-- Enter time and timezone: (example: 14:43, GMT+3, Date (DD/MM/YYYY)
+## 📎 Screenshots / Logs (if applicable)
+<!-- Optional visual or terminal output -->
+
+## ⏱ Timezone and Timestamp
+_<!-- eg. 15:10 GMT+3, 08.08.2025 -->_
