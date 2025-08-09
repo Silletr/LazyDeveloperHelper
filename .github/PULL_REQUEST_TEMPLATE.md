@@ -17,7 +17,6 @@
 
 ## ✅ Checklist
 - [ ] Code compiles
-- [ ] All tests passed
 - [ ] Documentation updated (leave blank if not changed) 
 - [ ] Manually tested
 
