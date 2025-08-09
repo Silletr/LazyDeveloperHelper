@@ -4,9 +4,9 @@ repos:
     hooks:
       - id: ruff-check
         args: [--fix]
-        files: \.(py|rs|lua)$
+        files: \.(py|lua)$
       - id: ruff-format
-        files: \.(py|rs|lua)$
+        files: \.(py|lua)$
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
