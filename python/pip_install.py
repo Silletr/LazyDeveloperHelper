@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import os
-import subprocess
+from subprocess import run, CalledProcessError
 import sys
 
 print(">>> pip_install started <<<")
@@ -26,7 +26,7 @@ def install_lib(lib_name: str):
 
     try:
         global result
-        result = subprocess.run(
+        result = run(
             [
                 sys.executable,
                 "-m",
@@ -48,9 +48,12 @@ def install_lib(lib_name: str):
         elif "successfully installed" in result.stdout.lower():
             print(f"✅ {lib_name} successfully installed")
 
-    except subprocess.CalledProcessError as e:
+    except CalledProcessError as e:
         print(f"❌ Failed to install {lib_name}")
-        print(e.output)
+        print("🔻 stdout:\n", e.stdout)
+        print("🔻 stderr:\n", e.stderr)
+
+        print("🔚 Return code:", e.returncode)
 
 
 def main():
