@@ -2,7 +2,8 @@
     - [x] Check it from vim.bo.filetype
     - [x] Save to "file_type" variable
     - [x] If filetype is python = call plugin/pip_install.py, or if lua - call luarocks upload {package_name}
-2. Add supporting:
+2. Replace `prints` to vim.notify for better UI and just visual enjoyment 
+3. Add supporting:
     - [x] Lua (`luarocks install ...`)
     - [x] Rust (`cargo add ...`)
     - [x] Node.js (`npm install ...`)
