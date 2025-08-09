@@ -3,6 +3,7 @@
 import sys
 import os
 from subprocess import run
+from subprocess import CalledProcessError
 
 
 def cargo_install(lib_name):
@@ -21,9 +22,13 @@ def cargo_install(lib_name):
             text=True,
         )
         print("📦 Cargo output:\n", result.stdout)
-    except Exception as e:
-        print("❌ cargo add failed:", e)
-        return
+
+    except CalledProcessError as e:
+        print(f"❌ Failed to install {lib_name}")
+        print("🔻 stdout:\n", e.stdout)
+        print("🔻 stderr:\n", e.stderr)
+
+        print("🔚 Return code:", e.returncode)
 
 
 def main():

@@ -1,6 +1,6 @@
 #!usr/bin/python3
 import sys
-from subprocess import run, PIPE
+from subprocess import run, PIPE, CalledProcessError
 
 
 def install_npm(lib):
@@ -9,19 +9,26 @@ def install_npm(lib):
     if lib in result.stdout:
         print(f"✅ {lib} already installed")
         return
+    try:
+        # if lib not found - install
+        result = run(
+            ["npm", "install", lib.lower(), "--no-save"],
+            stdout=PIPE,
+            stderr=PIPE,
+            text=True,
+        )
+        if result.returncode == 0:
+            print(f"✅ {lib} installed successfully")
+        else:
+            print(f"❌ Failed to install {lib}")
+            print(result.stderr)
 
-    # if lib not found - install
-    result = run(
-        ["npm", "install", lib.lower(), "--no-save"],
-        stdout=PIPE,
-        stderr=PIPE,
-        text=True,
-    )
-    if result.returncode == 0:
-        print(f"✅ {lib} installed successfully")
-    else:
+    except CalledProcessError as e:
         print(f"❌ Failed to install {lib}")
-        print(result.stderr)
+        print("🔻 stdout:\n", e.stdout)
+        print("🔻 stderr:\n", e.stderr)
+
+        print("🔚 Return code:", e.returncode)
 
 
 def main():

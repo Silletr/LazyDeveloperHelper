@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-import subprocess
+from subprocess import CalledProcessError, run
 import sys
 
 
 def install_luarocks(lib_name):
     print(f"📦 Installing LuaRocks package {lib_name} ...\n")
     try:
-        result = subprocess.run(
+        result = run(
             ["luarocks", "install", lib_name, "--local"],
             check=True,
             text=True,
@@ -19,7 +19,8 @@ def install_luarocks(lib_name):
         else:
             print(result.stdout)
             print(f"✅ {lib_name} installation output above")
-    except subprocess.CalledProcessError as e:
+
+    except CalledProcessError as e:
         print(f"❌ Failed to install {lib_name}")
         print("🔻 stdout:\n", e.stdout)
         print("🔻 stderr:\n", e.stderr)
