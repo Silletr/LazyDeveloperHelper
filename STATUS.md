@@ -23,3 +23,8 @@
 <b>Status as of 23/07/2025</b>:
 
 *Recently added JavaScript libraries manager, I need 2 weeks break, so I will return at 06/07/2025*
+
+<b>Status as of 18.08.2025</b>:
+*Almost 300 downloads guys! Thats was too fast, and i will add the C-lang support soon, so prepare for new wave of updates!*
+
+![downloading stats](images/295_downloading.png)
