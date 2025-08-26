@@ -28,3 +28,8 @@
 *Almost 300 downloads guys! Thats was too fast, and i will add the C-lang support soon, so prepare for new wave of updates!*
 
 ![downloading stats](images/295_downloading.png)
+
+
+<b>Status as of 26/08/2025</b>:
+![400 downloads](./images/400_downloads.png) 
+Already 400 downloads! Thats impressive, thanks you all for this, and I have one news - i will try go back to this repository because i need fix some problems in my live, so i will unactive on this project
