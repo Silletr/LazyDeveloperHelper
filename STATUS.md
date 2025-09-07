@@ -28,3 +28,8 @@
 *Almost 300 downloads guys! Thats was too fast, and i will add the C-lang support soon, so prepare for new wave of updates!*
 
 ![downloading stats](images/295_downloading.png)
+
+<b>Status as of 07.09.2025</b>:
+*Already 600 downloads, thats fucking fast, and thanks for 8 rating! From now i will try to combinate school & code & my life, so updates will be, but not too much as it was before! Thanks for this all!*
+
+![downloads stat](images/almost_600_downloads.png)
