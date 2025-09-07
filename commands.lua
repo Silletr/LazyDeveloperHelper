@@ -1,70 +1,85 @@
 local M = {}
 
 M.commands = function()
-    vim.api.nvim_create_user_command("IsWorking", function()
-        print("Yep!")
-        print("Command executed successfully")
-    end, {})
+  vim.api.nvim_create_user_command("IsWorking", function()
+    print("Yep!")
+    print("Command executed successfully")
+  end, {})
 
-    vim.api.nvim_create_user_command("HellPip", function()
-        print("Need help? Thats for u: ")
-        print("Commands: \n:IsWorking - for check plugin status\n")
-        print(":SuggestImports {lib_names (can be multiply)} - well.. main functional, maybe")
-    end, {})
+  vim.api.nvim_create_user_command("HellPip", function()
+    print("Need help? Thats for u: ")
+    print("Commands: \n:IsWorking - for check plugin status\n")
+    print(":SuggestImports {lib_names (can be multiply)} - well.. main functional, maybe")
+  end, {})
 
-    vim.api.nvim_create_user_command("SuggestImports", function(opts)
-        local args = opts.fargs
-        local lang = vim.api.nvim_buf_get_option(0, "filetype")
-        print("Detected filetype: " .. lang)
+  vim.api.nvim_create_user_command("SuggestImports", function(opts)
+    local args = opts.fargs
+    local lang = vim.api.nvim_buf_get_option(0, "filetype")
 
-        -- Define script paths relative to config directory
-        local scripts_path = {
-            python_script = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/pip_install.py',
-            lua_script = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/luarocks_install.py',
-            rust_script = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/cargo_install.py',
-            js_script = vim.fn.stdpath("config") .. '/lua/LazyDeveloperHelper/python/npm_install.py'}
+    print("Detected filetype: " .. lang)
 
-        -- Function to safely execute external commands
-        local function execute_command(script_path, lib)
-            local cmd = string.format('python3 "%s" "%s"', script_path, lib)
-            return vim.fn.system(cmd)
+    local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/"
+    local installers = {
+      python = "pip_install.py",
+      lua = "luarocks_install.py",
+      rust = "cargo_install.py",
+      javascript = "npm_install.py",
+    }
+    local script_name = installers[lang]
+    if not script_name then
+      vim.notify("No installer configured for filetype: " .. lang, vim.log.levels.WARN)
+      return
+    end
+
+    local script_path = config_path .. script_name
+
+    local function execute_async(lib)
+      local stdout = vim.loop.new_pipe(false)
+      local stderr = vim.loop.new_pipe(false)
+
+      vim.notify("📦 Installing: " .. lib)
+
+      local handle
+      handle = vim.loop.spawn("python3", {
+        args = { script_path, lib },
+        stdio = { nil, stdout, stderr },
+      }, function(code)
+        stdout:read_stop()
+        stderr:read_stop()
+        stdout:close()
+        stderr:close()
+        handle:close()
+
+        vim.schedule(function()
+          if code == 0 then
+            vim.notify("✅ Successfully installed " .. lib)
+          else
+            vim.notify("❌ Failed to install " .. lib .. " (code: " .. code .. ")", vim.log.levels.ERROR)
+          end
+        end)
+      end)
+
+      stdout:read_start(function(err, data)
+        if data then
+          vim.schedule(function()
+            print(data, vim.log.levels.INFO)
+          end)
         end
+      end)
 
-        -- Process each library argument
-        for _, lib in ipairs(args) do
-            local result
-
-            -- Determine which installer to use based on filetype
-            if lang == "python" then
-                print("🐍 Installing Python package: " .. lib)
-                result = execute_command(scripts_path["python_script"], lib)
-
-            elseif lang == "lua" then
-                vim.notify("💎 Installing Lua package: " .. lib)
-                result = execute_command(scripts_path["lua_script"], lib)
-            elseif lang == "rust" then
-                vim.notify("🦀 Installing Rust package: ".. lib)
-                result = execute_command(scripts_path["rust_script"], lib)
-            elseif lang == "javascript" then
-                vim.notify("☕ Installing JS package: ".. lib)
-                result = execute_command(scripts_path["js_script"], lib)
-            else
-                print(string.format("❌ Unsupported filetype '%s'", lang))
-                print("Supported filetypes: python, lua, rust, javasript")
-            goto continue
-            end
-
-            -- Handle command output
-            print("📦 Result for: " .. lib)
-            if result then
-                print(result)
-            else
-                print("❌ Error executing command")
-            end
-        ::continue::
+      stderr:read_start(function(err, data)
+        if data then
+          vim.schedule(function()
+            vim.notify(data, vim.log.levels.ERROR)
+          end)
         end
-    end, { nargs = "+" })
-    -- vim.notify('Error: Command registration failed', vim.log.levels.ERROR)
+      end)
+    end
+
+    for _, lib in ipairs(args) do
+      execute_async(lib)
+    end
+  end, { nargs = "+" })
 end
 
 return M
