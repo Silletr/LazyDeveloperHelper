@@ -29,7 +29,14 @@
 
 ![downloading stats](images/295_downloading.png)
 
+
+<b>Status as of 26/08/2025</b>:
+![400 downloads](./images/400_downloads.png) 
+Already 400 downloads! Thats impressive, thanks you all for this, and I have one news - i will try go back to this repository because i need fix some problems in my live, so i will unactive on this project
+
+
 <b>Status as of 07.09.2025</b>:
 *Already 600 downloads, thats fucking fast, and thanks for 8 rating! From now i will try to combinate school & code & my life, so updates will be, but not too much as it was before! Thanks for this all!*
 
 ![downloads stat](images/almost_600_downloads.png)
+
