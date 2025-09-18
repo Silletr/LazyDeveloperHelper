@@ -1,16 +1,20 @@
+# --- Requirements file`s
+# JS
 package.json
 package-lock.json
 test_files/node_modules/
-.env
+
+# Python
 python/__pycache__
 *.pyc
-LazyEnv/
 requirements.txt
+
+# Rust
 src/
 main.rs
 Cargo.lock
 Cargo.toml
-
+# ---
 
 # for sonarcloud scanner, only on my system for better code quality
 .scannerwork/
