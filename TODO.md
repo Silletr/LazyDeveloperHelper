@@ -7,3 +7,5 @@
     - [x] Lua (`luarocks install ...`)
     - [x] Rust (`cargo add ...`)
     - [x] Node.js (`npm install ...`)
+
+4. - [ ] **Optimize code**
