@@ -55,3 +55,9 @@ And, for 2 days - we already have 500 downloads - plugin is growning, I am afk (
 Sorry!
 
 ---
+
+<b>Status as of 23/09/2025</b>:
+![790 downloads](./images/790_downloads.png)
+I was afk too much time, but already downloading this - thank for downloadings, and I think i can go back to projects, but I need time for some adaptive period to coding, school, my new sleep-mode, and just day schedule.
+Thanks for attention, i going to sleep (its now 0:50)!
+
