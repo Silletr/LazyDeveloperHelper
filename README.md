@@ -14,6 +14,7 @@
 - [Future Features](#future-features)
 - [Roadmap](#roadmap)
 - [Install using Packer](#install-using-packer)
+- [Install using Lazy](#install-using-Lazy)
 - [Avaible in](#available-in)
 - [Usage](#usage)
 <!-- tocstop -->
@@ -62,6 +63,19 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
     end
   }
 ```
+Then: :PackerSync
+
+## Install using Lazy
+```lua
+return {
+    "Silletr/LazyDeveloperHelper",
+    config = function ()
+        require("LazyDeveloperHelper").setup()
+    end
+  }
+```
+Then: `:Lazy sync`
+
 ## Usage
 Command example:
 ![Command Example](https://raw.githubusercontent.com/Silletr/LazyDevHelper/main/images/command_example.png)
