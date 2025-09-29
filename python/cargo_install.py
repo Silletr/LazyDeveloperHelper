@@ -1,78 +1,99 @@
-#!/usr/bin/env python3
+#!/bin/env python3
 
-import sys
 import os
-from subprocess import run
-from subprocess import CalledProcessError
+import sys
+from subprocess import run, CalledProcessError
+from shutil import which
+from functools import lru_cache
 
-def find_cargo_toml(start_dir='.'):
-    """Search for Cargo.toml starting from specified directory"""
-    # Check current directory first
-    cargo_path = os.path.join(start_dir, 'Cargo.toml')
+CARGO_TOML = "Cargo.toml"
+
+def log_message(message: str, level: str = "info") -> None:
+    """Print a formatted message with an emoji prefix."""
+    prefixes = {"info": "📍", "success": "📦", "error": "❌"}
+    print(f"{prefixes.get(level, '📍')} {message}")
+
+@lru_cache(maxsize=1)
+def find_cargo_toml(start_dir: str = '.') -> str | None:
+    """Search for Cargo.toml starting from the specified directory.
+
+    Args:
+        start_dir (str): Directory to start the search from. Defaults to current directory.
+
+    Returns:
+        str | None: Absolute path to Cargo.toml if found, None otherwise.
+    """
+    cargo_path = os.path.join(start_dir, CARGO_TOML)
     if os.path.exists(cargo_path):
         return cargo_path
     
-    # If not found, search parent directories
     current_dir = os.path.abspath(start_dir)
-    while True:
+    while current_dir != os.path.dirname(current_dir):
         parent_dir = os.path.dirname(current_dir)
-        if parent_dir == current_dir:  # Reached root
-            break
-        
-        cargo_path = os.path.join(parent_dir, 'Cargo.toml')
+        cargo_path = os.path.join(parent_dir, CARGO_TOML)
         if os.path.exists(cargo_path):
             return cargo_path
-            
         current_dir = parent_dir
-    
     return None
 
-def cargo_install(lib_name):
-    # Find Cargo.toml
+def check_cargo_installed() -> bool:
+    """Check if cargo is installed and available in PATH."""
+    if not which("cargo"):
+        log_message("cargo is not installed or not found in PATH.", "error")
+        return False
+    return True
+
+def validate_library_name(lib: str) -> bool:
+    """Check if the library name is valid."""
+    if not lib or any(c in lib for c in '<>|&;"'):
+        log_message(f"Invalid library name: {lib}", "error")
+        return False
+    return True
+
+def cargo_install(libs: list[str]) -> None:
+    """Install Rust libraries using cargo add.
+
+    Args:
+        libs (list[str]): List of library names to install.
+    """
     cargo_path = find_cargo_toml()
     if not cargo_path:
-        print("❌ Cargo.toml not found in current or parent directories.")
+        log_message("Cargo.toml not found in current or parent directories.", "error")
         return
-
-    # Get absolute paths for better error reporting
-    abs_cargo_path = os.path.abspath(cargo_path)
-    current_dir = os.getcwd()
     
-    print(f"📁 Found Cargo.toml at: {abs_cargo_path}")
-    print(f"📍 Current directory: {current_dir}")
-
-    # Change to Cargo.toml's directory temporarily
+    abs_cargo_path = os.path.abspath(cargo_path)
     original_dir = os.getcwd()
     try:
         os.chdir(os.path.dirname(abs_cargo_path))
-        
-        # Install the dependency
-        print(f"🔧 Running cargo add {lib_name} ...")
-        try:
-            result = run(
-                ["cargo", "add", lib_name],
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-            print("📦 Cargo output:\n", result.stdout)
-
-        except CalledProcessError as e:
-            print(f"❌ Failed to install {lib_name}")
-            print("🔻 stdout:\n", e.stdout)
-            print("🔻 stderr:\n", e.stderr)
-            print("🔚 Return code:", e.returncode)
-
+        log_message(f"Running cargo add {' '.join(libs)} ...")
+        result = run(
+            ["cargo", "add"] + libs,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        log_message("Cargo output:\n" + result.stdout, "success")
+    except CalledProcessError as e:
+        log_message(f"Failed to install {', '.join(libs)}", "error")
+        log_message("stdout:\n" + e.stdout)
+        log_message("stderr:\n" + e.stderr)
     finally:
-        os.chdir(original_dir)  # Restore original directory
+        os.chdir(original_dir)
 
 def main():
     if len(sys.argv) < 2:
-        print("Provide at least one Rust package name")
-        return
-
-    for lib in sys.argv[1:]:
-        cargo_install(lib)
+        log_message("Provide at least one Rust package name", "error")
+        sys.exit(1)
+    
+    libraries = [lib for lib in sys.argv[1:] if validate_library_name(lib)]
+    if not libraries:
+        log_message("No valid libraries provided", "error")
+        sys.exit(1)
+    
+    if not check_cargo_installed():
+        sys.exit(1)
+    
+    cargo_install(libraries)
 
 if __name__ == "__main__":
     main()
