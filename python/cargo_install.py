@@ -8,13 +8,15 @@ from functools import lru_cache
 
 CARGO_TOML = "Cargo.toml"
 
+
 def log_message(message: str, level: str = "info") -> None:
     """Print a formatted message with an emoji prefix."""
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
+
 @lru_cache(maxsize=1)
-def find_cargo_toml(start_dir: str = '.') -> str | None:
+def find_cargo_toml(start_dir: str = ".") -> str | None:
     """Search for Cargo.toml starting from the specified directory.
 
     Args:
@@ -26,7 +28,7 @@ def find_cargo_toml(start_dir: str = '.') -> str | None:
     cargo_path = os.path.join(start_dir, CARGO_TOML)
     if os.path.exists(cargo_path):
         return cargo_path
-    
+
     current_dir = os.path.abspath(start_dir)
     while current_dir != os.path.dirname(current_dir):
         parent_dir = os.path.dirname(current_dir)
@@ -36,6 +38,7 @@ def find_cargo_toml(start_dir: str = '.') -> str | None:
         current_dir = parent_dir
     return None
 
+
 def check_cargo_installed() -> bool:
     """Check if cargo is installed and available in PATH."""
     if not which("cargo"):
@@ -43,12 +46,14 @@ def check_cargo_installed() -> bool:
         return False
     return True
 
+
 def validate_library_name(lib: str) -> bool:
     """Check if the library name is valid."""
     if not lib or any(c in lib for c in '<>|&;"'):
         log_message(f"Invalid library name: {lib}", "error")
         return False
     return True
+
 
 def cargo_install(libs: list[str]) -> None:
     """Install Rust libraries using cargo add.
@@ -60,7 +65,7 @@ def cargo_install(libs: list[str]) -> None:
     if not cargo_path:
         log_message("Cargo.toml not found in current or parent directories.", "error")
         return
-    
+
     abs_cargo_path = os.path.abspath(cargo_path)
     original_dir = os.getcwd()
     try:
@@ -80,20 +85,22 @@ def cargo_install(libs: list[str]) -> None:
     finally:
         os.chdir(original_dir)
 
+
 def main():
     if len(sys.argv) < 2:
         log_message("Provide at least one Rust package name", "error")
         sys.exit(1)
-    
+
     libraries = [lib for lib in sys.argv[1:] if validate_library_name(lib)]
     if not libraries:
         log_message("No valid libraries provided", "error")
         sys.exit(1)
-    
+
     if not check_cargo_installed():
         sys.exit(1)
-    
+
     cargo_install(libraries)
+
 
 if __name__ == "__main__":
     main()
