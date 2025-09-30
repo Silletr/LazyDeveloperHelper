@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import MagicMock
 import subprocess
 from ..python.npm_install import install_npm
