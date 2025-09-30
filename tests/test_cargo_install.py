@@ -13,7 +13,6 @@ def test_find_cargo_toml_exists(tmp_path, mock_os_path_exists, mock_os_path_absp
     if result != str(tmp_path / "Cargo.toml"):
         raise AssertionError
 
-
 def test_find_cargo_toml_not_found(mock_os_path_exists):
     result = find_cargo_toml()
     assert result is None
@@ -47,7 +46,7 @@ def test_cargo_install_success(tmp_path, mock_subprocess_run, mock_os_path_exist
 def test_cargo_install_failure(tmp_path, mock_subprocess_run, mock_os_path_exists, mock_os_path_abspath, mock_os_getcwd, mock_os_chdir, capsys):
     (tmp_path / "Cargo.toml").touch()
     mock_subprocess_run.side_effect = subprocess.CalledProcessError(
-        returncode=1, cmd=["cargo", "add", "serde"], stdout="", stderr="Error: invalid crate"
+        returncode=1, cmd=["cargo", "add", "serde"], output="", stderr="Error: invalid crate"
     )
     cargo_install(["serde"])
     captured = capsys.readouterr()
@@ -55,3 +54,4 @@ def test_cargo_install_failure(tmp_path, mock_subprocess_run, mock_os_path_exist
         raise AssertionError
     if "stderr:\nError: invalid crate" not in captured.out:
         raise AssertionError
+

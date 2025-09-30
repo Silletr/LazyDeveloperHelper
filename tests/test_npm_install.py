@@ -23,7 +23,7 @@ def test_install_npm_success(mock_subprocess_run, capsys):
 def test_install_npm_failure(mock_subprocess_run, capsys):
     mock_subprocess_run.side_effect = [
         MagicMock(returncode=1, stdout="", stderr=""),  # npm list fails
-        subprocess.CalledProcessError(returncode=1, cmd=["npm", "install", "express", "--no-save"], stdout="", stderr="Error: not found")
+        subprocess.CalledProcessError(returncode=1, cmd=["npm", "install", "express", "--no-save"], output="", stderr="Error: not found")
     ]
     install_npm("express")
     captured = capsys.readouterr()

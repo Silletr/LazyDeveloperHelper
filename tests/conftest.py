@@ -1,5 +1,6 @@
 import pytest
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
+
 @pytest.fixture
 def mock_subprocess_run():
     with patch("subprocess.run") as mock_run:
