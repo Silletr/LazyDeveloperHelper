@@ -41,4 +41,7 @@ def test_install_luarocks_failure(mock_subprocess_run, capsys):
         raise AssertionError
     if "stderr:\nError: not found" not in captured.out:
         raise AssertionError
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78466cd ([CHANGED FILE/DIR: tests/test_cargo_install.py, test_luarocks_install.py] Deleted '>>>>>> master' from the end of files)

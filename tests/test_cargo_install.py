@@ -54,4 +54,7 @@ def test_cargo_install_failure(tmp_path, mock_subprocess_run, mock_os_path_exist
         raise AssertionError
     if "stderr:\nError: invalid crate" not in captured.out:
         raise AssertionError
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78466cd ([CHANGED FILE/DIR: tests/test_cargo_install.py, test_luarocks_install.py] Deleted '>>>>>> master' from the end of files)
