@@ -51,5 +51,7 @@ def test_cargo_install_failure(tmp_path, mock_subprocess_run, mock_os_path_exist
     )
     cargo_install(["serde"])
     captured = capsys.readouterr()
-    assert "Failed to install serde" in captured.out
-    assert "stderr:\nError: invalid crate" in captured.out
+    if "Failed to install serde" not in captured.out:
+        raise AssertionError
+    if "stderr:\nError: invalid crate" not in captured.out:
+        raise AssertionError

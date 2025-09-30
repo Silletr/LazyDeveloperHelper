@@ -37,5 +37,7 @@ def test_install_luarocks_failure(mock_subprocess_run, capsys):
     )
     install_luarocks(["lua-socket"])
     captured = capsys.readouterr()
-    assert "Failed to install lua-socket" in captured.out
-    assert "stderr:\nError: not found" in captured.out
+    if "Failed to install lua-socket" not in captured.out:
+        raise AssertionError
+    if "stderr:\nError: not found" not in captured.out:
+        raise AssertionError
