@@ -58,4 +58,3 @@ def test_install_luarocks_failure(mock_subprocess_run, capsys):
         raise AssertionError
     if "stderr:\nError: not found" not in captured.out:
         raise AssertionError
->>>>>>> master

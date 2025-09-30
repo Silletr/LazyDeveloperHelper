@@ -90,4 +90,3 @@ def test_cargo_install_failure(
         raise AssertionError
     if "stderr:\nError: invalid crate" not in captured.out:
         raise AssertionError
->>>>>>> master
