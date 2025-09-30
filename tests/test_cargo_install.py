@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import MagicMock
 from ..python.cargo_install import find_cargo_toml, check_cargo_installed, cargo_install, validate_library_name 
 import subprocess
