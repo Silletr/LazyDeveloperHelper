@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from unittest.mock import MagicMock
 import subprocess
 from python.pip_install import install_lib
