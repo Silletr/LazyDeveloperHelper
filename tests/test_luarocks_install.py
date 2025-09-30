@@ -1,15 +1,21 @@
 from unittest.mock import MagicMock
-from ..python.luarocks_install import validate_library_name, check_luarocks_installed, install_luarocks  
+from ..python.luarocks_install import (
+    validate_library_name,
+    check_luarocks_installed,
+    install_luarocks,
+)
 import subprocess
 
 
 def test_validate_library_name_valid():
     assert validate_library_name("lua-socket") is True
 
+
 def test_validate_library_name_invalid(capsys):
     assert validate_library_name("lua-socket;malicious") is False
     captured = capsys.readouterr()
     assert "Invalid library name: lua-socket;malicious" in captured.out
+
 
 def test_check_luarocks_installed(mock_shutil_which, capsys):
     mock_shutil_which.return_value = "/usr/bin/luarocks"
@@ -20,16 +26,23 @@ def test_check_luarocks_installed(mock_shutil_which, capsys):
     captured = capsys.readouterr()
     assert "luarocks is not installed or not found in PATH" in captured.out
 
+
 def test_install_luarocks_success(mock_subprocess_run, capsys):
-    mock_subprocess_run.return_value = MagicMock(returncode=0, stdout="installed lua-socket", stderr="")
+    mock_subprocess_run.return_value = MagicMock(
+        returncode=0, stdout="installed lua-socket", stderr=""
+    )
     install_luarocks(["lua-socket"])
     captured = capsys.readouterr()
     assert "Installing LuaRocks package lua-socket ..." in captured.out
     assert "lua-socket installed or already present" in captured.out
 
+
 def test_install_luarocks_failure(mock_subprocess_run, capsys):
     mock_subprocess_run.side_effect = subprocess.CalledProcessError(
-        returncode=1, cmd=["luarocks", "install", "lua-socket", "--local"], stdout="", stderr="Error: not found"
+        returncode=1,
+        cmd=["luarocks", "install", "lua-socket", "--local"],
+        stdout="",
+        stderr="Error: not found",
     )
     install_luarocks(["lua-socket"])
     captured = capsys.readouterr()
