@@ -1,6 +1,8 @@
 version = 1
 
 test_patterns = ["tests/"]
+[ignore]
+paths = ["tests/"]
 
 [[analyzers]]
 name = "python"
