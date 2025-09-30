@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 import subprocess
-from ..python.pip_install import install_lib
+from python.pip_install import install_lib
 
 
 def test_install_lib_already_installed(tmp_path, mock_subprocess_run, capsys):

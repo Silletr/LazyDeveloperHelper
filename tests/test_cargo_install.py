@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock
-from ..python.cargo_install import (
+from python.cargo_install import (
     find_cargo_toml,
     check_cargo_installed,
     cargo_install,

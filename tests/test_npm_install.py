@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 import subprocess
-from ..python.npm_install import install_npm
+from python.npm_install import install_npm
 
 
 def test_install_npm_already_installed(mock_subprocess_run, capsys):

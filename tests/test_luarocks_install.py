@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock
-from ..python.luarocks_install import (
+from python.luarocks_install import (
     validate_library_name,
     check_luarocks_installed,
     install_luarocks,
