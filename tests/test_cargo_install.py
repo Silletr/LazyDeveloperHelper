@@ -1,17 +1,18 @@
-from unittest.mock import MagicMock
+import pytest
+from unittest.mock import MagicMock, patch
+import subprocess
 from python.cargo_install import (
     find_cargo_toml,
     check_cargo_installed,
     cargo_install,
     validate_library_name,
 )
-import subprocess
 
 def test_find_cargo_toml_exists(tmp_path, mock_os_path_exists, mock_os_path_abspath):
     (tmp_path / "Cargo.toml").touch()
+    mock_os_path_exists.return_value = True
     result = find_cargo_toml(str(tmp_path))
-    if result != str(tmp_path / "Cargo.toml"):
-        raise AssertionError
+    assert result == str(tmp_path / "Cargo.toml")
 
 def test_find_cargo_toml_not_found(mock_os_path_exists):
     result = find_cargo_toml()
@@ -54,7 +55,4 @@ def test_cargo_install_failure(tmp_path, mock_subprocess_run, mock_os_path_exist
         raise AssertionError
     if "stderr:\nError: invalid crate" not in captured.out:
         raise AssertionError
-<<<<<<< HEAD
 
-=======
->>>>>>> 78466cd ([CHANGED FILE/DIR: tests/test_cargo_install.py, test_luarocks_install.py] Deleted '>>>>>> master' from the end of files)

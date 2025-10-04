@@ -33,15 +33,18 @@ def test_install_luarocks_success(mock_subprocess_run, capsys):
 
 def test_install_luarocks_failure(mock_subprocess_run, capsys):
     mock_subprocess_run.side_effect = subprocess.CalledProcessError(
-        returncode=1, cmd=["luarocks", "install", "lua-socket", "--local"], output="", stderr="Error: not found"
+        returncode=1,
+        cmd=["luarocks", "install", "lua-socket", "--local"],
+        output="",
+        stderr="Error: not found"
     )
+    
     install_luarocks(["lua-socket"])
+    
     captured = capsys.readouterr()
+    
     if "Failed to install lua-socket" not in captured.out:
         raise AssertionError
     if "stderr:\nError: not found" not in captured.out:
         raise AssertionError
-<<<<<<< HEAD
 
-=======
->>>>>>> 78466cd ([CHANGED FILE/DIR: tests/test_cargo_install.py, test_luarocks_install.py] Deleted '>>>>>> master' from the end of files)

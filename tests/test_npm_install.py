@@ -29,3 +29,4 @@ def test_install_npm_failure(mock_subprocess_run, capsys):
     captured = capsys.readouterr()
     assert "Failed to install express" in captured.out
     assert "stderr:\nError: not found" in captured.out
+
