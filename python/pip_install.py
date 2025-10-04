@@ -6,27 +6,30 @@ from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Set
 
+# Check if pip3 is installed
+def check_pip_installed() -> bool:
+    """Check if pip3 is installed and available in PATH."""
+    pip_path = which("pip3")
+    if pip_path is None:
+        log_message("pip3 is not installed or not found in PATH.", "error")
+        return False
+    return True
 
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
 
-def check_pip_installed() -> bool:
-    if not which("pip3"):
-        log_message("pip3 is not installed or not found in PATH.", "error")
-        return False
-    return True
-
-
+# Validate library name
 def validate_library_name(lib_name: str) -> bool:
+    """Check if the library name is valid."""
     if not lib_name or any(c in lib_name for c in '<>|&;"'):
         log_message(f"Invalid library name: {lib_name}", "error")
         return False
     return True
 
 
-def install_lib(lib_name: str, req_path: str = "requirements.txt") -> None:
+def install_lib(lib_name: str, libs_list: Set[str], req_path: str = "requirements.txt") -> None:
     """
     Install a Python package via pip. Accepts optional requirements file path.
     Keeps behavior deterministic and prints unified messages (emoji prefixes).
@@ -46,6 +49,21 @@ def install_lib(lib_name: str, req_path: str = "requirements.txt") -> None:
         except OSError as e:
             log_message(f"Could not create {req_path}: {e}", "error")
             return
+    log_message(f"Installing {lib_name} ...")
+
+    # Update requirements.txt
+    if not os.path.exists(req_path):
+        with open(req_path, "w", encoding="utf-8") as f:
+            f.write("")  # Create empty file
+
+    with open(req_path, "r", encoding="utf-8") as file:
+        all_libs = file.readlines()
+        libs_list.update(line.strip().split("==")[0].lower() for line in all_libs)
+
+    if lib_name.lower() not in libs_list:
+        with open(req_path, "a", encoding="utf-8") as file:
+            file.write(f"{lib_name}\n")
+        libs_list.add(lib_name.lower())
 
     # Read existing libs (case-insensitive)
     libs_set: Set[str] = set()
@@ -71,20 +89,11 @@ def install_lib(lib_name: str, req_path: str = "requirements.txt") -> None:
     # Run pip install
     try:
         result = run(
-            [
-                sys.executable,
-                "-m",
-                "pip",
-                "install",
-                "--upgrade",
-                lib_name,
-                "--break-system-packages",
-            ],
+            [sys.executable, "-m", "pip", "install", "--upgrade", lib_name, "--break-system-packages"],
             check=True,
             text=True,
             capture_output=True,
         )
-
         stdout_lower = (result.stdout or "").lower()
         if "requirement already satisfied" in stdout_lower:
             log_message(f"{lib_name} already installed", "success")
@@ -110,13 +119,15 @@ def install_lib(lib_name: str, req_path: str = "requirements.txt") -> None:
 
 
 def main() -> None:
+    """Main function to process command-line arguments."""
+    print(">>> pip_install started <<<")
     if len(sys.argv) < 2:
-        log_message("Provide at least one lib", "error")
+        log_message("Provide at least one library name", "error")
         sys.exit(1)
 
+    libs_list: Set[str] = set()
     for lib in sys.argv[1:]:
-        install_lib(lib)
-
+        install_lib(lib, libs_list)
 
 if __name__ == "__main__":
     main()

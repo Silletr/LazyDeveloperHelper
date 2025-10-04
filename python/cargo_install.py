@@ -15,7 +15,6 @@ def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
-
 @lru_cache(maxsize=1)
 def find_cargo_toml(start_dir: str = ".") -> str | None:
     """Search for Cargo.toml starting from the specified directory.
@@ -44,14 +43,13 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
     log_message("Cargo.toml not found in current or parent directories.", "error")
     return None
 
-
 def check_cargo_installed() -> bool:
     """Check if cargo is installed and available in PATH."""
     if not cargo_path:
         log_message("cargo is not installed or not found in PATH.", "error")
         return False
+    log_message(f"Cargo found at: {cargo_path}", "info")
     return True
-
 
 def validate_library_name(lib: str) -> bool:
     """Check if the library name is valid."""
@@ -59,7 +57,6 @@ def validate_library_name(lib: str) -> bool:
         log_message(f"Invalid library name: {lib}", "error")
         return False
     return True
-
 
 def cargo_install(libs: list[str]) -> None:
     """Install Rust libraries using cargo add.
@@ -72,7 +69,7 @@ def cargo_install(libs: list[str]) -> None:
         return
 
     abs_cargo_dir = os.path.dirname(cargo_toml_path)
-    log_message(f"Attempting to work in directory: {abs_cargo_dir}", "info")
+    log_message(f"Working directory set to: {abs_cargo_dir}", "info")
     if not os.path.exists(abs_cargo_dir):
         log_message(f"Directory {abs_cargo_dir} does not exist.", "error")
         return
@@ -81,12 +78,13 @@ def cargo_install(libs: list[str]) -> None:
             f"Permission denied to access {abs_cargo_dir}. Try running with sudo.",
             "error",
         )
+        log_message(f"Permission denied to access {abs_cargo_dir}. Try running with sudo.", "error")
         return
 
     original_dir = os.getcwd()
     try:
         os.chdir(abs_cargo_dir)
-        log_message(f"Running cargo add {' '.join(libs)} ...")
+        log_message(f"Running cargo add {' '.join(libs)} from {os.getcwd()} ...")
         result = run(
             [cargo_path, "add"] + libs,
             check=True,
@@ -108,7 +106,6 @@ def cargo_install(libs: list[str]) -> None:
     finally:
         os.chdir(original_dir)
 
-
 def main():
     if len(sys.argv) < 2:
         log_message("Provide at least one Rust package name", "error")
@@ -123,7 +120,6 @@ def main():
         sys.exit(1)
 
     cargo_install(libraries)
-
 
 if __name__ == "__main__":
     main()
