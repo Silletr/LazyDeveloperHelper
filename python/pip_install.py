@@ -6,6 +6,7 @@ from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Set
 
+
 # Check if pip3 is installed
 def check_pip_installed() -> bool:
     """Check if pip3 is installed and available in PATH."""
@@ -14,6 +15,7 @@ def check_pip_installed() -> bool:
         log_message("pip3 is not installed or not found in PATH.", "error")
         return False
     return True
+
 
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
@@ -29,7 +31,9 @@ def validate_library_name(lib_name: str) -> bool:
     return True
 
 
-def install_lib(lib_name: str, libs_list: Set[str], req_path: str = "requirements.txt") -> None:
+def install_lib(
+    lib_name: str, libs_list: Set[str], req_path: str = "requirements.txt"
+) -> None:
     """
     Install a Python package via pip. Accepts optional requirements file path.
     Keeps behavior deterministic and prints unified messages (emoji prefixes).
@@ -89,7 +93,15 @@ def install_lib(lib_name: str, libs_list: Set[str], req_path: str = "requirement
     # Run pip install
     try:
         result = run(
-            [sys.executable, "-m", "pip", "install", "--upgrade", lib_name, "--break-system-packages"],
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--upgrade",
+                lib_name,
+                "--break-system-packages",
+            ],
             check=True,
             text=True,
             capture_output=True,
@@ -128,6 +140,7 @@ def main() -> None:
     libs_list: Set[str] = set()
     for lib in sys.argv[1:]:
         install_lib(lib, libs_list)
+
 
 if __name__ == "__main__":
     main()
