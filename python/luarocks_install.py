@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from typing import List
 import sys
-import os
 from subprocess import run, CalledProcessError
 from shutil import which
 
