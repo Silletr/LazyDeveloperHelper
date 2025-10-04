@@ -7,6 +7,7 @@ from shutil import which
 LUAROCKS_FLAG = "--local"
 luarocks_path = which("luarocks")
 
+
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
@@ -64,6 +65,7 @@ def install_luarocks(libs: List[str]) -> None:
             log_message(f"File error: {e}", "error")
         except PermissionError as e:
             log_message(f"Permission error: {e}", "error")
+
 
 def main() -> None:
     if len(sys.argv) < 2:
