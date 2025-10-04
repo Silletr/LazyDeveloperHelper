@@ -5,7 +5,7 @@ from subprocess import run, CalledProcessError
 from shutil import which
 
 LUAROCKS_FLAG = "--local"
-
+luarocks_path = which("luarocks")
 
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
@@ -14,7 +14,7 @@ def log_message(message: str, level: str = "info") -> None:
 
 def check_luarocks_installed() -> bool:
     """Return True if luarocks binary is present in PATH."""
-    if not which("luarocks"):
+    if not luarocks_path:
         log_message("luarocks is not installed or not found in PATH.", "error")
         return False
     return True
@@ -29,24 +29,24 @@ def validate_library_name(lib: str) -> bool:
 
 
 def install_luarocks(libs: List[str]) -> None:
-    """Install one or more luarocks packages."""
-    if not check_luarocks_installed():
-        return
-
     for lib in libs:
         if not validate_library_name(lib):
             continue
 
+        luarocks_path = which("luarocks")
+        if not luarocks_path:
+            log_message("luarocks is not found in PATH", "error")
+            return
+
         log_message(f"Installing LuaRocks package {lib} ...", "info")
         try:
             result = run(
-                ["luarocks", "install", lib, LUAROCKS_FLAG],
+                [luarocks_path, "install", lib, LUAROCKS_FLAG],
                 check=True,
                 text=True,
                 capture_output=True,
             )
             stdout_lower = result.stdout.lower()
-            # success messages can vary; be permissive
             if "installed" in stdout_lower or "already installed" in stdout_lower:
                 log_message(f"{lib} installed or already present", "success")
                 if result.stdout:
@@ -64,7 +64,6 @@ def install_luarocks(libs: List[str]) -> None:
             log_message(f"File error: {e}", "error")
         except PermissionError as e:
             log_message(f"Permission error: {e}", "error")
-
 
 def main() -> None:
     if len(sys.argv) < 2:
