@@ -14,10 +14,12 @@ def mock_os_path_exists(monkeypatch):
     with patch("os.path.exists") as m:
         yield m
 
+
 @pytest.fixture
 def mock_os_chdir(monkeypatch):
     with patch("os.chdir") as m:
         yield m
+
 
 @pytest.fixture
 def mock_subprocess_run(monkeypatch):
@@ -56,6 +58,7 @@ def test_check_cargo_installed(mock_shutil_which, capsys):
     captured = capsys.readouterr()
     assert "cargo is not installed or not found in PATH" in captured.out
 
+
 def test_cargo_install_success(tmp_path, mock_subprocess_run, mock_os_chdir, capsys):
     (tmp_path / "Cargo.toml").touch()
     mock_subprocess_run.return_value = MagicMock(
@@ -66,6 +69,7 @@ def test_cargo_install_success(tmp_path, mock_subprocess_run, mock_os_chdir, cap
     assert "📍 Running cargo add serde ..." in captured.out
     assert "📦 Cargo output:" in captured.out
     mock_os_chdir.assert_called()
+
 
 def test_cargo_install_failure(tmp_path, mock_subprocess_run, capsys):
     (tmp_path / "Cargo.toml").touch()
@@ -79,5 +83,3 @@ def test_cargo_install_failure(tmp_path, mock_subprocess_run, capsys):
     captured = capsys.readouterr()
     assert "❌ Failed to install serde" in captured.out
     assert "📍 stderr:\nError: invalid crate" in captured.out
-
-
