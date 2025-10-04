@@ -5,9 +5,11 @@ from subprocess import run, CalledProcessError
 import sys
 import os
 
+
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
+
 
 def check_pip_installed() -> bool:
     if not which("pip3"):
@@ -15,11 +17,13 @@ def check_pip_installed() -> bool:
         return False
     return True
 
+
 def validate_library_name(lib_name: str) -> bool:
     if not lib_name or any(c in lib_name for c in '<>|&;"'):
         log_message(f"Invalid library name: {lib_name}", "error")
         return False
     return True
+
 
 def install_lib(lib_name: str, req_path: str = "requirements.txt") -> None:
     """
@@ -66,7 +70,15 @@ def install_lib(lib_name: str, req_path: str = "requirements.txt") -> None:
     # Run pip install
     try:
         result = run(
-            [sys.executable, "-m", "pip", "install", "--upgrade", lib_name, "--break-system-packages"],
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--upgrade",
+                lib_name,
+                "--break-system-packages",
+            ],
             check=True,
             text=True,
             capture_output=True,
@@ -93,6 +105,7 @@ def install_lib(lib_name: str, req_path: str = "requirements.txt") -> None:
     except Exception as e:
         log_message(f"Unexpected error while installing {lib_name}: {e}", "error")
 
+
 def main() -> None:
     if len(sys.argv) < 2:
         log_message("Provide at least one lib", "error")
@@ -101,6 +114,6 @@ def main() -> None:
     for lib in sys.argv[1:]:
         install_lib(lib)
 
+
 if __name__ == "__main__":
     main()
-

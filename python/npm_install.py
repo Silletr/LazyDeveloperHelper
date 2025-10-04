@@ -3,9 +3,11 @@ from subprocess import run, CalledProcessError, PIPE
 from shutil import which
 import sys
 
+
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
+
 
 def check_npm_installed() -> bool:
     if not which("npm"):
@@ -13,11 +15,13 @@ def check_npm_installed() -> bool:
         return False
     return True
 
+
 def validate_library_name(lib: str) -> bool:
     if not lib or any(c in lib for c in '<>|&;"'):
         log_message(f"Invalid package name: {lib}", "error")
         return False
     return True
+
 
 def install_npm(lib: str) -> None:
     """Install an npm package if not already present."""
@@ -30,7 +34,9 @@ def install_npm(lib: str) -> None:
 
     # First try to check if package is present. Use check=False so tests can mock returncode.
     try:
-        result = run(["npm", "list", lib], stdout=PIPE, stderr=PIPE, text=True, check=False)
+        result = run(
+            ["npm", "list", lib], stdout=PIPE, stderr=PIPE, text=True, check=False
+        )
         # If list contains package name — treat as installed
         if lib in (result.stdout or ""):
             log_message(f"{lib} already installed", "success")
@@ -61,6 +67,7 @@ def install_npm(lib: str) -> None:
         log_message(f"stdout:\n{e.stdout}")
         log_message(f"stderr:\n{e.stderr}")
 
+
 def main() -> None:
     if len(sys.argv) < 2:
         print("Provide at least one npm package name")
@@ -69,6 +76,6 @@ def main() -> None:
     for lib in sys.argv[1:]:
         install_npm(lib)
 
+
 if __name__ == "__main__":
     main()
-
