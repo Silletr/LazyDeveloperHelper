@@ -14,7 +14,9 @@ EXMAPLE OF OUTPUT:
 📜 Short description:
     Optimized script speed, added some files to ignores
 """
+
 import subprocess
+
 
 # --- class for auto-commit generation
 class CommitGen:
@@ -25,7 +27,7 @@ class CommitGen:
             2: "CHANGED FILE/DIR",
             3: "BUGFIX IN FILE/DIR",
             4: "HOTFIX",
-            5: "NEW FILE/DIR"
+            5: "NEW FILE/DIR",
         }
 
     def get_category(self) -> str:
@@ -51,8 +53,7 @@ class CommitGen:
         print(f"\n✅ Commit message:\n{msg}")
         subprocess.run(["git", "add", "."])
         subprocess.run(["git", "commit", "-m", msg])
-  
+
 
 if __name__ == "__main__":
     CommitGen().run()
-
