@@ -9,10 +9,8 @@ def test_install_npm_already_installed(mock_subprocess_run, capsys):
     )
     install_npm("express")
     captured = capsys.readouterr()
-    if "Installing npm package: express ..." not in captured.out:
-        raise AssertionError
-    if "express already installed" not in captured.out:
-        raise AssertionError
+    assert "Installing npm package: express ..." not in captured.out
+    assert "express already installed" not in captured.out
 
 
 def test_install_npm_success(mock_subprocess_run, capsys):
@@ -24,11 +22,8 @@ def test_install_npm_success(mock_subprocess_run, capsys):
     ]
     install_npm("express")
     captured = capsys.readouterr()
-    if "Installing npm package: express ..." not in captured.out:
-        raise AssertionError
-    if "express installed successfully" not in captured.out:
-        raise AssertionError
-
+    assert "Installing npm package: express ..." not in captured.out
+    assert "express installed successfully" not in captured.ou
 
 def test_install_npm_failure(mock_subprocess_run, capsys):
     mock_subprocess_run.side_effect = [
@@ -36,13 +31,11 @@ def test_install_npm_failure(mock_subprocess_run, capsys):
         subprocess.CalledProcessError(
             returncode=1,
             cmd=["npm", "install", "express", "--no-save"],
-            stdout="",
+            output="",
             stderr="Error: not found",
         ),
     ]
     install_npm("express")
     captured = capsys.readouterr()
-    if "Failed to install express" not in captured.out:
-        raise AssertionError
-    if "stderr:\nError: not found" not in captured.out:
-        raise AssertionError
+    assert "Failed to install express" not in captured.out
+    assert "stderr:\nError: not found" not in captured.out
