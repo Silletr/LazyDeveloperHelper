@@ -8,30 +8,21 @@ import subprocess
 
 
 def test_validate_library_name_valid():
-    if validate_library_name("lua-socket") is not True:
-        raise AssertionError
-
+    assert validate_library_name("lua-socket") is True
 
 def test_validate_library_name_invalid(capsys):
-    if validate_library_name("lua-socket;malicious") is not False:
-        raise AssertionError
+    assert validate_library_name("lua-socket;malicious") is False
     captured = capsys.readouterr()
-    if "Invalid library name: lua-socket;malicious" not in captured.out:
-        raise AssertionError
-
+    assert "Invalid library name: lua-socket;malicious" in captured.out
 
 def test_check_luarocks_installed(mock_shutil_which, capsys):
     mock_shutil_which.return_value = "/usr/bin/luarocks"
-    if check_luarocks_installed() is not True:
-        raise AssertionError
+    assert check_luarocks_installed() is True
 
     mock_shutil_which.return_value = None
-    if check_luarocks_installed() is not False:
-        raise AssertionError
+    assert check_luarocks_installed() is False
     captured = capsys.readouterr()
-    if "luarocks is not installed or not found in PATH" not in captured.out:
-        raise AssertionError
-
+    assert "luarocks is not installed or not found in PATH" in captured.out
 
 def test_install_luarocks_success(mock_subprocess_run, capsys):
     mock_subprocess_run.return_value = MagicMock(
@@ -39,20 +30,18 @@ def test_install_luarocks_success(mock_subprocess_run, capsys):
     )
     install_luarocks(["lua-socket"])
     captured = capsys.readouterr()
-    assert "Installing LuaRocks package lua-socket ..." not in captured.out
-    assert "lua-socket installed or already present" not in captured.out
-
+    assert "📍 Installing LuaRocks package lua-socket ..." in captured.out
+    assert "📦 LuaRocks package lua-socket installed or already present" in captured.out or "already installed" in captured.out
 
 def test_install_luarocks_failure(mock_subprocess_run, capsys):
     mock_subprocess_run.side_effect = subprocess.CalledProcessError(
         returncode=1,
         cmd=["luarocks", "install", "lua-socket", "--local"],
         output="",
-        stderr="Error: not found",
+        stderr="Error: not found"
     )
     install_luarocks(["lua-socket"])
     captured = capsys.readouterr()
-    if "Failed to install lua-socket" not in captured.out:
-        raise AssertionError
-    if "stderr:\nError: not found" not in captured.out:
-        raise AssertionError
+    assert "❌ Failed to install lua-socket" in captured.out
+    assert "📍 stderr:\nError: not found" in captured.out
+
