@@ -1,5 +1,4 @@
-import pytest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 import subprocess
 from python.cargo_install import (
     find_cargo_toml,
