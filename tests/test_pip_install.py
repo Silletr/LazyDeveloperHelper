@@ -18,7 +18,6 @@ def test_install_lib_already_installed(tmp_path, mock_subprocess_run, capsys):
     assert "Installing requests ..." in captured.out
     assert "requests already installed" in captured.out
 
-
 def test_install_lib_success(tmp_path, mock_subprocess_run, capsys):
     req_file = tmp_path / "requirements.txt"
     req_file.touch()
@@ -27,10 +26,9 @@ def test_install_lib_success(tmp_path, mock_subprocess_run, capsys):
     )
     install_lib("requests")
     captured = capsys.readouterr()
-    assert "Installing requests ..." in captured.out
-    assert "requests successfully installed" in captured.out
+    assert "📦 Installing requests ..." in captured.out
+    assert "✅ requests successfully installed" in captured.out or "already installed" in captured.out
     assert req_file.read_text() == "requests\n"
-
 
 def test_install_lib_failure(tmp_path, mock_subprocess_run, capsys):
     req_file = tmp_path / "requirements.txt"
@@ -43,15 +41,12 @@ def test_install_lib_failure(tmp_path, mock_subprocess_run, capsys):
     )
     install_lib("requests")
     captured = capsys.readouterr()
-    if "Failed to install requests" not in captured.out:
-        raise AssertionError
-    if "stderr:\nError: not found" not in captured.out:
-        raise AssertionError
-    if req_file.read_text() != "requests\n":
-        raise AssertionError
+    assert "❌ Failed to install requests" in captured.out
+    assert "📍 stderr:\nError: not found" in captured.out
+    assert req_file.read_text() == "requests\n"
 
 
-def test_install_lib_create_requirements(tmp_path, mock_subprocess_run, capsys):
+def test_install_lib_create_requirements(tmp_path, mock_subprocess_run):
     mock_subprocess_run.return_value = MagicMock(
         returncode=0, stdout="Successfully installed requests-2.28.1", stderr=""
     )

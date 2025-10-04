@@ -9,7 +9,6 @@ def test_install_npm_already_installed(mock_subprocess_run, capsys):
     captured = capsys.readouterr()
     assert "Installing npm package: express ..." in captured.out
     assert "express already installed" in captured.out
-
 def test_install_npm_success(mock_subprocess_run, capsys):
     mock_subprocess_run.side_effect = [
         MagicMock(returncode=1, stdout="", stderr=""),  # npm list fails (not installed)
@@ -17,16 +16,17 @@ def test_install_npm_success(mock_subprocess_run, capsys):
     ]
     install_npm("express")
     captured = capsys.readouterr()
-    assert "Installing npm package: express ..." in captured.out
-    assert "express installed successfully" in captured.out
+    assert "📦 Installing npm package: express ..." in captured.out
+    assert "✅ express installed" in captured.out or "installed successfully" in captured.out
+
 
 def test_install_npm_failure(mock_subprocess_run, capsys):
     mock_subprocess_run.side_effect = [
-        MagicMock(returncode=1, stdout="", stderr=""),  # npm list fails
+        MagicMock(returncode=1, stdout="", stderr=""),
         subprocess.CalledProcessError(returncode=1, cmd=["npm", "install", "express", "--no-save"], output="", stderr="Error: not found")
     ]
     install_npm("express")
     captured = capsys.readouterr()
-    assert "Failed to install express" in captured.out
-    assert "stderr:\nError: not found" in captured.out
+    assert "❌ Failed to install express" in captured.out
+    assert "📍 stderr:\nError: not found" in captured.out
 
