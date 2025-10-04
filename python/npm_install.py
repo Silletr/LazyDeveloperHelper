@@ -5,7 +5,7 @@ from subprocess import run, PIPE, CalledProcessError
 
 def install_npm(lib):
     print(f"📦 Installing npm package: {lib} ...")
-    result = run(["npm", "list", lib], stdout=PIPE, stderr=PIPE, text=True)
+    result = run(["npm", "list", lib], stdout=PIPE, stderr=PIPE, text=True, check=True)
     if lib in result.stdout:
         print(f"✅ {lib} already installed")
         return
@@ -16,6 +16,7 @@ def install_npm(lib):
             stdout=PIPE,
             stderr=PIPE,
             text=True,
+            check=True,
         )
         if result.returncode == 0:
             print(f"✅ {lib} installed successfully")
