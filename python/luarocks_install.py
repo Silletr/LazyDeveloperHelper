@@ -7,9 +7,11 @@ from shutil import which
 
 LUAROCKS_FLAG = "--local"
 
+
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
+
 
 def check_luarocks_installed() -> bool:
     """Return True if luarocks binary is present in PATH."""
@@ -18,12 +20,14 @@ def check_luarocks_installed() -> bool:
         return False
     return True
 
+
 def validate_library_name(lib: str) -> bool:
     """Simple validation to avoid injection / weird names."""
     if not lib or any(c in lib for c in '<>|&;"'):
         log_message(f"Invalid library name: {lib}", "error")
         return False
     return True
+
 
 def install_luarocks(libs: List[str]) -> None:
     """Install one or more luarocks packages."""
@@ -62,6 +66,7 @@ def install_luarocks(libs: List[str]) -> None:
         except PermissionError as e:
             log_message(f"Permission error: {e}", "error")
 
+
 def main() -> None:
     if len(sys.argv) < 2:
         log_message("Provide at least one LuaRocks package name", "error")
@@ -74,6 +79,6 @@ def main() -> None:
 
     install_luarocks(libraries)
 
+
 if __name__ == "__main__":
     main()
-
