@@ -16,7 +16,8 @@ def install_npm(lib):
             stdout=PIPE,
             stderr=PIPE,
             text=True,
-        check=True)
+            check=True,
+        )
         if result.returncode == 0:
             print(f"✅ {lib} installed successfully")
         else:
