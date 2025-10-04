@@ -8,9 +8,7 @@ def test_install_lib_already_installed(tmp_path, mock_subprocess_run, capsys):
     req_file.write_text("requests\n")
 
     mock_subprocess_run.return_value = MagicMock(
-        returncode=0,
-        stdout="Requirement already satisfied: requests",
-        stderr=""
+        returncode=0, stdout="Requirement already satisfied: requests", stderr=""
     )
 
     install_lib("requests")
@@ -19,9 +17,9 @@ def test_install_lib_already_installed(tmp_path, mock_subprocess_run, capsys):
     assert "Installing requests" in captured.out
     assert "already installed" in captured.out
 
-
     if req_file.read_text() != "requests\n":
         raise AssertionError
+
 
 def test_install_lib_failure(tmp_path, mock_subprocess_run, capsys):
     req_file = tmp_path / "requirements.txt"

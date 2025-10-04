@@ -25,6 +25,7 @@ def test_install_npm_success(mock_subprocess_run, capsys):
     assert "Installing npm package: express ..." not in captured.out
     assert "express installed successfully" not in captured.ou
 
+
 def test_install_npm_failure(mock_subprocess_run, capsys):
     mock_subprocess_run.side_effect = [
         MagicMock(returncode=1, stdout="", stderr=""),  # npm list fails

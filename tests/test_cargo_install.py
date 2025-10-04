@@ -8,25 +8,30 @@ from python.cargo_install import (
     validate_library_name,
 )
 
+
 @pytest.fixture
 def mock_os_path_exists(monkeypatch):
     with patch("os.path.exists") as m:
         yield m
+
 
 @pytest.fixture
 def mock_os_path_abspath(monkeypatch):
     with patch("os.path.abspath") as m:
         yield m
 
+
 @pytest.fixture
 def mock_subprocess_run(monkeypatch):
     with patch("subprocess.run") as m:
         yield m
 
+
 @pytest.fixture
 def mock_os_chdir(monkeypatch):
     with patch("os.chdir") as m:
         yield m
+
 
 def test_find_cargo_toml_exists(tmp_path, mock_os_path_exists, mock_os_path_abspath):
     (tmp_path / "Cargo.toml").touch()
@@ -34,18 +39,22 @@ def test_find_cargo_toml_exists(tmp_path, mock_os_path_exists, mock_os_path_absp
     result = find_cargo_toml(str(tmp_path))
     assert result == str(tmp_path / "Cargo.toml")
 
+
 def test_find_cargo_toml_not_found(tmp_path, mock_os_path_exists):
     mock_os_path_exists.return_value = False
     result = find_cargo_toml(str(tmp_path))
     assert result is None
 
+
 def test_validate_library_name_valid():
     assert validate_library_name("serde") is True
+
 
 def test_validate_library_name_invalid(capsys):
     assert validate_library_name("serde;malicious") is False
     captured = capsys.readouterr()
     assert "Invalid library name: serde;malicious" in captured.out
+
 
 def test_check_cargo_installed(mock_subprocess_run, monkeypatch, capsys):
     with patch("shutil.which") as mock_which:
@@ -57,9 +66,12 @@ def test_check_cargo_installed(mock_subprocess_run, monkeypatch, capsys):
         captured = capsys.readouterr()
         assert "cargo is not installed or not found in PATH" in captured.out
 
+
 def test_cargo_install_success(tmp_path, mock_subprocess_run, mock_os_chdir, capsys):
     (tmp_path / "Cargo.toml").touch()
-    mock_subprocess_run.return_value = MagicMock(returncode=0, stdout="Added serde", stderr="")
+    mock_subprocess_run.return_value = MagicMock(
+        returncode=0, stdout="Added serde", stderr=""
+    )
     cargo_install(["serde"])
     captured = capsys.readouterr()
     assert "Running cargo add serde" in captured.out
@@ -70,10 +82,12 @@ def test_cargo_install_success(tmp_path, mock_subprocess_run, mock_os_chdir, cap
 def test_cargo_install_failure(tmp_path, mock_subprocess_run, mock_os_chdir, capsys):
     (tmp_path / "Cargo.toml").touch()
     mock_subprocess_run.side_effect = subprocess.CalledProcessError(
-        returncode=1, cmd=["cargo", "add", "serde"], output="", stderr="Error: invalid crate"
+        returncode=1,
+        cmd=["cargo", "add", "serde"],
+        output="",
+        stderr="Error: invalid crate",
     )
     cargo_install(["serde"])
     captured = capsys.readouterr()
     assert "Failed to install serde" in captured.out
     assert "stderr:\nError: invalid crate" in captured.out
-
