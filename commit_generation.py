@@ -59,11 +59,11 @@ class CommitGen:
         """Show changed files like git diff --name-status."""
         try:
             result = subprocess.run(
-                [self.git_path, "diff", "--name-status"],
+                [str(self.git_path), "diff", "--name-status"],
                 text=True,
                 capture_output=True,
-                check=True,
-            )
+            )  # type: ignore
+
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:
                 print("✅ No unstaged changes")
@@ -72,9 +72,14 @@ class CommitGen:
                 for line in lines:
                     print("  " + line)
         except subprocess.CalledProcessError as e:
-            print(f"❌ Git error: {e.stderr.decode() if e.stderr else 'Unknown error'}")
+            print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")
+        except FileNotFoundError:
+            print("❌ Git command not found!")
+        except PermissionError:
+            print("❌ Permission denied for git operations!")
 
-    def get_changed_files(self) -> list[str]:
+    @staticmethod
+    def get_changed_files() -> list[str]:
         """Get list of changed files/dirs from user input."""
         while True:
             files_input = input("\n❓ Files/dirs changed (comma separated):\n").strip()
@@ -86,7 +91,8 @@ class CommitGen:
                 return files
             print("❌ Invalid input, provide at least one file/dir.")
 
-    def get_description(self) -> str:
+    @staticmethod
+    def get_description() -> str:
         """Get short description from user input."""
         while True:
             desc = input("\n📜 Description:\n").strip()
@@ -104,24 +110,23 @@ class CommitGen:
         print(f"\n✅ Commit message:\n{self.msg}")
 
         try:
-            subprocess.run([self.git_path, "add", "."], check=True)
-            subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)
+            subprocess.run([self.git_path, "add", "."])  # type: ignore
+
+            subprocess.run([self.git_path, "commit", "-m", self.msg])  # type: ignore
+
         except subprocess.CalledProcessError as e:
-            print(
-                f"❌ Commit failed: {e.stderr.decode() if e.stderr else 'Unknown error'}"
-            )
+            print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")
+            return
 
         push_question = (
             input("\nYou want to push it on current branch? (Yes/No): ").lower().strip()
         )
         if push_question in ("y", "yes"):
             try:
-                subprocess.run([self.git_path, "push"], check=True)
+                subprocess.run([self.git_path, "push"])  # type: ignore
                 print("✅ Push successful!")
             except subprocess.CalledProcessError as e:
-                print(
-                    f"❌ Push failed: {e.stderr.decode() if e.stderr else 'Unknown error'}"
-                )
+                print(f"❌ Push failed: {e.stderr}")
 
 
 if __name__ == "__main__":
