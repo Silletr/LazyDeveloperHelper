@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import subprocess
+import sys
+from typing import List
 import shutil
 
 # --- EXAMPLE OF OUTPUT:
@@ -22,6 +24,25 @@ import shutil
 # 📜 Short description:
 #     Optimized script speed, added some files to ignores
 
+# --- EXAMPLE OF OUTPUT:
+# 🗂️ Commit category:
+# 1. DELETED FILE/DIR
+# 2. CHANGED FILE/DIR
+# 3. BUGFIX IN FILE/DIR
+# 4. HOTFIX
+# 5. NEW FILE/DIR
+# > 2
+#
+# ⚡ Changed files:
+# M commit_generation.py
+# A python/cargo_install.py
+#
+# ❓ Files/dirs changed (comma separated):
+# python/cargo_install.py, .deepsource.toml
+#
+# 📜 Short description:
+# Optimized script speed, added some files to ignores
+
 
 # --- AUTO-GENERATION OF COMMITS
 class CommitGen:
@@ -30,8 +51,7 @@ class CommitGen:
         self.git_path = shutil.which("git")
         if not self.git_path:
             print("❌ Git not found in PATH!")
-            exit(1)
-
+            sys.exit()
         self.categories = {
             1: "DELETED FILE/DIR",
             2: "CHANGED FILE/DIR",
@@ -45,7 +65,6 @@ class CommitGen:
         print("\n🗂️ Commit category:")
         for num, name in self.categories.items():
             print(f"{num}. {name}")
-
         while True:
             try:
                 choice = int(input("> "))
@@ -63,7 +82,6 @@ class CommitGen:
                 text=True,
                 capture_output=True,
             )  # type: ignore
-
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:
                 print("✅ No unstaged changes")
@@ -79,7 +97,7 @@ class CommitGen:
             print("❌ Permission denied for git operations!")
 
     @staticmethod
-    def get_changed_files() -> list[str]:
+    def get_changed_files() -> List[str]:
         """Get list of changed files/dirs from user input."""
         while True:
             files_input = input("\n❓ Files/dirs changed (comma separated):\n").strip()
@@ -108,22 +126,18 @@ class CommitGen:
         description = self.get_description()
         self.msg = f"[{category}: {changed_files}] {description}"
         print(f"\n✅ Commit message:\n{self.msg}")
-
         try:
-            subprocess.run([self.git_path, "add", "."])  # type: ignore
-
-            subprocess.run([self.git_path, "commit", "-m", self.msg])  # type: ignore
-
+            subprocess.run([self.git_path, "add", "."], check=True)  # type: ignore
+            subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)  # type: ignore
         except subprocess.CalledProcessError as e:
             print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")
             return
-
         push_question = (
             input("\nYou want to push it on current branch? (Yes/No): ").lower().strip()
         )
         if push_question in ("y", "yes"):
             try:
-                subprocess.run([self.git_path, "push"])  # type: ignore
+                subprocess.run([self.git_path, "push"], check=True)  # type: ignore
                 print("✅ Push successful!")
             except subprocess.CalledProcessError as e:
                 print(f"❌ Push failed: {e.stderr}")
