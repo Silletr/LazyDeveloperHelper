@@ -4,11 +4,13 @@ from shutil import which
 import sys
 
 
+# --- LOGGING MESSAGE ---
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
 
+# --- CHECKING npm INSTALLED
 def check_npm_installed() -> bool:
     if not which("npm"):
         log_message("npm is not installed or not found in PATH.", "error")
@@ -16,6 +18,7 @@ def check_npm_installed() -> bool:
     return True
 
 
+# --- VALIDATE LIB NAME ---
 def validate_library_name(lib: str) -> bool:
     if not lib or any(c in lib for c in '<>|&;"'):
         log_message(f"Invalid package name: {lib}", "error")
@@ -23,6 +26,7 @@ def validate_library_name(lib: str) -> bool:
     return True
 
 
+# --- INSTALLING LIBS
 def install_npm(lib: str) -> None:
     """Install an npm package if not already present."""
     if not check_npm_installed():
@@ -68,6 +72,7 @@ def install_npm(lib: str) -> None:
         log_message(f"stderr:\n{e.stderr}")
 
 
+# --- POINT OF ENTER ---
 def main() -> None:
     if len(sys.argv) < 2:
         print("Provide at least one npm package name")
