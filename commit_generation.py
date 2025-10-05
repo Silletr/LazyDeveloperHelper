@@ -16,6 +16,7 @@ EXMAPLE OF OUTPUT:
 """
 
 import subprocess
+import shutil
 
 
 # --- class for auto-commit generation
@@ -51,8 +52,13 @@ class CommitGen:
         desc = input("\n📜 Description:\n")
         msg = f"[{category}: {file_dirs}] {desc}"
         print(f"\n✅ Commit message:\n{msg}")
-        subprocess.run(["git", "add", "."])
-        subprocess.run(["git", "commit", "-m", msg])
+        git_path = shutil.which("git")
+        if not git_path:
+            print("Git not defined in PATH!")
+            return
+
+        subprocess.run([git_path, "add", "."])
+        subprocess.run([git_path, "commit", "-m", msg])
 
 
 if __name__ == "__main__":
