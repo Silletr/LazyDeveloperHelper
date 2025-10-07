@@ -100,8 +100,10 @@ class CommitGen:
     def get_changed_files() -> List[str]:
         """Get list of changed files/dirs from user input."""
         while True:
-            files_input = input("""\n❓ Files/dirs changed
-                                (comma separated):\n""").strip()
+            files_input = input(
+                """\n❓ Files/dirs changed
+                                (comma separated):\n"""
+            ).strip()
             if not files_input:
                 print("❌ No files/dirs provided, try again.")
                 continue
@@ -136,8 +138,10 @@ class CommitGen:
             print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")
             return
         push_question = (
-            input("""\nYou want to push it on
-                  current branch? (Yes/No): """)
+            input(
+                """\nYou want to push it on
+                  current branch? (Yes/No): """
+            )
             .lower()
             .strip()
         )
