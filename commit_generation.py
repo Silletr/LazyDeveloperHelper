@@ -48,7 +48,7 @@ import shutil
 class CommitGen:
     def __init__(self) -> None:
         self.msg = ""
-        self.git_path = shutil.which("git")
+        self.git_path = str(shutil.which("git"))
         if not self.git_path:
             print("❌ Git not found in PATH!")
             sys.exit()
@@ -100,7 +100,8 @@ class CommitGen:
     def get_changed_files() -> List[str]:
         """Get list of changed files/dirs from user input."""
         while True:
-            files_input = input("\n❓ Files/dirs changed (comma separated):\n").strip()
+            files_input = input("""\n❓ Files/dirs changed
+                                (comma separated):\n""").strip()
             if not files_input:
                 print("❌ No files/dirs provided, try again.")
                 continue
@@ -127,17 +128,22 @@ class CommitGen:
         self.msg = f"[{category}: {changed_files}] {description}"
         print(f"\n✅ Commit message:\n{self.msg}")
         try:
-            subprocess.run([self.git_path, "add", "."], check=True)  # type: ignore
-            subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)  # type: ignore
+            subprocess.run([self.git_path, "add", "."], check=True)
+
+            subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)
+
         except subprocess.CalledProcessError as e:
             print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")
             return
         push_question = (
-            input("\nYou want to push it on current branch? (Yes/No): ").lower().strip()
+            input("""\nYou want to push it on
+                  current branch? (Yes/No): """)
+            .lower()
+            .strip()
         )
         if push_question in ("y", "yes"):
             try:
-                subprocess.run([self.git_path, "push"], check=True)  # type: ignore
+                subprocess.run([self.git_path, "push"], check=True)
                 print("✅ Push successful!")
             except subprocess.CalledProcessError as e:
                 print(f"❌ Push failed: {e.stderr}")
