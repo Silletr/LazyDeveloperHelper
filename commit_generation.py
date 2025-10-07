@@ -57,7 +57,9 @@ class CommitGen:
         """Show changed files like git diff --name-status."""
         try:
             result = subprocess.run(
-                [self.git_path, "diff", "--name-status"], capture_output=True, text=True
+                [self.git_path, "diff", "--name-status"],  # type: ignore
+                capture_output=True,
+                text=True,
             )  # type: ignore
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:

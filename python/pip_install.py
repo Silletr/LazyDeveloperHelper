@@ -5,11 +5,13 @@ from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Set
 
+
 # Logging function
 def log_message(message: str, level: str = "info") -> None:
     """Print a formatted message with an emoji prefix."""
     prefixes = {"info": "📦", "success": "✅", "error": "❌"}
     print(f"{prefixes.get(level, '📦')} {message}")
+
 
 # Check if pip3 is installed
 def check_pip_installed() -> bool:
@@ -20,6 +22,7 @@ def check_pip_installed() -> bool:
         return False
     return True
 
+
 # Validate library name
 def validate_library_name(lib_name: str) -> bool:
     """Check if the library name is valid."""
@@ -28,7 +31,10 @@ def validate_library_name(lib_name: str) -> bool:
         return False
     return True
 
-def install_lib(lib_name: str, libs_list: Set[str], req_path: str = "requirements.txt") -> None:
+
+def install_lib(
+    lib_name: str, libs_list: Set[str], req_path: str = "requirements.txt"
+) -> None:
     """Install a Python library using pip if not already installed."""
     if not check_pip_installed():
         return
@@ -53,7 +59,15 @@ def install_lib(lib_name: str, libs_list: Set[str], req_path: str = "requirement
 
     try:
         result = run(
-            [sys.executable, "-m", "pip", "install", "--upgrade", lib_name, "--break-system-packages"],
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "install",
+                "--upgrade",
+                lib_name,
+                "--break-system-packages",
+            ],
             check=True,
             text=True,
             capture_output=True,
@@ -71,6 +85,7 @@ def install_lib(lib_name: str, libs_list: Set[str], req_path: str = "requirement
         log_message(f"stderr: {e.stderr}", "error")
         log_message(f"Return code: {e.returncode}", "error")
 
+
 def main() -> None:
     """Main function to process command-line arguments."""
     print(">>> pip_install started <<<")
@@ -81,6 +96,7 @@ def main() -> None:
     libs_list: Set[str] = set()
     for lib in sys.argv[1:]:
         install_lib(lib, libs_list)
+
 
 if __name__ == "__main__":
     main()

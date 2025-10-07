@@ -10,6 +10,7 @@ from typing import List
 LUAROCKS_FLAG = "--local"
 luarocks_path = which("luarocks")
 
+
 # -- LOGGING MESSAGE
 def log_message(message: str, level: str = "info") -> None:
     """Print a formatted message with an emoji prefix.
@@ -21,6 +22,7 @@ def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "✅", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
+
 # --- CHECKING LUAROCKS INSTALLED
 def check_luarocks_installed() -> bool:
     """Check if luarocks is installed and available in PATH."""
@@ -28,6 +30,7 @@ def check_luarocks_installed() -> bool:
         log_message("luarocks is not installed or not found in PATH.", "error")
         return False
     return True
+
 
 # --- CHECKING LIBRARY NAME
 def validate_library_name(lib: str) -> bool:
@@ -43,6 +46,7 @@ def validate_library_name(lib: str) -> bool:
         log_message(f"Invalid library name: {lib}", "error")
         return False
     return True
+
 
 # --- INSTALLING BY LUAROCKS
 def install_luarocks(libs: List[str]) -> None:
@@ -82,6 +86,7 @@ def install_luarocks(libs: List[str]) -> None:
         except AssertionError:
             log_message("luarocks_path is None, cannot proceed", "error")
 
+
 # --- START DOWNLOADING
 def main():
     if len(sys.argv) < 2:
@@ -94,6 +99,7 @@ def main():
         sys.exit(1)
 
     install_luarocks(libraries)
+
 
 if __name__ == "__main__":
     main()
