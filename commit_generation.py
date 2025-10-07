@@ -39,28 +39,32 @@ class CommitGen:
             5: "NEW FILE/DIR",
         }
 
-    def get_category(self) -> str:
-        """Get commit category from user input."""
-        print("\n🗂️ Commit category:")
+    def get_category(self) -> list[str]:
+        """Get multiple commit categories from user input."""
+        print("\n🗂️ Commit categories (enter numbers separated by commas or spaces, e.g., 2,5): ")
         for num, name in self.categories.items():
             print(f"{num}. {name}")
         while True:
             try:
-                choice = int(input("> "))
-                if choice in self.categories:
-                    return self.categories[choice]
-                print("❌ Invalid choice, try again.")
+                choices_input = input("> ").strip().replace(",", " ")
+                if not choices_input:
+                    print("❌ At least one category must be selected.")
+                    continue
+                choices = [int(x) for x in choices_input.split() if x]
+                if all(choice in self.categories for choice in choices):
+                    return [self.categories[choice] for choice in choices]
+                print("❌ Invalid choice(s), select valid numbers.")
             except ValueError:
-                print("❌ Enter a number, not text.")
+                print("❌ Enter numbers, not text.")
 
     def show_git_changes(self) -> None:
         """Show changed files like git diff --name-status."""
         try:
             result = subprocess.run(
-                [self.git_path, "diff", "--name-status"],  # type: ignore
+                [self.git_path, "diff", "--name-status"],
                 capture_output=True,
                 text=True,
-            )  # type: ignore
+            )
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:
                 print("✅ No unstaged changes")
@@ -99,15 +103,18 @@ class CommitGen:
 
     def run(self) -> None:
         """Generate and execute commit."""
-        category = self.get_category()
+        categories = self.get_category()
         self.show_git_changes()
         changed_files = ", ".join(self.get_changed_files())
         description = self.get_description()
-        self.msg = f"[{category}: {changed_files}] {description}"
+        category_str = ", ".join(categories)
+        self.msg = f"[{category_str}: {changed_files}] {description}"
         print(f"\n✅ Commit message:\n{self.msg}")
         try:
-            subprocess.run([self.git_path, "add", "."], check=True)  # type: ignore
-            subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)  # type: ignore
+            subprocess.run([self.git_path, "add", "."], 
+                           check=True)
+            subprocess.run([self.git_path, "commit", "-m", self.msg], 
+                           check=True)
         except subprocess.CalledProcessError as e:
             print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")
             return
@@ -116,7 +123,7 @@ class CommitGen:
         )
         if push_question in ("y", "yes"):
             try:
-                subprocess.run([self.git_path, "push"], check=True)  # type: ignore
+                subprocess.run([self.git_path, "push"], check=True)
                 print("✅ Push successful!")
             except subprocess.CalledProcessError as e:
                 print(f"❌ Push failed: {e.stderr}")
