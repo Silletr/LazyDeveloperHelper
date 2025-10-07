@@ -41,7 +41,9 @@ class CommitGen:
 
     def get_category(self) -> list[str]:
         """Get multiple commit categories from user input."""
-        print("\n🗂️ Commit categories (enter numbers separated by commas or spaces, e.g., 2,5): ")
+        print(
+            "\n🗂️ Commit categories (enter numbers separated by commas or spaces, e.g., 2,5): "
+        )
         for num, name in self.categories.items():
             print(f"{num}. {name}")
         while True:
@@ -111,10 +113,8 @@ class CommitGen:
         self.msg = f"[{category_str}: {changed_files}] {description}"
         print(f"\n✅ Commit message:\n{self.msg}")
         try:
-            subprocess.run([self.git_path, "add", "."], 
-                           check=True)
-            subprocess.run([self.git_path, "commit", "-m", self.msg], 
-                           check=True)
+            subprocess.run([self.git_path, "add", "."], check=True)
+            subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)
         except subprocess.CalledProcessError as e:
             print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")
             return
