@@ -75,6 +75,7 @@ def install_luarocks(libs: List[str]) -> None:
         except PermissionError as e:
             log_message(f"Permission error: {e}", "error")
 
+
 # --- START DOWNLOADING
 def main() -> None:
     if len(sys.argv) < 2:
