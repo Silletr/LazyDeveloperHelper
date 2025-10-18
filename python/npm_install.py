@@ -1,25 +1,9 @@
-<<<<<<< HEAD
-#!/usr/bin/python3
-=======
 #!/usr/bin/env python3
 from subprocess import run, CalledProcessError, PIPE
 from shutil import which
->>>>>>> master
 import sys
 
 
-<<<<<<< HEAD
-def install_npm(lib):
-    print(f"📦 Checking npm package: {lib} ...")
-    # Check if package is installed, without raising an error on failure
-    result = run(["npm", "list", lib], stdout=PIPE, stderr=PIPE, text=True, check=False)
-    if result.returncode == 0 and lib in result.stdout:
-        print(f"✅ {lib} already installed")
-        return
-
-    # Package not found, attempt to install
-    print(f"📦 Installing npm package: {lib} ...")
-=======
 # --- LOGGING MESSAGE ---
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
@@ -66,7 +50,6 @@ def install_npm(lib: str) -> None:
         pass
 
     # Try installing - keep check=True to raise CalledProcessError on failure
->>>>>>> master
     try:
         result = run(
             ["npm", "install", lib.lower(), "--no-save"],
@@ -75,39 +58,20 @@ def install_npm(lib: str) -> None:
             text=True,
             check=True,
         )
-<<<<<<< HEAD
         print(f"✅ {lib} installed successfully")
     except CalledProcessError as e:
         print(f"❌ Failed to install {lib}")
         print("🔻 stdout:\n", e.stdout)
         print("🔻 stderr:\n", e.stderr)
         print("🔚 Return code:", e.returncode)
-=======
-        if result.returncode == 0:
-            log_message(f"{lib} installed successfully", "success")
-            if result.stdout:
-                log_message(result.stdout, "info")
-        else:
-            log_message(f"Failed to install {lib}", "error")
-            if result.stderr:
-                log_message(f"stderr:\n{result.stderr}")
-    except CalledProcessError as e:
-        log_message(f"Failed to install {lib}", "error")
-        log_message(f"stdout:\n{e.stdout}")
-        log_message(f"stderr:\n{e.stderr}")
->>>>>>> master
 
 
 # --- POINT OF ENTER ---
 def main() -> None:
     if len(sys.argv) < 2:
         print("Provide at least one npm package name")
-<<<<<<< HEAD
         return
-=======
         sys.exit(1)
-
->>>>>>> master
     for lib in sys.argv[1:]:
         install_npm(lib)
 
