@@ -52,11 +52,8 @@ class CommitGen:
         self.git_path = str(shutil.which("git"))
         if not self.git_path:
             print("❌ Git not found in PATH!")
-<<<<<<< HEAD
             sys.exit(1)
-=======
             sys.exit()
->>>>>>> master
         self.categories = {
             1: "DELETED FILE/DIR",
             2: "CHANGED FILE/DIR",
@@ -89,18 +86,10 @@ class CommitGen:
         """Show changed files like git diff --name-status."""
         try:
             result = subprocess.run(
-<<<<<<< HEAD
-                [self.git_path, "diff", "--name-status"],
-                capture_output=True,
-                text=True,
-                check=True,
-            )
-=======
                 [str(self.git_path), "diff", "--name-status"],
                 text=True,
                 capture_output=True,
             )  # type: ignore
->>>>>>> master
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:
                 print("✅ No unstaged changes")
@@ -151,13 +140,7 @@ class CommitGen:
         print(f"\n✅ Commit message:\n{self.msg}")
         try:
             subprocess.run([self.git_path, "add", "."], check=True)
-<<<<<<< HEAD
             subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)
-=======
-
-            subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)
-
->>>>>>> master
         except subprocess.CalledProcessError as e:
             print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")
             return
