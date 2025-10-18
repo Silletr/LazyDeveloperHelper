@@ -4,7 +4,6 @@ import subprocess
 import sys
 from typing import List
 import shutil
-import sys
 
 # --- EXAMPLE OF OUTPUT:
 # 🗂️ Commit category:
