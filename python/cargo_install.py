@@ -12,14 +12,22 @@ CARGO_TOML = "Cargo.toml"
 cargo_path = which("cargo")
 
 
+<<<<<<< HEAD
 # --- INITIALIZE LOGGING MESSAGE
+=======
+# --- LOG MESSAGE ---
+>>>>>>> master
 def log_message(message: str, level: str = "info") -> None:
     """Print a formatted message with an emoji prefix."""
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
 
+<<<<<<< HEAD
 # --- FIND Cargo.toml FILE ---
+=======
+# --- CACHE Cargo.toml LOCATION ---
+>>>>>>> master
 @lru_cache(maxsize=1)
 def find_cargo_toml(start_dir: str = ".") -> str | None:
     """Search for Cargo.toml starting from the specified directory.
@@ -49,6 +57,10 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
     return None
 
 
+<<<<<<< HEAD
+=======
+# --- CHEKING CARGO INSTALLED ---
+>>>>>>> master
 def check_cargo_installed() -> bool:
     """Check if cargo is installed and available in PATH."""
     if not cargo_path:
@@ -58,6 +70,10 @@ def check_cargo_installed() -> bool:
     return True
 
 
+<<<<<<< HEAD
+=======
+# --- VALIDATE LIB NAME ---
+>>>>>>> master
 def validate_library_name(lib: str) -> bool:
     """Check if the library name is valid."""
     if not lib or any(c in lib for c in '<>|&;"'):
@@ -66,6 +82,10 @@ def validate_library_name(lib: str) -> bool:
     return True
 
 
+<<<<<<< HEAD
+=======
+# --- INSTALLING LIBS ---
+>>>>>>> master
 def cargo_install(libs: list[str]) -> None:
     """Install Rust libraries using cargo add.
 
@@ -86,6 +106,13 @@ def cargo_install(libs: list[str]) -> None:
             f"Permission denied to access {abs_cargo_dir}. Try running with sudo.",
             "error",
         )
+<<<<<<< HEAD
+=======
+        log_message(
+            f"Permission denied to access {abs_cargo_dir}. Try running with sudo.",
+            "error",
+        )
+>>>>>>> master
         return
 
     original_dir = os.getcwd()
