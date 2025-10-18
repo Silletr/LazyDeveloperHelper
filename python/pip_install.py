@@ -6,9 +6,21 @@ from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Set
 
+<<<<<<< HEAD
+
+# Logging function
+def log_message(message: str, level: str = "info") -> None:
+    """Print a formatted message with an emoji prefix."""
+    prefixes = {"info": "📦", "success": "✅", "error": "❌"}
+    print(f"{prefixes.get(level, '📦')} {message}")
+
+
+# Check if pip3 is installed
+=======
 
 # --- CHECK pip3 IS INSTALLED,
 # LOGGING MESSAGE ---
+>>>>>>> master
 def check_pip_installed() -> bool:
     """Check if pip3 is installed and available in PATH."""
     pip_path = which("pip3")
@@ -18,12 +30,16 @@ def check_pip_installed() -> bool:
     return True
 
 
+<<<<<<< HEAD
+# Validate library name
+=======
 def log_message(message: str, level: str = "info") -> None:
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
 
 # --- VALIDATE LIB NAME
+>>>>>>> master
 def validate_library_name(lib_name: str) -> bool:
     """Check if the library name is valid."""
     if not lib_name or any(c in lib_name for c in '<>|&;"'):
@@ -32,6 +48,12 @@ def validate_library_name(lib_name: str) -> bool:
     return True
 
 
+<<<<<<< HEAD
+def install_lib(
+    lib_name: str, libs_list: Set[str], req_path: str = "requirements.txt"
+) -> None:
+    """Install a Python library using pip if not already installed."""
+=======
 # --- INSTALLING LIBS ---
 def install_lib(
     lib_name: str, libs_list: Set[str], req_path: str = "requirements.txt"
@@ -40,6 +62,7 @@ def install_lib(
     Install a Python package via pip. Accepts optional requirements file path.
     Keeps behavior deterministic and prints unified messages (emoji prefixes).
     """
+>>>>>>> master
     if not check_pip_installed():
         return
     if not validate_library_name(lib_name):
@@ -130,6 +153,7 @@ def install_lib(
         log_message(f"Return code: {getattr(e, 'returncode', 'unknown')}", "error")
     except Exception as e:
         log_message(f"Unexpected error while installing {lib_name}: {e}", "error")
+
 
 
 def main() -> None:

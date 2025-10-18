@@ -27,7 +27,7 @@ M.commands = function()
     }
     local script_name = installers[lang]
     if not script_name then
-      vim.notify("No installer configured for filetype: " .. lang, vim.log.levels.WARN)
+      vim.notify("❌ No installer configured for filetype: " .. lang, vim.log.levels.WARN)
       return
     end
 

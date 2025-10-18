@@ -16,9 +16,16 @@ def log_message(message: str, level: str = "info") -> None:
     print(f"{prefixes.get(level, '📍')} {message}")
 
 
+<<<<<<< HEAD
+# --- CHECKING LUAROCKS INSTALLED
+def check_luarocks_installed() -> bool:
+    """Check if luarocks is installed and available in PATH."""
+    if luarocks_path is None:
+=======
 def check_luarocks_installed() -> bool:
     """Return True if luarocks binary is present in PATH."""
     if not luarocks_path:
+>>>>>>> master
         log_message("luarocks is not installed or not found in PATH.", "error")
         return False
     return True
@@ -51,6 +58,8 @@ def install_luarocks(libs: List[str]) -> None:
                 [luarocks_path, "install", lib, LUAROCKS_FLAG],
                 check=True,
                 text=True,
+                stdout=None,
+                stderr=None,
                 capture_output=True,
             )
             stdout_lower = result.stdout.lower()
@@ -73,7 +82,12 @@ def install_luarocks(libs: List[str]) -> None:
             log_message(f"Permission error: {e}", "error")
 
 
+<<<<<<< HEAD
+# --- START DOWNLOADING
+def main():
+=======
 def main() -> None:
+>>>>>>> master
     if len(sys.argv) < 2:
         log_message("Provide at least one LuaRocks package name", "error")
         sys.exit(1)
