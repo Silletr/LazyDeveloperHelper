@@ -71,7 +71,6 @@ def main() -> None:
     if len(sys.argv) < 2:
         print("Provide at least one npm package name")
         return
-        sys.exit(1)
     for lib in sys.argv[1:]:
         install_npm(lib)
 

@@ -53,7 +53,6 @@ class CommitGen:
         if not self.git_path:
             print("❌ Git not found in PATH!")
             sys.exit(1)
-            sys.exit()
         self.categories = {
             1: "DELETED FILE/DIR",
             2: "CHANGED FILE/DIR",
