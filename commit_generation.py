@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import subprocess
 import shutil
+import sys
 
 
 # --- EXAMPLE OF OUTPUT:
@@ -30,7 +31,7 @@ class CommitGen:
         self.git_path = shutil.which("git")
         if not self.git_path:
             print("❌ Git not found in PATH!")
-            exit(1)
+            sys.exit(1)
         self.categories = {
             1: "DELETED FILE/DIR",
             2: "CHANGED FILE/DIR",
@@ -66,7 +67,7 @@ class CommitGen:
                 [self.git_path, "diff", "--name-status"],
                 capture_output=True,
                 text=True,
-            )
+            check=True)
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:
                 print("✅ No unstaged changes")
