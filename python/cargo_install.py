@@ -1,21 +1,25 @@
 #!/bin/env python3
-
+# --- IMPORTS ---
 import os
 import sys
 from subprocess import run, CalledProcessError
 from shutil import which
 from functools import lru_cache
 
+
+# --- VARIABLES ---
 CARGO_TOML = "Cargo.toml"
 cargo_path = which("cargo")
 
 
+# --- INITIALIZE LOGGING MESSAGE
 def log_message(message: str, level: str = "info") -> None:
     """Print a formatted message with an emoji prefix."""
     prefixes = {"info": "📍", "success": "📦", "error": "❌"}
     print(f"{prefixes.get(level, '📍')} {message}")
 
 
+# --- FIND Cargo.toml FILE ---
 @lru_cache(maxsize=1)
 def find_cargo_toml(start_dir: str = ".") -> str | None:
     """Search for Cargo.toml starting from the specified directory.
@@ -31,7 +35,7 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
         abs_path = os.path.abspath(cargo_path)
         log_message(f"Found Cargo.toml at: {abs_path}", "info")
         return abs_path
-
+    # --- IF Cargo.toml IS FOUND
     current_dir = os.path.abspath(start_dir)
     while current_dir != os.path.dirname(current_dir):
         parent_dir = os.path.dirname(current_dir)

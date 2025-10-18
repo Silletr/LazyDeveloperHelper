@@ -8,4 +8,4 @@
     - [x] Rust (`cargo add ...`)
     - [x] Node.js (`npm install ...`)
 
-4. - [ ] **Optimize code**
+4. - [x] **Optimize code**
