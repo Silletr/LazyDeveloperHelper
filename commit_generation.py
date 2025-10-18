@@ -67,7 +67,8 @@ class CommitGen:
                 [self.git_path, "diff", "--name-status"],
                 capture_output=True,
                 text=True,
-            check=True)
+                check=True,
+            )
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:
                 print("✅ No unstaged changes")
