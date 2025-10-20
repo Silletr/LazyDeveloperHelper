@@ -52,7 +52,7 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
 - [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#utility)
-- Soon will be in neovimcraft.
+- [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDevHelper/)
 
 ### Installation Methods
 ## Install using Packer
