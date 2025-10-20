@@ -22,7 +22,7 @@
 - [Usage](#usage)
 - [Telemetry] (#telemetry)
 <!-- tocstop -->
----
+
 ## Video example
 ![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/example.gif)
 ---
