@@ -11,6 +11,7 @@
 - [Video example](#video-example)
 - [Status](#status)
 - [Introduction](#introduction)
+- [Plugin History](#plugin-history)
 - [Features](#features)
 - [Future Features](#future-features)
 - [Roadmap](#roadmap)
@@ -33,6 +34,13 @@ Have you ever found yourself adding multiple dependencies to your code before in
 LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Python dependencies directly from your editor, eliminating the need to switch to the terminal.
 And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
+## Plugin History
+# 📃 Hitory of plugin creation
+It was a deep night, *2:40 AM*, un-sleep me, phone, Notes, and brain (maybe it exist for me), and i one moment through "What if I will write the plugin for Neovim that installing libs right from editor, and will add this libs to requirements file" (generally, i through add only the Python-pip3 packages, but.. you see what happend)
+And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode during 4 months, and only now i have +- good sleep mode, so i can say only two things -
+1. Do not deep into your project too deep - **you will fuck your organism, and will life in Light sleep phase, instead of REM + Deep sleep**
+2. `If u wanna think up some project from nothing` - **just try to do not anything 1-2 days in coding, and brain from lazzy state will think up project itself**
+
 ## Features
 
 ✨ Install Python packages directly from Neovim.
@@ -40,10 +48,7 @@ And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 ✨ Compatible with modern Neovim configurations.
 
 ## Future Features
-- [x] Will be added supporting Rust-, Lua- library manager.
-- [ ] Code will be optimized better.
-
-
+(As of 20.10.25 8:14 PM its list clear, i`ll do just small fixes, maybe)
 ## Roadmap
 Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributions are welcome.
 
