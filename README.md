@@ -21,7 +21,7 @@
 <!-- tocstop -->
 
 ## Video example
-![Video example of commands](images/example.gif)
+![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/example.gif)
 
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
@@ -79,7 +79,7 @@ Then: `:Lazy sync`
 
 ## Usage
 Command example:
-![Command Example](https://github.com/Silletr/LazyDeveloperHelper/blob/6072ba95b9b7ecc918cc458d41f296b0973a9366/images/command_example.png)
+![Command Example](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/command_example.png)
 
 Example output:
-![Installation Output](https://github.com/Silletr/LazyDeveloperHelper/blob/6072ba95b9b7ecc918cc458d41f296b0973a9366/images/output_example.png)
+![Installation Output](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/output_example.png)
