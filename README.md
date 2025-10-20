@@ -48,9 +48,9 @@ And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode 
 ---
 
 ## Features
-✨ Install Python packages directly from Neovim.
-✨ Manage dependencies without leaving your editor.
-✨ Compatible with modern Neovim configurations.
+✨ Install Python packages directly from Neovim.  
+✨ Manage dependencies without leaving your editor.  
+✨ Compatible with modern Neovim configurations.  
 ---
 
 ## Future Features
@@ -70,6 +70,7 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 - [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDevHelper/)
 
 ---
+
 ### Installation Methods
 ## Install using Packer
 ```lua
@@ -92,6 +93,7 @@ return {
   }
 ```
 Then: `:Lazy sync`
+
 ---
 
 ## Usage
