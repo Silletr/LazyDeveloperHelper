@@ -25,15 +25,18 @@
 
 ## Video example
 ![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/example.gif)
+
 ---
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 ---
+
 ## Introduction
 Have you ever found yourself adding multiple dependencies to your code before installing them? Do you hate switching between your editor and terminal for installing libs? 🤔
 
 LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Python dependencies directly from your editor, eliminating the need to switch to the terminal.
 And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
+---
 
 ## Plugin History
 # 📃 Hitory of plugin creation
@@ -43,24 +46,29 @@ And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode 
 
 2. `If u wanna think up some project from nothing` - **just try to do not anything 1-2 days in coding, and brain from lazzy state will think up project itself**
 ---
+
 ## Features
 ✨ Install Python packages directly from Neovim.
 ✨ Manage dependencies without leaving your editor.
 ✨ Compatible with modern Neovim configurations.
 ---
+
 ## Future Features
 (As of 20.10.25 8:14 PM its list clear, i`ll do just small fixes, maybe)
 
 (1:01, 21.10.2024) - will be added installing libs right from requirements.txt for python, or from Cargo.toml ([Dependencies] block on corresponding file)
+
 ---
 ## Roadmap
 Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributions are welcome.
+
 ---
 ## Available in
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
 - [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#utility)
 - [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDevHelper/)
+
 ---
 ### Installation Methods
 ## Install using Packer
@@ -72,7 +80,7 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
     end
   }
 ```
-Then: :PackerSync
+Then: `:PackerSync`
 
 ## Install using Lazy
 ```lua
@@ -85,6 +93,7 @@ return {
 ```
 Then: `:Lazy sync`
 ---
+
 ## Usage
 Command example:
 ![Command Example](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/command_example.png)
@@ -92,6 +101,7 @@ Command example:
 Example output:
 ![Installation Output](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/output_example.png)
 ---
+
 ## Telemetry 
 **📊 Anonymous Usage Stats (Optional)**
 
