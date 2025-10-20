@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  require("LazyDeveloperHelper.commands").commands()
+  require("LazyDeveloperHelper.plugin.commands").commands()
 end
 
 return M

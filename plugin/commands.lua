@@ -12,7 +12,7 @@ M.commands = function()
     print(":SuggestImports {lib_names (can be multiply)} - well.. main functional, maybe")
   end, {})
 
-  vim.api.nvim_create_user_command("SuggestImports", function(opts)
+  vim.api.nvim_create_user_command("LazyDevInstall", function(opts)
     local args = opts.fargs
     local lang = vim.api.nvim_buf_get_option(0, "filetype")
 
@@ -82,4 +82,6 @@ M.commands = function()
   end, { nargs = "+" })
 end
 
+
+M.commands()
 return M
