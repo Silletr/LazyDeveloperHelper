@@ -4,6 +4,7 @@
 [![Python](https://img.shields.io/badge/python-3.11+-blue)](https://www.python.org)
 [![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=round-square&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/Silletr/LazyDevHelper/pulls)
+[![DeepSource](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper.svg/?label=active+issues&show_trend=true&token=6IT7yrn6pB2MxD9vprh3y6eJ)](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper/)
 
 ## Contents
 <!-- toc -->
@@ -34,9 +35,9 @@ And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 ## Features
 
-✨ Install Python packages directly from Neovim.  
-✨ Manage dependencies without leaving your editor.  
-✨ Compatible with modern Neovim configurations.  
+✨ Install Python packages directly from Neovim.
+✨ Manage dependencies without leaving your editor.
+✨ Compatible with modern Neovim configurations.
 
 ## Future Features
 - [x] Will be added supporting Rust-, Lua- library manager.
