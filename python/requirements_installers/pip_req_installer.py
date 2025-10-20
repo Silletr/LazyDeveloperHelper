@@ -15,9 +15,8 @@ def log_message(message: str, level: str = "info") -> None:
 
 # --- INSTALL REQUIREMENTS FROM FILE ---
 def install_requirements():
-    global REQUIREMENTS_FILE
     search_path = "."
-    for dirpath, dirnames, filenames in os.walk(search_path):
+    for dirpath, _, filenames in os.walk(search_path):
         if REQUIREMENTS_FILE in filenames:
             log_message("requirements.txt is found!", "success")
             return os.path.join(dirpath, REQUIREMENTS_FILE)
