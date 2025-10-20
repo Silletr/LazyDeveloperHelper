@@ -20,7 +20,7 @@
 - [Install using Lazy](#install-using-Lazy)
 - [Avaible in](#available-in)
 - [Usage](#usage)
-- [Telemetry] (#telemetry)
+- [Telemetry](#telemetry)
 <!-- tocstop -->
 
 ## Video example
