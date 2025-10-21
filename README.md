@@ -24,8 +24,7 @@
 <!-- tocstop -->
 
 ## Video example
-![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/example.gif)
-
+![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/b5d3f0fcdce9c30f2217a7e83246f1debcc23b81/images/examples/example.gif)
 
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
