@@ -24,8 +24,7 @@
 <!-- tocstop -->
 
 ## Video example
-![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/example.gif)
-
+![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/b5d3f0fcdce9c30f2217a7e83246f1debcc23b81/images/examples/example.gif)
 
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
@@ -55,13 +54,10 @@ And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode 
 ## Future Features
 (As of 20.10.25 8:14 PM its list clear, i`ll do just small fixes, maybe)
 
-(1:01, 21.10.2024) - will be added installing libs right from requirements.txt for python, or from Cargo.toml ([Dependencies] block on corresponding file)
-
+- [x] (1:01, 21.10.2024) - will be added installing libs right from requirements.txt for python, or from Cargo.toml ([Dependencies] block on corresponding file) <- Completed in 21.10.2025 15:00
 
 ## Roadmap
 Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributions are welcome.
-
-
 ## Available in
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
