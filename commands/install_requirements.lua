@@ -5,7 +5,7 @@ function M.register()
     local lang = vim.api.nvim_buf_get_option(0, "filetype")
     local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/"
     local installers = {
-      python = "requirements_installers/pip_pip_install.py",
+      python = "requirements_installers/pip_req_install.py",
       rust = "requirements_installers/cargo_req_install.py",
     }
 
