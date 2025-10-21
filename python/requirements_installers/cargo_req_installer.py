@@ -4,6 +4,7 @@
 from shutil import which
 import os
 from functools import lru_cache
+import subprocess
 
 # --- VARIABLES ---
 CARGO_TOML = "Cargo.toml"
@@ -78,3 +79,24 @@ def dependencies_block_find():
 
     log_message(f"Found dependencies: {deps}", "info")
     return deps
+
+
+# --- INSTALLING REQUIREMENTS ---
+def install_dependency(dep_name: str) -> None:
+    """Install a Rust dependency using cargo add."""
+    if not cargo_path:
+        log_message("Cargo is not found in PATH.", "error")
+        return
+
+    try:
+        result = subprocess.run(
+            [cargo_path, "add", dep_name],
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode == 0:
+            log_message(f"Successfully added {dep_name}", "success")
+        else:
+            log_message(f"Failed to add {dep_name}: {result.stderr.strip()}", "error")
+    except Exception as e:
+        log_message(f"Exception occurred: {e}", "error")
