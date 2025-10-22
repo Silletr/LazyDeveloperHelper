@@ -11,12 +11,9 @@ function M.register()
     print("Commands: \n:IsWorking - for check plugin status\n")
     print(":LazyDevInstall (-r or -silent (or both) {lib_names (can be multiply)} - \nwell.. main functional, maybe")
   end, {})
-
-  vim.api.nvim_create_user_command("LazyDevHelp", function()
-    print("More detailed about flags in command -\n")
-    print("-r is - Requirements, like you saying 'install all requirements")
-    print("from standart requirements file (Python - requirements.txt, Cargo - Cargo.toml block [Dependencies]'")
+  vim.api.nvim_create_user_command("LazyDevTelemetry", function()
+    -- WORK WILL BE STARTED SOON
+    -- LINK TO GITHUB GIST - https://gist.github.com/Silletr/8f539cb32c31232d1c1f5129d34b6292
   end, {})
 end
-
 return M
