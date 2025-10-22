@@ -12,5 +12,5 @@
 4. - [x] **Optimize code**
 ---
 New point (20.10.2025, 10:47):
-    1. - [ ] **Create a option for installing requirements from files (Applyable for Cargo, Python)** by adding `-r`in `SuggestImports` command (Will be renamed to InstallLibs), end result - `SuggestImports -r` (or `InstallLibs -r`)
-    2. - [ ] ** **
+    1. - [ ] **Create a option for installing requirements from files (Applyable for Cargo, Python)** by adding new command. End result - `:LazyDevInstallRequirements`
+    2. - [ ] Add a optional donation (only optional, i dont push) on 2000 download in vim and in 10 stars in GH.
