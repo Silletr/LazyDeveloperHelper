@@ -97,8 +97,7 @@ def install_dependency(dep_name: str) -> None:
             log_message(f"Successfully added {dep_name}", "success")
         else:
             log_message(
-                f"Failed to add {dep_name}: {
-                        result.stderr.strip()}",
+                f"Failed to add {dep_name}: {result.stderr.strip()}",
                 "error",
             )
     except Exception as e:
