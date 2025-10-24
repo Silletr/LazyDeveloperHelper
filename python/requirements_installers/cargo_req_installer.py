@@ -34,6 +34,7 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
         abs_path = os.path.abspath(cargo_path)
         log_message(f"Found Cargo.toml at: {abs_path}", "info")
         return abs_path
+
     # --- IF Cargo.toml IS FOUND
     current_dir = os.path.abspath(start_dir)
     while current_dir != os.path.dirname(current_dir):
@@ -60,7 +61,7 @@ def dependencies_block_find():
     with open(cargo_file, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if line.startswith("#") or line == "":
+            if not line or line.startswith("#"):
                 continue
 
             if line.startswith("[dependencies]") or line.startswith(
