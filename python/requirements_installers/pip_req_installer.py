@@ -57,8 +57,7 @@ def install_requirements(search_path="."):
                 )
                 return True
             except CalledProcessError as e:
-                log_message(
-                    f"""Error installing requirements-dev.txt: {e}""", "error")
+                log_message(f"""Error installing requirements-dev.txt: {e}""", "error")
                 return False
     log_message(
         f"""{REQUIREMENTS_FILE} or {ALTERNATIVE_FILE}
