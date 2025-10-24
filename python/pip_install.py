@@ -127,14 +127,12 @@ def install_lib(
         log_message(f"stdout:\n{e.stdout}")
         log_message(f"stderr:\n{e.stderr}")
         log_message(
-            f"Return code: {getattr(
-            e, 'returncode', 'unknown')}",
+            f"Return code: {getattr(e, 'returncode', 'unknown')}",
             "error",
         )
     except Exception as e:
         log_message(
-            f"Unexpected error while installing {
-                    lib_name}: {e}",
+            f"Unexpected error while installing {lib_name}: {e}",
             "error",
         )
 
