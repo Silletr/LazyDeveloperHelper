@@ -25,7 +25,13 @@ def install_requirements(search_path="."):
             log_message("requirements.txt is found!", "success")
             try:
                 run(
-                    ["pip", "install", "-r", os.path.join(dirpath, REQUIREMENTS_FILE)],
+                    [
+                        sys.executable,
+                        "-m",
+                        "install",
+                        "-r",
+                        os.path.join(dirpath, REQUIREMENTS_FILE),
+                    ],
                     check=True,
                 )
                 return True
@@ -34,7 +40,9 @@ def install_requirements(search_path="."):
                 return False
         elif ALTERNATIVE_FILE in filenames:
             log_message(
-                """requirements.txt not found, using requirements-dev.txt""", "info"
+                """requirements.txt not found,
+                using requirements-dev.txt""",
+                "info",
             )
             try:
                 run(
@@ -49,7 +57,8 @@ def install_requirements(search_path="."):
                 )
                 return True
             except CalledProcessError as e:
-                log_message(f"""Error installing requirements-dev.txt: {e}""", "error")
+                log_message(
+                    f"""Error installing requirements-dev.txt: {e}""", "error")
                 return False
     log_message(
         f"""{REQUIREMENTS_FILE} or {ALTERNATIVE_FILE}
