@@ -91,13 +91,15 @@ def install_dependency(dep_name: str) -> None:
 
     try:
         result = subprocess.run(
-            [cargo_path, "add", dep_name],
-            capture_output=True,
-            text=True,
+            [cargo_path, "add", dep_name], capture_output=True, text=True, check=True
         )
         if result.returncode == 0:
             log_message(f"Successfully added {dep_name}", "success")
         else:
-            log_message(f"Failed to add {dep_name}: {result.stderr.strip()}", "error")
+            log_message(
+                f"Failed to add {dep_name}: {
+                        result.stderr.strip()}",
+                "error",
+            )
     except Exception as e:
         log_message(f"Exception occurred: {e}", "error")

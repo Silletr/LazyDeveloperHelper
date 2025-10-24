@@ -4,10 +4,12 @@
 import os
 import sys
 from subprocess import run, CalledProcessError
+from shutil import which
 
 # --- VARIABLES ---
 REQUIREMENTS_FILE = "requirements.txt"
 ALTERNATIVE_FILE = "requirements-dev.txt"
+pip_path = which("pip3")
 
 
 # --- LOGGING MESSAGE ---
@@ -32,19 +34,26 @@ def install_requirements(search_path="."):
                 return False
         elif ALTERNATIVE_FILE in filenames:
             log_message(
-                "requirements.txt not found, using requirements-dev.txt", "info"
+                """requirements.txt not found, using requirements-dev.txt""", "info"
             )
             try:
                 run(
-                    ["pip", "install", "-r", os.path.join(dirpath, ALTERNATIVE_FILE)],
+                    [
+                        sys.executable,
+                        "-m",
+                        "install",
+                        "-r",
+                        os.path.join(dirpath, ALTERNATIVE_FILE),
+                    ],
                     check=True,
                 )
                 return True
             except CalledProcessError as e:
-                log_message(f"Error installing requirements-dev.txt: {e}", "error")
+                log_message(f"""Error installing requirements-dev.txt: {e}""", "error")
                 return False
     log_message(
-        f"{REQUIREMENTS_FILE} or {ALTERNATIVE_FILE} not found in {search_path}!",
+        f"""{REQUIREMENTS_FILE} or {ALTERNATIVE_FILE}
+        not found in {search_path}!""",
         "error",
     )
     return False
