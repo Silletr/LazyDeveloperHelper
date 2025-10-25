@@ -95,10 +95,10 @@ def install_lib(
 
     # Run pip install
     try:
-        # run pip install silent
+        # Safely calling pip from argument list, without shell=True (as it was
+        # in previous commit)
         result = run(
-            f"{sys.executable} -m pip install {lib_name} -q -q 2>&1",
-            shell=True,
+            [sys.executable, "-m", "pip", "install", lib_name, "-q", "-q"],
             check=True,
             text=True,
             capture_output=True,
@@ -110,12 +110,12 @@ def install_lib(
         if "requirement already satisfied" in stdout_lower:
             log_message(f"{lib_name} already installed", "success")
         elif "successfully installed" in stdout_lower:
-            # Find line with "Successfully installed {lib_name}"
+            # Find the line with "Successfully installed {lib_name}
             for line in stdout.splitlines():
                 if "Successfully installed" in line:
                     log_message(line.strip(), "success")
+        # If somewhat went wrong
         else:
-            # If somewhat went wrong
             log_message(f"{lib_name} installation output:", "info")
             log_message(stdout.strip(), "info")
 
