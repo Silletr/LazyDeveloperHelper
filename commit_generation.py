@@ -15,25 +15,6 @@ import shutil
 # > 2
 #
 # ⚡ Changed files:
-#   M  commit_generation.py
-#   A  python/cargo_install.py
-#
-# ❓ Files/dirs changed (comma separated):
-#     python/cargo_install.py, .deepsource.toml
-#
-# 📜 Short description:
-#     Optimized script speed, added some files to ignores
-
-# --- EXAMPLE OF OUTPUT:
-# 🗂️ Commit category:
-# 1. DELETED FILE/DIR
-# 2. CHANGED FILE/DIR
-# 3. BUGFIX IN FILE/DIR
-# 4. HOTFIX
-# 5. NEW FILE/DIR
-# > 2
-#
-# ⚡ Changed files:
 # M commit_generation.py
 # A python/cargo_install.py
 #
@@ -81,13 +62,13 @@ class CommitGen:
                 print("❌ Enter numbers, not text.")
 
     def show_git_changes(self) -> None:
-        """Show changed files like git diff --name-status."""
+        """Show changed files."""
         try:
             result = subprocess.run(
-                [str(self.git_path), "diff", "--name-status"],
+                [str(self.git_path), "status", "--short"],
                 text=True,
                 capture_output=True,
-            )  # type: ignore
+            )
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:
                 print("✅ No unstaged changes")
