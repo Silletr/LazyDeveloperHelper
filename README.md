@@ -100,6 +100,7 @@ Example output:
 
 ## Telemetry 
 **📊 Anonymous Usage Stats (Optional)**
+!! NOW THIS FUNCTIONS IS NOT WORKING CAUSE NOT EXISTS !!
 
 LazyDeveloperHelper can send anonymous usage stats - plugin version, OS type, Neovim version.
 No personal data, usernames, or IPs are collected.

@@ -34,6 +34,7 @@ def find_cargo_toml(start_dir: str = ".") -> str | None:
         abs_path = os.path.abspath(cargo_path)
         log_message(f"Found Cargo.toml at: {abs_path}", "info")
         return abs_path
+
     # --- IF Cargo.toml IS FOUND
     current_dir = os.path.abspath(start_dir)
     while current_dir != os.path.dirname(current_dir):
@@ -60,7 +61,7 @@ def dependencies_block_find():
     with open(cargo_file, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if line.startswith("#") or line == "":
+            if not line or line.startswith("#"):
                 continue
 
             if line.startswith("[dependencies]") or line.startswith(
@@ -90,13 +91,14 @@ def install_dependency(dep_name: str) -> None:
 
     try:
         result = subprocess.run(
-            [cargo_path, "add", dep_name],
-            capture_output=True,
-            text=True,
+            [cargo_path, "add", dep_name], capture_output=True, text=True, check=True
         )
         if result.returncode == 0:
             log_message(f"Successfully added {dep_name}", "success")
         else:
-            log_message(f"Failed to add {dep_name}: {result.stderr.strip()}", "error")
+            log_message(
+                f"Failed to add {dep_name}: {result.stderr.strip()}",
+                "error",
+            )
     except Exception as e:
         log_message(f"Exception occurred: {e}", "error")

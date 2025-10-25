@@ -41,6 +41,7 @@ def install_lib(
     """
     if not check_pip_installed():
         return
+
     if not validate_library_name(lib_name):
         return
 
@@ -93,44 +94,38 @@ def install_lib(
 
     # Run pip install
     try:
+        # Safely calling pip from argument list, without shell=True (as it was
+        # in previous commit)
         result = run(
-            [
-                sys.executable,
-                "-m",
-                "pip",
-                "install",
-                "--upgrade",
-                lib_name,
-                "--break-system-packages",
-            ],
+            [sys.executable, "-m", "pip", "install", lib_name, "-q", "-q"],
             check=True,
             text=True,
             capture_output=True,
         )
-        stdout_lower = (result.stdout or "").lower()
+
+        stdout = result.stdout or ""
+        stdout_lower = stdout.lower()
+
         if "requirement already satisfied" in stdout_lower:
             log_message(f"{lib_name} already installed", "success")
-            if result.stdout:
-                log_message(result.stdout, "info")
         elif "successfully installed" in stdout_lower:
-            log_message(f"{lib_name} successfully installed", "success")
-            if result.stdout:
-                log_message(result.stdout, "info")
+            # Find the line with "Successfully installed {lib_name}
+            for line in stdout.splitlines():
+                if "Successfully installed" in line:
+                    log_message(line.strip(), "success")
+        # If somewhat went wrong
         else:
-            # some pip outputs may differ — still show stdout for debugging
             log_message(f"{lib_name} installation output:", "info")
-            if result.stdout:
-                log_message(result.stdout, "info")
+            log_message(stdout.strip(), "info")
 
     except CalledProcessError as e:
         log_message(f"Failed to install {lib_name}", "error")
-        log_message(f"stdout:\n{e.stdout}")
-        log_message(f"stderr:\n{e.stderr}")
+        log_message(f"stdout: {e.stdout}", "error")
+        log_message(f"stderr: {e.stderr}", "error")
         log_message(f"Return code: {getattr(e, 'returncode', 'unknown')}", "error")
-    except Exception as e:
-        log_message(f"Unexpected error while installing {lib_name}: {e}", "error")
 
 
+# --- MAIN FUNCTION ---
 def main() -> None:
     """Main function to process command-line arguments."""
     print(">>> pip_install started <<<")
@@ -143,5 +138,6 @@ def main() -> None:
         install_lib(lib, libs_list)
 
 
+# --- POINT OF ENTER ---
 if __name__ == "__main__":
     main()
