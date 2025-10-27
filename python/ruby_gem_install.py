@@ -40,7 +40,7 @@ def install_gem(lib_name: str):
             stdout=PIPE,
             stderr=PIPE,
         )
-        if "Succeffuly installed" in result.stdout:
+        if "Successfully installed" in result.stdout:
             log_message(f"Successfully installed {lib_name}", "success")
     except CalledProcessError as e:
         log_message(f"Failed to install {lib_name}: {e.stderr}", "error")
