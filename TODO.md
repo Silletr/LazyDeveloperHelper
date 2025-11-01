@@ -11,10 +11,12 @@
 ---
 4. - [x] **Optimize code**
 ---
-New point (20.10.2025, 10:47):  
+New point (20.10.2025, 10:47):
   1.  - [x] **Create a option for installing requirements from files (Applyable for Cargo, Python)** by adding new command. End result - `:LazyDevInstallRequirements` (Done in 21.10.2025)
   2.  - [ ] Add an optional donation (only optional, i don`t push) on 2000 download in vim and in 10 stars in GitHub.
 ---
 New points (24.10.2025, 10:08):
-  - [ ] **Create a some.. Big update as for  python installing libs** (*not python/requirements_installers/pip_req_install, but python/pip_install*)
-
+  - [x] **Create a some.. Big update as for  python installing libs** (*not python/requirements_installers/*_req_install, but some file in python/ dir*) (i mean - Ruby-gems installer)
+---
+New point (01.11.2025, 13:25):
+  - [ ] **Add a flag -silent into** `:LazyDevInstall` **for quiet installing**
