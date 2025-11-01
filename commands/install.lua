@@ -13,6 +13,7 @@ function M.register()
       lua = "luarocks_install.py",
       rust = "cargo_install.py",
       javascript = "npm_install.py",
+      ruby = "ruby_gem_install.py",
     }
     local script_name = installers[lang]
     if not script_name then
