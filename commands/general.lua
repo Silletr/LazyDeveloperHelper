@@ -9,7 +9,7 @@ function M.register()
   vim.api.nvim_create_user_command("HellPip", function()
     print("Need help? Thats for u: ")
     print("Commands: \n:IsWorking - for check plugin status\n")
-    print(":LazyDevInstall (-r or -silent (or both) {lib_names (can be multiply)} - \nwell.. main functional, maybe")
+    print(":LazyDevInstall (if u wanna write -silent) {lib_names (can be multiply)} - \nwell.. main functional, maybe")
   end, {})
   vim.api.nvim_create_user_command("LazyDevTelemetry", function()
     -- WORK WILL BE STARTED SOON
