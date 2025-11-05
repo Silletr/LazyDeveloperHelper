@@ -6,7 +6,6 @@ from subprocess import run, CalledProcessError
 from shutil import which
 from functools import lru_cache
 
-
 # --- VARIABLES ---
 CARGO_TOML = "Cargo.toml"
 cargo_path = which("cargo")
@@ -69,38 +68,22 @@ def validate_library_name(lib: str) -> bool:
 
 
 # --- INSTALLING LIBS ---
-def cargo_install(libs: list[str]) -> None:
-    """Install Rust libraries using cargo add.
-
-    Args:
-        libs (list[str]): List of library names to install.
-    """
+def cargo_install(libs: list[str], quiet: bool = False) -> None:
     cargo_toml_path = find_cargo_toml()
     if not cargo_toml_path:
         return
 
     abs_cargo_dir = os.path.dirname(cargo_toml_path)
-    log_message(f"Working directory set to: {abs_cargo_dir}", "info")
-    if not os.path.exists(abs_cargo_dir):
-        log_message(f"Directory {abs_cargo_dir} does not exist.", "error")
-        return
-    if not os.access(abs_cargo_dir, os.R_OK | os.X_OK):
-        log_message(
-            f"Permission denied to access {abs_cargo_dir}. Try running with sudo.",
-            "error",
-        )
-        log_message(
-            f"Permission denied to access {abs_cargo_dir}. Try running with sudo.",
-            "error",
-        )
-        return
-
     original_dir = os.getcwd()
     try:
         os.chdir(abs_cargo_dir)
         log_message(f"Running cargo add {' '.join(libs)} from {os.getcwd()} ...")
+        cargo_args = [cargo_path, "add"] + libs
+        if quiet:
+            cargo_args.append("--quiet")
+
         result = run(
-            [cargo_path, "add"] + libs,
+            cargo_args,
             check=True,
             capture_output=True,
             text=True,
@@ -110,31 +93,29 @@ def cargo_install(libs: list[str]) -> None:
         log_message(f"Failed to install {', '.join(libs)}", "error")
         log_message("stdout:\n" + e.stdout)
         log_message("stderr:\n" + e.stderr)
-    except PermissionError as e:
-        log_message(
-            f"Permission denied: {e}. Run with sudo or check directory permissions.",
-            "error",
-        )
-    except FileNotFoundError as e:
-        log_message(f"File or directory error: {e}. Check Cargo.toml path.", "error")
     finally:
         os.chdir(original_dir)
 
 
-def main():
+def main() -> None:
+    """Install Rust libraries using cargo add.
+    Args: libs (list[str]): List of library names to install."""
+
     if len(sys.argv) < 2:
-        log_message("Provide at least one Rust package name", "error")
+        log_message("Provide at least one library name", "error")
         sys.exit(1)
 
-    libraries = [lib for lib in sys.argv[1:] if validate_library_name(lib)]
-    if not libraries:
-        log_message("No valid libraries provided", "error")
-        sys.exit(1)
+    quiet = False
+    libs_to_install = []
 
-    if not check_cargo_installed():
-        sys.exit(1)
+    for arg in sys.argv[1:]:
+        if arg == "-quiet":
+            quiet = True
+        else:
+            libs_to_install.append(arg)
 
-    cargo_install(libraries)
+    for lib in libs_to_install:
+        cargo_install(libs_to_install, quiet=quiet)
 
 
 if __name__ == "__main__":

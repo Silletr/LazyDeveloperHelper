@@ -2,10 +2,25 @@ local M = {}
 
 function M.register()
   vim.api.nvim_create_user_command("LazyDevInstall", function(opts)
-    local args = opts.fargs
+    local fargs = vim.deepcopy(opts.fargs)
+    local flag = false
     local lang = vim.api.nvim_buf_get_option(0, "filetype")
 
-    print("Detected filetype: " .. lang)
+    for i = #fargs, 1, -1 do
+      if fargs[i] == "-quiet" then
+        flag = true
+        table.remove(fargs, i)
+        break
+      end
+    end
+    local args = fargs
+    if #args == 0 then
+      vim.notify("❌ You must specify at least one library!", vim.log.levels.ERROR)
+      return
+    end
+
+    vim.notify("Detected filetype: " .. lang, vim.log.levels.INFO)
+    vim.notify("Active flags: " .. tostring(flag), vim.log.levels.DEBUG)
 
     local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/"
     local installers = {
@@ -16,6 +31,7 @@ function M.register()
       ruby = "ruby_gem_install.py",
     }
     local script_name = installers[lang]
+
     if not script_name then
       vim.notify("❌ No installer configured for filetype: " .. lang, vim.log.levels.WARN)
       return
@@ -27,11 +43,16 @@ function M.register()
       local stdout = vim.loop.new_pipe(false)
       local stderr = vim.loop.new_pipe(false)
 
-      vim.notify("📦 Installing: " .. lib)
+      vim.notify("📦 Installing: " .. lib .. (flag and " (with flag)" or ""))
+
+      local spawn_args = { script_path, lib }
+      if flag then
+        table.insert(spawn_args, "-quiet")
+      end
 
       local handle
       handle = vim.loop.spawn("python3", {
-        args = { script_path, lib },
+        args = spawn_args,
         stdio = { nil, stdout, stderr },
       }, function(code)
         stdout:read_stop()
