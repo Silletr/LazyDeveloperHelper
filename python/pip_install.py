@@ -33,7 +33,10 @@ def validate_library_name(lib_name: str) -> bool:
 
 # --- INSTALLING LIBS ---
 def install_lib(
-    lib_name: str, libs_list: Set[str], req_path: str = "requirements.txt"
+    lib_name: str,
+    libs_list: Set[str],
+    req_path: str = "requirements.txt",
+    flag: bool = False,
 ) -> None:
     """
     Install a Python package via pip. Accepts optional requirements file path.
@@ -93,16 +96,18 @@ def install_lib(
             return
 
     # Run pip install
+    pip_args = [sys.executable, "-m", "pip", "install", lib_name]
+    if flag == "-quiet":
+        pip_args.append("-q")
     try:
         # Safely calling pip from argument list, without shell=True (as it was
         # in previous commit)
         result = run(
-            [sys.executable, "-m", "pip", "install", lib_name, "-q", "-q"],
+            pip_args,
             check=True,
             text=True,
             capture_output=True,
         )
-
         stdout = result.stdout or ""
         stdout_lower = stdout.lower()
 
@@ -121,21 +126,31 @@ def install_lib(
     except CalledProcessError as e:
         log_message(f"Failed to install {lib_name}", "error")
         log_message(f"stdout: {e.stdout}", "error")
-        log_message(f"stderr: {e.stderr}", "error")
+        log_message(f"stderr: {e.stderr}error")
+
         log_message(f"Return code: {getattr(e, 'returncode', 'unknown')}", "error")
+        return
 
 
 # --- MAIN FUNCTION ---
 def main() -> None:
-    """Main function to process command-line arguments."""
     print(">>> pip_install started <<<")
     if len(sys.argv) < 2:
         log_message("Provide at least one library name", "error")
         sys.exit(1)
 
     libs_list: Set[str] = set()
-    for lib in sys.argv[1:]:
-        install_lib(lib, libs_list)
+    quiet = False
+    libs_to_install = []
+
+    for arg in sys.argv[1:]:
+        if arg == "-quiet":
+            quiet = True
+        else:
+            libs_to_install.append(arg)
+
+    for lib in libs_to_install:
+        install_lib(lib, libs_list, flag=quiet)
 
 
 # --- POINT OF ENTER ---
