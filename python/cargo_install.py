@@ -114,7 +114,7 @@ def main() -> None:
         else:
             libs_to_install.append(arg)
 
-    for lib in libs_to_install:
+    for _ in libs_to_install:
         cargo_install(libs_to_install, quiet=quiet)
 
 
