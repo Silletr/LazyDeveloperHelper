@@ -24,8 +24,7 @@
 <!-- tocstop -->
 
 ## Video example
-![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/b5d3f0fcdce9c30f2217a7e83246f1debcc23b81/images/examples/example.gif)
-
+[![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/e12147f98c4cd1bd884c3bdc22cbbf7fec6ec25d/images/examples/example.gif)
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 
@@ -61,8 +60,8 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 ## Available in
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
-- [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#utility)
-- [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDevHelper/)
+- [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#dependency-management)
+- [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDevHelper/) (Some why this link is not working, but just write in search "LazyDeveloperHelper" and u will see plugin)
 
 
 ### Installation Methods
