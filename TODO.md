@@ -19,4 +19,5 @@ New points (24.10.2025, 10:08):
   - [x] **Create a some.. Big update as for  python installing libs** (*not python/requirements_installers/*_req_install, but some file in python/ dir*) (i mean - Ruby-gems installer)
 ---
 New point (01.11.2025, 13:25):
-  - [ ] **Add a flag -silent into** `:LazyDevInstall` **for quiet installing**
+  - [x] **Add a flag -silent into** `:LazyDevInstall` **for quiet installing** (Done: 50% (in 07.11 - added rust and pip packages, remain - npm, luarocks))
+  (UPD 18:44 (6:44 PM): Done both remained languages, all working)
