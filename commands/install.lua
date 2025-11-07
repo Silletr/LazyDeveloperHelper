@@ -7,7 +7,7 @@ function M.register()
     local lang = vim.api.nvim_buf_get_option(0, "filetype")
 
     for i = #fargs, 1, -1 do
-      if fargs[i] == "-quiet" then
+      if fargs[i] == "--quiet" or "-q" then
         flag = true
         table.remove(fargs, i)
         break
@@ -46,8 +46,10 @@ function M.register()
       vim.notify("📦 Installing: " .. lib .. (flag and " (with flag)" or ""))
 
       local spawn_args = { script_path, lib }
-      if flag then
+      if flag and lang == "python3" then
         table.insert(spawn_args, "-quiet")
+      elseif flag and (lang == "lua" or lang == "javascript") then
+        table.insert(spawn_args, "-q")
       end
 
       local handle
