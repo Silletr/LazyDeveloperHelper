@@ -7,7 +7,7 @@ function M.register()
     local lang = vim.api.nvim_buf_get_option(0, "filetype")
 
     for i = #fargs, 1, -1 do
-      if fargs[i] == "--quiet" or "-q" then
+      if fargs[i] == "--quiet" or fargs[i] == "-q" then
         flag = true
         table.remove(fargs, i)
         break
