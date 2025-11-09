@@ -5,9 +5,9 @@ local install = require("LazyDeveloperHelper.commands.install")
 local requirements = require("LazyDeveloperHelper.commands.install_requirements")
 
 function M.setup()
-  general.register()
-  install.register()
-  requirements.register()
+	general.register()
+	install.register()
+	requirements.register()
 end
 
 return M
