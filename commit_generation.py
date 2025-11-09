@@ -68,6 +68,7 @@ class CommitGen:
                 [str(self.git_path), "status", "--short"],
                 text=True,
                 capture_output=True,
+                check=True,
             )
             lines = result.stdout.strip().split("\n")
             if not lines or lines == [""]:
@@ -114,11 +115,13 @@ class CommitGen:
         self.show_git_changes()
         changed_files = ", ".join(self.get_changed_files())
         description = self.get_description()
+
         category_str = ", ".join(categories)
         self.msg = f"[{category_str}: {changed_files}] {description}"
         print(f"\n✅ Commit message:\n{self.msg}")
         try:
             subprocess.run([self.git_path, "add", "."], check=True)
+
             subprocess.run([self.git_path, "commit", "-m", self.msg], check=True)
         except subprocess.CalledProcessError as e:
             print(f"❌ Git error:\n{e.stdout}\n{e.stderr}")

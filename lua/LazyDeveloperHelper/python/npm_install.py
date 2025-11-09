@@ -3,6 +3,9 @@ from subprocess import run, CalledProcessError, PIPE
 from shutil import which
 import sys
 
+# --- npm PATH ---
+npm_path = which("npm")
+
 
 # --- LOGGING MESSAGE ---
 def log_message(message: str, level: str = "info") -> None:
@@ -12,7 +15,7 @@ def log_message(message: str, level: str = "info") -> None:
 
 # --- CHECKING npm INSTALLED
 def check_npm_installed() -> bool:
-    if not which("npm"):
+    if not npm_path:
         log_message("npm is not installed or not found in PATH.", "error")
         return False
     return True
@@ -35,11 +38,13 @@ def install_npm(lib: str) -> None:
         return
 
     log_message(f"Installing npm package: {lib} ...", "info")
-
-    # First try to check if package is present. Use check=False so tests can mock returncode.
     try:
         result = run(
-            ["npm", "list", lib], stdout=PIPE, stderr=PIPE, text=True, check=False
+            [str(npm_path), "list", lib],
+            stdout=PIPE,
+            stderr=PIPE,
+            text=True,
+            check=True,
         )
         # If list contains package name — treat as installed
         if lib in (result.stdout or ""):
@@ -52,7 +57,7 @@ def install_npm(lib: str) -> None:
     # Try installing - keep check=True to raise CalledProcessError on failure
     try:
         result = run(
-            ["npm", "install", lib.lower(), "--no-save"],
+            [str(npm_path), "install", lib.lower(), "--no-save"],
             stdout=PIPE,
             stderr=PIPE,
             text=True,
