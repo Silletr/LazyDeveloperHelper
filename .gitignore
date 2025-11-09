@@ -15,22 +15,9 @@ main.rs
 Cargo.lock
 Cargo.toml
 # ---
-
-# for sonarcloud scanner, only on my system for better code quality
-.scannerwork/
-
+# Symlink for work
+LazyDeveloperHelper
+# ---
 
 # Added by cargo
 /target
-
-# already existing elements were commented out
-
-#/target
-
-
-
-# Added by cargo
-#
-# already existing elements were commented out
-
-#/target
