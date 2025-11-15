@@ -9,15 +9,19 @@ python/__pycache__
 *.pyc
 requirements.txt
 
+# Vim.org and GitHub releases file
+dist/
+
 # Rust
 src/
 main.rs
 Cargo.lock
 Cargo.toml
+
+# Added by cargo
+/target
+
 # ---
 # Symlink for work
 LazyDeveloperHelper
 # ---
-
-# Added by cargo
-/target
