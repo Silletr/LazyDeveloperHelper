@@ -62,6 +62,7 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
 - [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#dependency-management)
 - [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDevHelper/) (Some why this link is not working, but just write in search "LazyDeveloperHelper" and u will see plugin)
+- Store.nvim (from recently)
 
 
 ### Installation Methods
