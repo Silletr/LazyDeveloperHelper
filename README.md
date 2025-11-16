@@ -20,7 +20,6 @@
 - [Install using Lazy](#install-using-Lazy)
 - [Avaible in](#available-in)
 - [Usage](#usage)
-- [Telemetry](#telemetry)
 <!-- tocstop -->
 
 ## Video example
@@ -38,17 +37,17 @@ And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 ## Plugin History
 # 📃 Hitory of plugin creation
-It was a deep night, *2:40 AM*, un-sleep me, phone, Notes, and brain (maybe it exist for me), and i one moment through "What if I will write the plugin for Neovim that installing libs right from editor, and will add this libs to requirements file" (generally, i through add only the Python-pip3 packages, but.. you see what happend)
+It was a deep night, *2:40 AM*, un-sleep me, phone, Notes, and brain (maybe it exist for me), and i one moment through "What if I will write the plugin for NeoVim that installing libs right from editor, and will add this libs to requirements file" (generally, i through add only the Python-pip3 packages, but.. you see what happend)
 And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode during 4 months, and only now i have +- good sleep mode, so i can say only two things -
 1. Do not deep into your project too deep - **you will fuck your organism, and will life in Light sleep phase, instead of REM + Deep sleep**
 
-2. `If u wanna think up some project from nothing` - **just try to do not anything 1-2 days in coding, and brain from lazzy state will think up project itself**
+2. `If u wanna think up some project from nothing` - **just try to do not anything 1-2 days in coding, and brain from lazy state will think up project itself**
 
 
 ## Features
-✨ Install Python packages directly from Neovim.  
-✨ Manage dependencies without leaving your editor.  
-✨ Compatible with modern Neovim configurations.  
+✨ Install Python packages directly from Neovim.
+✨ Manage dependencies without leaving your editor.
+✨ Compatible with modern Neovim configurations.
 
 ## Future Features
 (As of 20.10.25 8:14 PM its list clear, i`ll do just small fixes, maybe)
@@ -96,16 +95,3 @@ Command example:
 
 Example output:
 ![Installation Output](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/output_example.png)
-
-
-## Telemetry 
-**📊 Anonymous Usage Stats (Optional)**  
-!! NOW THIS FUNCTIONS IS NOT WORKING CAUSE NOT EXISTS !!
-
-LazyDeveloperHelper can send anonymous usage stats - plugin version, OS type, Neovim version.
-No personal data, usernames, or IPs are collected.
-
-To disable telemetry:
-```bash
-:LazyDevHelpDisableTelemetry
-```
