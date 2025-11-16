@@ -45,9 +45,9 @@ And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode 
 
 
 ## Features
-✨ Install Python packages directly from Neovim.
-✨ Manage dependencies without leaving your editor.
-✨ Compatible with modern Neovim configurations.
+1. - ✨ Install Python, Lua, Javascript, Ruby, Rust packages directly from Neovim,
+2. - ✨ Manage dependencies without leaving your editor,
+3. - ✨ Compatible with modern Neovim configurations
 
 ## Future Features
 (As of 20.10.25 8:14 PM its list clear, i`ll do just small fixes, maybe)
@@ -60,7 +60,7 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
 - [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#dependency-management)
-- [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDevHelper/) (Some why this link is not working, but just write in search "LazyDeveloperHelper" and u will see plugin)
+- [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDeveloperHelper)
 - Store.nvim (from recently)
 
 
