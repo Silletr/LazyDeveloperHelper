@@ -1,8 +1,9 @@
 # Lazy Developer Helper [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-[![Lua](https://img.shields.io/badge/Lua-5.4.8-purple.svg?logo=lua&logoColor=white)](https://www.lua.org/)
-[![Python](https://img.shields.io/badge/python-3.11+-blue)](https://www.python.org)
-[![Stars](https://img.shields.io/github/stars/Silletr/LazyDevHelper?style=round-square&color=yellow)](https://github.com/Silletr/LazyDevHelper/stargazers)
+
+![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Start](https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper) |
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/Silletr/LazyDevHelper/pulls)
 [![DeepSource](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper.svg/?label=active+issues&show_trend=true&token=6IT7yrn6pB2MxD9vprh3y6eJ)](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper/)
 ---
@@ -23,7 +24,7 @@
 <!-- tocstop -->
 
 ## Video example
-[![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/e12147f98c4cd1bd884c3bdc22cbbf7fec6ec25d/images/examples/example.gif)
+![Video example of commands](https://github.com/Silletr/LazyDeveloperHelper/blob/e12147f98c4cd1bd884c3bdc22cbbf7fec6ec25d/images/examples/example.gif)
 ## Status
 Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 
@@ -45,9 +46,9 @@ And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode 
 
 
 ## Features
-✨ Install Python packages directly from Neovim.
-✨ Manage dependencies without leaving your editor.
-✨ Compatible with modern Neovim configurations.
+1. - ✨ Install Python, Lua, Javascript, Ruby, Rust packages directly from Neovim,
+2. - ✨ Manage dependencies without leaving your editor,
+3. - ✨ Compatible with modern Neovim configurations
 
 ## Future Features
 (As of 20.10.25 8:14 PM its list clear, i`ll do just small fixes, maybe)
@@ -60,7 +61,7 @@ Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributio
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
 - [Awesome-NeoVim](https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#dependency-management)
-- [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDevHelper/) (Some why this link is not working, but just write in search "LazyDeveloperHelper" and u will see plugin)
+- [Neovim Craft](https://neovimcraft.com/plugin/Silletr/LazyDeveloperHelper)
 - Store.nvim (from recently)
 
 
@@ -91,7 +92,7 @@ Then: `:Lazy sync`
 
 ## Usage
 Command example:
-![Command Example](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/command_example.png)
-
+![Command example](https://github.com/Silletr/LazyDeveloperHelper/blob/ee3d4c47e690170a6ca3c28e523bdb035909ea6a/images/examples/command_example.png)
+---
 Example output:
 ![Installation Output](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/output_example.png)
