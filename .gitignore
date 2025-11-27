@@ -22,3 +22,11 @@ Cargo.toml
 /target
 
 # ---
+
+# Conan trash
+conan.lock
+*.cmake
+conanbuild*
+conanrun*
+deactivate_*
+CMakePresets.json

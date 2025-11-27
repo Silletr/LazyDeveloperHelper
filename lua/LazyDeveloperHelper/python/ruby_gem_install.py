@@ -20,9 +20,12 @@ GEM_PATH = which("gem")
 def check_gem():
     """Check if the 'gem' command is available on the system."""
     if GEM_PATH:
-        print("✅ Gem is found!")
+        log_message("✅ Gem is found!", "success")
     else:
-        print("❌ Gem not found, try to install by: `sudo apt install ruby-rubygems`")
+        log_message(
+            "❌ Gem not found, try to install by: `sudo apt install ruby-rubygems`",
+            "error",
+        )
         sys.exit(1)
 
 
