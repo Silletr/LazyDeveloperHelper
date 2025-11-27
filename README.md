@@ -92,9 +92,7 @@ Then: `:Lazy sync`
 
 ## Usage
 Command example:
-
 ![Command example](https://github.com/Silletr/LazyDeveloperHelper/blob/ee3d4c47e690170a6ca3c28e523bdb035909ea6a/images/examples/command_example.png)
-
+---
 Example output:
-
 ![Installation Output](https://github.com/Silletr/LazyDeveloperHelper/blob/d129a416c1f6a1273fdc077dff73bbd948757d6c/images/examples/output_example.png)

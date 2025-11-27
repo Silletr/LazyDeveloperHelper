@@ -22,6 +22,11 @@ Cargo.toml
 /target
 
 # ---
-# Symlink for work
-LazyDeveloperHelper
-# ---
+
+# Conan trash
+conan.lock
+*.cmake
+conanbuild*
+conanrun*
+deactivate_*
+CMakePresets.json
