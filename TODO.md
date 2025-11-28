@@ -21,3 +21,9 @@ New points (24.10.2025, 10:08):
 New point (01.11.2025, 13:25):
   - [x] **Add a flag -silent into** `:LazyDevInstall` **for quiet installing** (Done: 50% (in 07.11 - added rust and pip packages, remain - npm, luarocks))
   (UPD 18:44 (6:44 PM): Done both remained languages, all working)
+
+---
+28.11.2025, 10:23:
+  - [ ] Add C++, C# support
+  - [ ] Add Java support (by gradle)
+  - [ ] Add Go Support
