@@ -6,10 +6,12 @@ github_release() {
 
   echo "[*] Copying required files:"
 
-  cp -r plugin /tmp/ldh_release/LazyDeveloperHelper/
-  cp -r lua /tmp/ldh_release/LazyDeveloperHelper/
+  cp -r lua/LazyDeveloperHelper/commands/ /tmp/ldh_release/LazyDeveloperHelper/
+  cp -r lua/LazyDeveloperHelper/init.lua /tmp/ldh_release/LazyDeveloperHelper/
+  cp -r lua/LazyDeveloperHelper/python /tmp/ldh_release/LazyDeveloperHelper/
   echo "[*] Copying README.md, LICENSE files"
   cp README.md /tmp/ldh_release/LazyDeveloperHelper/
+  cp commit_generation.py /tmp/ldh_release/LazyDeveloperHelper/
   cp LICENSE /tmp/ldh_release/LazyDeveloperHelper/
 
   echo "[*] Zipping to /tmp/ldh_release:"

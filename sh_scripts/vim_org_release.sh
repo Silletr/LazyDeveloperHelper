@@ -6,12 +6,11 @@ vim_org_release() {
 
   echo "[*] Copying folders"
   mkdir -p /tmp/ldh_release/LazyDeveloperHelper
-  cp -r plugin /tmp/ldh_release/LazyDeveloperHelper/
-  cp -r python /tmp/ldh_release/LazyDeveloperHelper/
-  cp -r tests /tmp/ldh_release/LazyDeveloperHelper/
-  cp -r test_files /tmp/ldh_release/LazyDeveloperHelper/
-  echo "[*] Copying README.md, License, contributing.md, STATUS.md, commit-generator.py"
-  cp README.md LICENSE contributing.md STATUS.md commit_generation.py /tmp/ldh_release/LazyDeveloperHelper/
+  cp -r lua/LazyDeveloperHelper/commands/ /tmp/ldh_release/LazyDeveloperHelper/
+  cp -r lua/LazyDeveloperHelper/init.lua /tmp/ldh_release/LazyDeveloperHelper/
+  cp -r lua/LazyDeveloperHelper/python /tmp/ldh_release/LazyDeveloperHelper/
+  echo "[*] Copying License, commit-generator.py"
+  cp LICENSE commit_generation.py /tmp/ldh_release/LazyDeveloperHelper/
 
   echo "[*] Zipping..."
   cd /tmp/ldh_release
