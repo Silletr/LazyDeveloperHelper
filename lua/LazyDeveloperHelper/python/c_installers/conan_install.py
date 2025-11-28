@@ -16,7 +16,7 @@ def conan_exist():
         logger.critical("❌ Conan not exist, try: pip install conan")
 
 
-def install_package(pkg):
+def install_package():
     run(
         ["conan", "install", "."]
         + ["--build=missing", "-pr", "default"]
