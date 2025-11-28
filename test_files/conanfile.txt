@@ -1,6 +1,8 @@
-
 [requires]
+gtest/1.8.1
 fmt/5.3.0
+glfw/3.3.2
+spdlog/1.8.5
 
 [generators]
 CMakeDeps
@@ -8,6 +10,5 @@ CMakeToolchain
 
 [options]
 *:shared=False
-
 [imports]
 ., * -> ./bin @ keep_path=False

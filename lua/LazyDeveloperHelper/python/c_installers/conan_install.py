@@ -1,26 +1,39 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import shutil as sh
-from loguru import logger
 import sys
 from subprocess import run, CalledProcessError
 import json
-
+import os
 
 # --- VARIABLES ---
 CONAN = sh.which("conan")
 
 
+# --- LOGGING MESSAGE ---
+def log_message(message: str, level: str = "info") -> None:
+    prefixes = {
+        "info": "\U0001f4cd",  # 📍
+        "success": "\U0001f4e6",  # 📦
+        "error": "\u274c",  # ❌
+    }
+
+    print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
+
+
 # --- CHECK CONAN EXIST ---
 def conan_exist():
     if CONAN:
-        logger.info("✅ Conan exist, downloading may start!")
+        log_message("Conan exist, downloading may start!", "success")
     else:
-        logger.critical("❌ Conan not exist, try: pip install conan")
+        log_message("Conan not exist, try: pip install conan", "error")
 
 
-# --------------------------------------------------------------------------- #
+# -------
 # Helpers
-# --------------------------------------------------------------------------- #
-def resolve_package_name(package: str) -> str:
+# ---------
+def resolve_package_name(package):
     """
     If only name is given (e.g. "spdlog"), resolve latest version from ConanCenter.
     If full name+version (e.g. "spdlog/1.14.1") — return as-is.
@@ -28,7 +41,7 @@ def resolve_package_name(package: str) -> str:
     if "/" in package:
         return package
 
-    logger.info(f"Resolving latest version for {package}...")
+    log_message(f"Resolving latest version for {package}...", "info")
     try:
         result = run(
             ["conan", "search", package, "--remote=conancenter"],
@@ -38,47 +51,49 @@ def resolve_package_name(package: str) -> str:
         )
 
         if result.returncode != 0:
-            logger.warning(f"conan search returned an error for: {package}")
+            log_message(f"conan search returned an error for: {package}", "error")
             return package
         for line in result.stdout.splitlines():
             line = line.strip()
             if line and "/" in line and line.startswith(package + "/"):
                 version = line.split()[0]
-                logger.success(f"Choised version → {version}")
+                log_message(f"Choised version → {version}", "info")
                 return version
-            logger.warning(f"Cannot find version for {package}")
+            log_message(f"Cannot find version for {package}", "error")
     except (CalledProcessError, json.JSONDecodeError, IndexError):
-        logger.warning(f"Failed to resolve version, falling back to {package}/latest")
+        log_message(
+            f"Failed to resolve version, falling back to {package}/latest", "error"
+        )
         return package
-
-    return f"{package}/latest"
 
 
 # --- INSTALLING FUNCTION ---
-def install_package(lib: str) -> None:
+def install_package(lib: str):
     full_name = resolve_package_name(lib)
-    lib_short = full_name.split("/")[0]
+    lib_short = full_name.split("/")[0]  # pyright: ignore
+
     build_dir = f"build_{lib_short.lower()}"
+    os.mkdir("build_dir")
+    if not os.path.exists("conanfile.txt"):
+        with open("conanfile.txt", "w") as f:
+            f.write("[requires]\n")
+            f.write("[generators]\nCMakeDeps\nCMakeToolchain\n\n")
+            f.write("[options]\n*:shared=False\n")
+            f.write("[imports]\n., * -> ./bin @ keep_path=False\n")
+    log_message(f"Installing {full_name} → {build_dir}/", "info")
 
-    conanfile_content = f"""
-[requires]
-{full_name}
+    with open("conanfile.txt", "r") as f:
+        content = f.read()
 
-[generators]
-CMakeDeps
-CMakeToolchain
-
-[options]
-*:shared=False
-
-[imports]
-., * -> ./bin @ keep_path=False
-    """
-
-    with open("conanfile.txt", "w") as f:
-        f.write(conanfile_content)
-
-    logger.info(f"Installing {full_name} → {build_dir}/")
+    if full_name not in content:  # pyright: ignore
+        # Paste into [requires] before first empty line or generators
+        lines = content.splitlines()
+        for i, line in enumerate(lines):
+            if line.strip() == "[generators]":
+                lines.insert(i, full_name)  # pyright: ignore
+                break
+        with open("conanfile.txt", "w") as f:
+            f.write("\n".join(lines) + "\n")
 
     cmd = [
         "conan",
@@ -96,8 +111,8 @@ CMakeToolchain
 
     try:
         run(cmd, check=True, capture_output=True, text=True)
-        logger.success(f"{lib} successfully installed → {build_dir}/")
-        print(f"To remove: rm -rf {build_dir}")
+        log_message(f"{lib} successfully installed → {build_dir}/", "success")
+        log_message(f"--- \tTo remove: rm -rf {build_dir}/ ---\t\n", "info")
     except CalledProcessError as e:
         error_text = e.stderr.lower()
 
@@ -106,7 +121,9 @@ CMakeToolchain
             or "xorg/system" in error_text
             or "libgl" in error_text
         ):
-            logger.warning(f"{lib} requires native graphics libraries (OpenGL/X11)")
+            log_message(
+                f"{lib} requires native graphics libraries (OpenGL/X11)", "info"
+            )
             print(
                 """
             glfw (and some other GUI/graphics libraries)
@@ -127,14 +144,14 @@ CMakeToolchain
         (I dont wanna make Neovim plugin for install libs to auto-installer all in row)
         """
             )
-            logger.info(f"{lib} skipped — system dependencies missing")
+            log_message(f"{lib} skipped — system dependencies missing", "info")
             print(f"Temporary files left in: {build_dir}/ (you can delete them)")
             return
 
         elif "not found in local cache" in error_text:
-            logger.error(f"Package {full_name} not found on ConanCenter")
+            log_message(f"Package {full_name} not found on ConanCenter", "error")
         else:
-            logger.error(f"Conan failed on {lib}:")
+            log_message(f"Conan failed on {lib}:", "error")
             print(e.stderr)
 
 
@@ -142,7 +159,7 @@ CMakeToolchain
 def main() -> None:
     conan_exist()
     if len(sys.argv) < 2:
-        logger.error("Provide at least one library name")
+        log_message("Provide at least one library name", "info")
         sys.exit(1)
 
     libs_to_install = []
