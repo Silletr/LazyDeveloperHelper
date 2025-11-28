@@ -1,5 +1,13 @@
+
 [requires]
-spdlog/1.14.1
+fmt/5.3.0
 
 [generators]
 CMakeDeps
+CMakeToolchain
+
+[options]
+*:shared=False
+
+[imports]
+., * -> ./bin @ keep_path=False
