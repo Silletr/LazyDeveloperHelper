@@ -73,7 +73,6 @@ def install_package(lib: str):
     lib_short = full_name.split("/")[0]  # pyright: ignore
 
     build_dir = f"build_{lib_short.lower()}"
-    os.mkdir("build_dir")
     if not os.path.exists("conanfile.txt"):
         with open("conanfile.txt", "w") as f:
             f.write("[requires]\n")
