@@ -161,11 +161,6 @@ def main() -> None:
         log_message("Provide at least one library name", "info")
         sys.exit(1)
 
-    libs_to_install = []
-
-    for arg in sys.argv[1:]:
-        libs_to_install.append(arg)
-
     for lib in sys.argv[1:]:
         install_package(lib)
 
