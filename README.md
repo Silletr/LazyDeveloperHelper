@@ -3,8 +3,10 @@
 
 ![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![Start](https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper) |
+
+![Start](https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/Silletr/LazyDevHelper/pulls)
+
 [![DeepSource](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper.svg/?label=active+issues&show_trend=true&token=6IT7yrn6pB2MxD9vprh3y6eJ)](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper/)
 ---
 
