@@ -5,17 +5,12 @@ import sys
 from subprocess import run, CalledProcessError
 from shutil import which
 from functools import lru_cache
+from logger import log_message
+
 
 # --- VARIABLES ---
 CARGO_TOML = "Cargo.toml"
 cargo_path = which("cargo")
-
-
-# --- INITIALIZE LOGGING MESSAGE
-def log_message(message: str, level: str = "info") -> None:
-    """Print a formatted message with an emoji prefix."""
-    prefixes = {"info": "📍", "success": "📦", "error": "❌"}
-    print(f"{prefixes.get(level, '📍')} {message}")
 
 
 # --- CACHE Cargo.toml LOCATION ---

@@ -5,9 +5,9 @@ import sys
 from subprocess import run, CalledProcessError
 from shutil import which
 from typing import Set
+from logger import log_message
 
 
-# LOGGING MESSAGE ---
 def check_pip_installed() -> bool:
     """Check if pip3 is installed and available in PATH."""
     pip_path = which("pip3")
@@ -15,11 +15,6 @@ def check_pip_installed() -> bool:
         log_message("pip3 is not installed or not found in PATH.", "error")
         return False
     return True
-
-
-def log_message(message: str, level: str = "info") -> None:
-    prefixes = {"info": "📍", "success": "📦", "error": "❌"}
-    print(f"{prefixes.get(level, '📍')} {message}")
 
 
 # --- VALIDATE LIB NAME
@@ -74,7 +69,7 @@ def install_lib(
             file.write(f"{lib_name}\n")
         libs_list.add(lib_name.lower())
 
-    # Read existing libs (case-insensitive)
+    # Read existing libs (case-sensetive)
     libs_set: Set[str] = set()
     try:
         with open(req_path, "r", encoding="utf-8") as file:
@@ -100,8 +95,6 @@ def install_lib(
     if flag == "-quiet":
         pip_args.append("-q")
     try:
-        # Safely calling pip from argument list, without shell=True (as it was
-        # in previous commit)
         result = run(
             pip_args,
             check=True,
@@ -113,11 +106,13 @@ def install_lib(
 
         if "requirement already satisfied" in stdout_lower:
             log_message(f"{lib_name} already installed", "success")
+
         elif "successfully installed" in stdout_lower:
             # Find the line with "Successfully installed {lib_name}
             for line in stdout.splitlines():
                 if "Successfully installed" in line:
                     log_message(line.strip(), "success")
+
         # If somewhat went wrong
         else:
             log_message(f"{lib_name} installation output:", "info")

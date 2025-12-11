@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 
 import shutil as sh
 import sys
@@ -7,20 +6,10 @@ from subprocess import run, CalledProcessError
 import os
 import re
 
+from ..logger import log_message
+
 # --- VARIABLES ---
 CONAN = sh.which("conan")
-
-
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info") -> None:
-    prefixes = {
-        "info": "\U0001f4cd",  # 📍
-        "success": "\U0001f4e6",  # 📦
-        "error": "\u274c",  # ❌
-    }
-
-    prefix = prefixes.get(level, "📍")
-    print(f"{prefix} {message}")
 
 
 # --- CHECK CONAN EXIST ---

@@ -3,13 +3,7 @@
 from subprocess import run, CalledProcessError, PIPE
 from shutil import which
 import sys
-
-
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info") -> None:
-    """Log a message with a specified level (info, success, error)."""
-    prefixes = {"info": "📍", "success": "📦", "error": "❌"}
-    print(f"{prefixes.get(level, '📍')} {message}")
+from logger import log_message
 
 
 # -- VARIABLES --
