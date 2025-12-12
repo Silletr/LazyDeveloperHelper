@@ -2,15 +2,10 @@
 from subprocess import run, CalledProcessError, PIPE
 from shutil import which
 import sys
+from logger import log_message
 
 # --- npm PATH ---
 npm_path = which("npm")
-
-
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info") -> None:
-    prefixes = {"info": "📍", "success": "📦", "error": "❌"}
-    print(f"{prefixes.get(level, '📍')} {message}")
 
 
 # --- CHECKING npm INSTALLED

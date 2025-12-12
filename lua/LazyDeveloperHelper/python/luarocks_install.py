@@ -6,21 +6,11 @@ import sys
 import argparse
 from subprocess import run, CalledProcessError
 from shutil import which
+from logger import log_message
 
 # --- VARIABLES ---
 LUAROCKS_FLAG = "--local"
 luarocks_path = which("luarocks")
-
-
-# --- LOGGING MESSAGE ---
-def log_message(message: str, level: str = "info") -> None:
-    prefixes = {
-        "info": "\U0001f4cd",  # 📍
-        "success": "\U0001f4e6",  # 📦
-        "error": "\u274c",  # ❌
-    }
-
-    print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
 
 
 # --- CHECKING LIBRARY NAME ---
