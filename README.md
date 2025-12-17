@@ -1,8 +1,8 @@
-<h1 align="center">LazyDeveloperHelper</h1>
+<h1 align="center">💫 Lazy Developer Helper</h1>
 
 <p align="center">
   Automation tools for lazy developers.<br/>
-  <i>Less routine, more coding.</i>
+  <i>Less routine, more coding!</i>
 </p>
 
 <p align="center">
@@ -15,8 +15,8 @@
   <img src="https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white" />
   <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" />
 </p>
----
 
+---
 ## Contents
 <!-- toc -->
 - [Video example](#video-example)
