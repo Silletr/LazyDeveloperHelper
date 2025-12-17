@@ -1,13 +1,20 @@
-# Lazy Developer Helper [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+<h1 align="center">LazyDeveloperHelper</h1>
 
+<p align="center">
+  Automation tools for lazy developers.<br/>
+  <i>Less routine, more coding.</i>
+</p>
 
-![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+<p align="center">
+  <img src="https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper" />
+  <img src="https://img.shields.io/github/license/Silletr/LazyDeveloperHelper" />
+  <img src="https://img.shields.io/github/last-commit/Silletr/LazyDeveloperHelper" />
+</p>
 
-![Start](https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/Silletr/LazyDevHelper/pulls)
-
-[![DeepSource](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper.svg/?label=active+issues&show_trend=true&token=6IT7yrn6pB2MxD9vprh3y6eJ)](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper/)
+<p align="center">
+  <img src="https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" />
+</p>
 ---
 
 ## Contents
