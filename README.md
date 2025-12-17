@@ -13,21 +13,22 @@
 
 <p align="center">
   <strong>Supported Languages:</strong><br/>
-  <img src="https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white" alt="Lua" />
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/Rust-000000?style=flat&logo=rust&logoColor=white" alt="Rust" />
-  <img src="https://img.shields.io/badge/Ruby-CC342D?style=flat&logo=ruby&logoColor=white" alt="Ruby" />
-  <img src="https://img.shields.io/badge/C-A8B9CC?style=flat&logo=c&logoColor=black" alt="C" />
-  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="C++" />
-  <img src="https://img.shields.io/badge/.NET-512BD4?style=flat&logo=.net&logoColor=white" alt=".NET" />
+  <img src="https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white" alt="Lua" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust" />
+  <img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white" alt="Ruby" />
+  <img src="https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=black" alt="C" />
+  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++" />
 </p>
 
 <p align="center">
   <strong>Supported Package Managers:</strong><br/>
-  <img src="https://img.shields.io/badge/pip-3776AB?style=flat&logo=pypi&logoColor=white" alt="pip" />
-  <img src="https://img.shields.io/badge/Cargo-DEA584?style=flat&logo=rust&logoColor=black" alt="Cargo" />
-  <img src="https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white" alt="npm" />
-  <!-- I'll add Conan, Nuget if I find good badge -->
+  <img src="https://img.shields.io/badge/pip-3776AB?style=for-the-badge&logo=pypi&logoColor=white" alt="pip" />
+  <img src="https://img.shields.io/badge/Cargo-DEA584?style=for-the-badge&logo=rust&logoColor=black" alt="Cargo" />
+  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm" />
+  <img src="https://img.shields.io/badge/Gem-990000?style=for-the-badge&logo=rubygems&logoColor=white" alt="RubyGems" /> <!-- Ruby Gem -->
+  <img src="https://img.shields.io/badge/Conan-66C2A5?style=for-the-badge&logo=conan&logoColor=white" alt="Conan" />
+  <img src="https://img.shields.io/badge/NuGet-512BD4?style=for-the-badge&logo=nuget&logoColor=white" alt="NuGet" />
 </p>
 
 ---
