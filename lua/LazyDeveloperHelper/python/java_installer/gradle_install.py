@@ -1,14 +1,25 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 
 # from subprocess import CalledProcessError, run <- Ruff dont agree un-used import
+
+
 from shutil import which as wh
 import sys
 
-
-from logger import log_message
-
 # --- CHECK GRADLE ---
 gradle = wh("gradle")
+
+
+# --- LOGGING MESSAGE ---
+def log_message(message: str, level: str = "info") -> None:
+    prefixes = {
+        "info": "\U0001f4cd",  # 📍
+        "success": "\U0001f4e6",  # 📦
+        "error": "\u274c",  # ❌
+    }
+
+    print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
 
 
 def gradle_exists():
@@ -21,7 +32,7 @@ def gradle_exists():
 
 # --- INSTALLING gradle PACKAGE ---
 def install_package(lib: str):
-    pass
+    print(lib)
 
 
 # --- POINT OF ENTER ---
