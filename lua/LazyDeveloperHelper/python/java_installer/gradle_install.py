@@ -37,9 +37,21 @@ def install_package(lib: str):
 
 # --- POINT OF ENTER ---
 def main() -> None:
-    gradle_exists()
-    if len(sys.argv) < 2:
-        print("Provide at least one npm package name")
+    # Check if gradle exists first
+    if not gradle_exists():
         return
+
+    # Check if arguments were provided
+    if len(sys.argv) < 2:
+        log_message("Provide at least one gradle package name", "error")
+        print(f"Usage: {sys.argv[0]} <package1> <package2> ...")
+        return
+
+    # Install each package
     for lib in sys.argv[1:]:
         install_package(lib)
+
+
+# Add this to ensure main() runs when script is executed
+if __name__ == "__main__":
+    main()
