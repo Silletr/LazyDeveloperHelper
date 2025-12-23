@@ -22,17 +22,20 @@ def log_message(message: str, level: str = "info") -> None:
     print(f"{prefixes.get(level, '\U0001f4cd')} {message}")
 
 
-def gradle_exists():
+def gradle_exists() -> bool:
     if gradle:
         log_message(f"Used Gradle: {gradle}")
         log_message("Gradle exist, downloading", "success")
+        return True
     else:
         log_message("Gradle doesnt exists, install it!", "error")
+        return False
 
 
 # --- INSTALLING gradle PACKAGE ---
 def install_package(lib: str):
-    print(lib)
+    # command = [gradle, "install"], lib   <- My pre-commit config angry on this
+    pass
 
 
 # --- POINT OF ENTER ---
@@ -52,6 +55,5 @@ def main() -> None:
         install_package(lib)
 
 
-# Add this to ensure main() runs when script is executed
 if __name__ == "__main__":
     main()
