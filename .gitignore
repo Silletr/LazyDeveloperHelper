@@ -30,3 +30,8 @@ conanbuild*
 conanrun*
 deactivate_*
 CMakePresets.json
+
+# Gradle trash
+*.gradle
+build.*
+lua/LazyDeveloperHelper/python/java_installer/build/
