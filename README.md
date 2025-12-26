@@ -1,19 +1,42 @@
-# Lazy Developer Helper [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+<h1 align="center">💫 Lazy Developer Helper</h1>
 
+<p align="center">
+  Automation tools for lazy developers.<br/>
+  <i>Less routine, more coding!</i>
+</p>
 
-![Lua](https://img.shields.io/badge/Lua-2C2D72?style=flat&logo=lua&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![Start](https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper) |
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/Silletr/LazyDevHelper/pulls)
-[![DeepSource](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper.svg/?label=active+issues&show_trend=true&token=6IT7yrn6pB2MxD9vprh3y6eJ)](https://app.deepsource.com/gh/Silletr/LazyDeveloperHelper/)
+<p align="center">
+  <img src="https://img.shields.io/github/stars/Silletr/LazyDeveloperHelper" alt="Stars" />
+  <img src="https://img.shields.io/github/license/Silletr/LazyDeveloperHelper" alt="License" />
+  <img src="https://img.shields.io/github/last-commit/Silletr/LazyDeveloperHelper" alt="Last Commit" />
+</p>
+
+<p align="center">
+  <strong>Supported Languages:</strong><br/>
+  <img src="https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white" alt="Lua" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust" />
+  <img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white" alt="Ruby" />
+  <img src="https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=black" alt="C" />
+  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++" />
+</p>
+
+<p align="center">
+  <strong>Supported Package Managers:</strong><br/>
+  <img src="https://img.shields.io/badge/pip-3776AB?style=for-the-badge&logo=pypi&logoColor=white" alt="pip" />
+  <img src="https://img.shields.io/badge/Cargo-DEA584?style=for-the-badge&logo=rust&logoColor=black" alt="Cargo" />
+  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm" />
+  <img src="https://img.shields.io/badge/Gem-990000?style=for-the-badge&logo=rubygems&logoColor=white" alt="RubyGems" /> <!-- Ruby Gem -->
+  <img src="https://img.shields.io/badge/Conan-66C2A5?style=for-the-badge&logo=conan&logoColor=white" alt="Conan" />
+  <img src="https://img.shields.io/badge/NuGet-512BD4?style=for-the-badge&logo=nuget&logoColor=white" alt="NuGet" />
+</p>
+
 ---
-
 ## Contents
 <!-- toc -->
 - [Video example](#video-example)
 - [Status](#status)
 - [Introduction](#introduction)
-- [Plugin History](#plugin-history)
 - [Features](#features)
 - [Future Features](#future-features)
 - [Roadmap](#roadmap)
@@ -21,6 +44,7 @@
 - [Install using Lazy](#install-using-Lazy)
 - [Avaible in](#available-in)
 - [Usage](#usage)
+- [Plugin History](#plugin-history)
 <!-- tocstop -->
 
 ## Video example
@@ -36,15 +60,6 @@ LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Pyt
 And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 
-## Plugin History
-# 📃 Hitory of plugin creation
-It was a deep night, *2:40 AM*, un-sleep me, phone, Notes, and brain (maybe it exist for me), and i one moment through "What if I will write the plugin for NeoVim that installing libs right from editor, and will add this libs to requirements file" (generally, i through add only the Python-pip3 packages, but.. you see what happend)
-And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode during 4 months, and only now i have +- good sleep mode, so i can say only two things -
-1. Do not deep into your project too deep - **you will fuck your organism, and will life in Light sleep phase, instead of REM + Deep sleep**
-
-2. `If u wanna think up some project from nothing` - **just try to do not anything 1-2 days in coding, and brain from lazy state will think up project itself**
-
-
 ## Features
 1. - ✨ Install Python, Lua, Javascript, Ruby, Rust packages directly from Neovim,
 2. - ✨ Manage dependencies without leaving your editor,
@@ -56,7 +71,10 @@ And, because of that idea - i fully (at all, fck it) knocked down my sleep-mode 
 - [x] (1:01, 21.10.2024) - will be added installing libs right from requirements.txt for python, or from Cargo.toml ([Dependencies] block on corresponding file) <- Completed in 21.10.2025 15:00
 
 ## Roadmap
-Check my [TODO.md](./TODO.md) for upcoming features! Want to help? - contributions are welcome.
+If you wanna to see roadmap for 2026 and current year (2025, if you forget) - this for you:  
+[Go to Roadmap.sh](https://roadmap.sh/r/lazydeveloperhelper-roadmap-for-2026-year)
+
+
 ## Available in
 - [vim.org](https://www.vim.org/scripts/script.php?script_id=6156)
 - [dotfyle.com](https://dotfyle.com/plugins/Silletr/LazyDevHelper)
@@ -99,3 +117,6 @@ Example output:
 
 
 ![Alt](https://repobeats.axiom.co/api/embed/91c0a59ebb003b31f4184cc769db134500a0fde8.svg "Repobeats analytics image")
+
+## Plugin History
+![If you want to know more - read the plugin history!](./PLUGIN_HISTORY.md)
