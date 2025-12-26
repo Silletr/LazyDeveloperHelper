@@ -32,48 +32,53 @@ def gradle_exists() -> bool:
 
 # --- FIND GRADLE PROJECT ---
 def find_gradle_project() -> Path | None:
+    """Find nearest Gradle project (build.gradle OR build.gradle.kts)"""
     current_dir = Path.cwd()
     for depth in range(5):
-        build_gradle = current_dir / "build.gradle"
-        build_gradle_kts = current_dir / "build.gradle.kts"
-
-        if build_gradle.exists():
-            log_message(f"Found Gradle Groovy project: {build_gradle}")
-            return build_gradle
-        elif build_gradle_kts.exists():
-            log_message(f"Found Gradle Kotlin DSL project: {build_gradle_kts}")
-            return build_gradle_kts
-
+        # Check both Groovy and Kotlin DSL
+        for gradle_file in ["build.gradle", "build.gradle.kts"]:
+            build_gradle = current_dir / gradle_file
+            if build_gradle.exists():
+                log_message(
+                    f"Found Gradle {
+                        'Kotlin DSL' if 'kts' in gradle_file else 'Groovy'
+                    } project: {build_gradle}"
+                )
+                return current_dir  # ✅ Return PROJECT DIR, not file parent
         current_dir = current_dir.parent
     return None
 
 
-# --- ADD DEPENDENCY TO BUILD.GRADLE ---
-def add_dependency_to_build(build_dir: Path, lib: str) -> bool:
-    """Add dependency line to build.gradle dependencies block"""
-    build_file = build_dir / "build.gradle"
+# --- ADD DEPENDENCY TO BUILD.GRADLE(.KTS) ---
+def add_dependency_to_build(project_dir: Path, lib: str) -> bool:
+    for gradle_file in ["build.gradle", "build.gradle.kts"]:
+        build_file = project_dir / gradle_file
+        if not build_file.exists():
+            continue
 
-    # Simple lib parsing: group:artifact:version or just artifact
-    if "::" in lib:
-        group, artifact_version = lib.split("::", 1)
-        artifact, version = artifact_version.rsplit(":", 1)
-        dep_line = f"    implementation '{group}:{artifact}:{version}'"
-    else:
-        # Fallback: assume org.example:lib:1.0.0 pattern
-        dep_line = f"    implementation '{lib}:1.0.0'"
+        content = build_file.read_text()
 
-    content = build_file.read_text()
+        # FIXED PARSING LOGIC
+        if "::" in lib:
+            prefix, version_part = lib.split("::", 1)
+            group, artifact = (
+                prefix.split(":") if ":" in prefix else (prefix, "unknown")
+            )
+            full_dep = f"{group}:{artifact}:{version_part}"
+            dep_line = f'    implementation("{full_dep}")'
+        else:
+            dep_line = f'    implementation("{lib}:latest.release")'
 
-    # Find dependencies block and add line
-    if "dependencies {" in content:
-        # Insert before closing brace
+        if "dependencies {" not in content:
+            continue
+
         new_content = content.replace("dependencies {", f"dependencies {{\n{dep_line}")
+
         build_file.write_text(new_content)
-        log_message(f"Added '{lib}' to build.gradle", "success")
+        log_message(f"✅ Added '{full_dep}' to {gradle_file}", "success")
         return True
-    else:
-        log_message("No dependencies block found in build.gradle", "error")
-        return False
+
+    return False
 
 
 # --- INSTALLING GRADLE PACKAGE ---

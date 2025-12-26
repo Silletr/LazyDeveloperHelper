@@ -25,5 +25,5 @@ New point (01.11.2025, 13:25):
 ---
 28.11.2025, 10:23:
   - [x] Add C++, C# support
-  - [ ] Add Java support (by gradle)
+  - [ ] Add Java support (by gradle + MavenCentral)
   - [ ] Add Go Support
