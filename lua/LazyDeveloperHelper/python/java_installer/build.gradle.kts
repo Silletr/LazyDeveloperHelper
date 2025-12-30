@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.20"
+    java
     application
 }
 
@@ -7,7 +7,9 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
-    implementation("commons-lang3:unknown:commons-lang3:3.12.0")
-    }
+}
+
+application {
+    mainClass.set("Main")
+}
