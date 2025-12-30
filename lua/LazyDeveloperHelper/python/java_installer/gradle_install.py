@@ -58,16 +58,17 @@ def add_dependency_to_build(project_dir: Path, lib: str) -> bool:
 
         content = build_file.read_text()
 
-        # FIXED PARSING LOGIC
         if "::" in lib:
-            prefix, version_part = lib.split("::", 1)
-            group, artifact = (
-                prefix.split(":") if ":" in prefix else (prefix, "unknown")
-            )
-            full_dep = f"{group}:{artifact}:{version_part}"
-            dep_line = f'    implementation("{full_dep}")'
+            # "commons-lang3::org.apache.commons:commons-lang3:3.12.0"
+            #   ↑ artifact    ↑ group:artifact:version
+            # gav = "org.apache.commons:commons-lang3:3.12.0"
+            artifact, gav = lib.split("::", 1)
+
+            dep_line = f'    implementation("{gav}")'
+            log_msg = gav
         else:
             dep_line = f'    implementation("{lib}:latest.release")'
+            log_msg = f"{lib}:latest.release"
 
         if "dependencies {" not in content:
             continue
@@ -75,7 +76,7 @@ def add_dependency_to_build(project_dir: Path, lib: str) -> bool:
         new_content = content.replace("dependencies {", f"dependencies {{\n{dep_line}")
 
         build_file.write_text(new_content)
-        log_message(f"✅ Added '{full_dep}' to {gradle_file}", "success")
+        log_message(f"✅ Added '{log_msg}' to {gradle_file}", "success")
         return True
 
     return False
