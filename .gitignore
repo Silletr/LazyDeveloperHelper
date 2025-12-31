@@ -32,12 +32,23 @@ deactivate_*
 CMakePresets.json
 
 # Gradle trash
-test_files/gradle.properties
-test_files/gradle/
-test_files/gradlew
-test_files/gradlew.bat
-test_files/build/
-test_files/settings.gradle.kts
-*.gradle
-build.*
-lua/LazyDeveloperHelper/python/java_installer/build/
+gradle/
+.gradle/
+gradlew
+gradlew.bat
+gradle-wrapper.jar
+gradle-wrapper.properties
+*.gradle.kts
+settings.gradle.kts
+libs.versions.toml
+gradle.properties
+
+# Neccessary files
+!lua/LazyDeveloperHelper/python/java_installer/gradle_install.py
+!lua/LazyDeveloperHelper/python/java_installer/build.gradle.kts
+!lua/LazyDeveloperHelper/python/java_installer/settings.gradle.kts
+
+# Manual tests files
+test_files/gradle*/
+test_files/gradlew*
+test_files/*.gradle*
