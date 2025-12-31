@@ -1,4 +1,5 @@
-## Category
+# 🚀 What Magic Did You Add?
+
 - [ ] 🆕 NEW FEATURE
 - [ ] 🐛 BUGFIX
 - [ ] 🧹 CLEANUP
@@ -7,27 +8,41 @@
 - [ ] 🔥 HOTFIX
 - [ ] 🎨 STYLE
 - [ ] 🗃️ STRUCTURE
+- [ ] ⚡ PERFORMANCE
 
 ---
-## 📝 Description
-**filename1.type**:
-  - change 1
-  - change 2
 
-**filename2.type2**:
-  - change 1
-  - change 2
+## ✨ Changes Overview
 
-## 🧾 Related Issues / Tickets
-**Link any related issue or task if available**
+**🎯 Why this matters:** [1-sentence impact]
 
-## ✅ Checklist
-- [ ] Code compiles
-- [ ] Documentation updated (leave blank if not changed) 
-- [ ] Manually tested
+**🔧 Files touched:**
 
-## 📎 Screenshots / Logs (if applicable)
-<!-- Optional visual or terminal output -->
+- **filename.ext1**:
+  - ❓*First change*
+  - 🚀 *2nd change*
+- **filename.ext2:**
+  - 🐛 *fixed X*
+  - 💡 *added Y*
 
-## ⏱ Timezone and Timestamp
-_<!-- eg. 15:10 GMT+3, 08.08.2025 -->_
+## 🎯 Related Quests
+
+- Closes #123
+- Related: #456
+- Ticket: [link]
+
+## ✅ Victory Checklist
+
+- [ ] 💻 Code builds & runs smooth
+- [ ] 📚 Docs updated (or N/A)
+- [ ] 🧪 Tests pass (or added)
+- [ ] 👀 Manual test: [quick demo steps]
+- [ ] 🔍 No breaking changes?
+
+## 📸 Proof of Glory (optional)
+
+Paste screenshot/logs/GIF here
+
+## 🕒 Time Traveler Info
+
+*MM/DD HH:MM TZ* – e.g., *12/31 15:30 EET*
