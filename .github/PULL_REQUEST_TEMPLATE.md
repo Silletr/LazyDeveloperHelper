@@ -45,4 +45,4 @@ Paste screenshot/logs/GIF here
 
 ## 🕒 Time Traveler Info
 
-*MM/DD HH:MM TZ* – e.g., *12/31 15:30 EET*
+*DD/MM HH:MM TZ* – e.g., *31/12 15:30 EET*
