@@ -12,7 +12,11 @@ vim_org_release() {
 	echo "[*] Copying files for test workability"
 	cp -r test_files/test.* /tmp/ldh_release/LazyDeveloperHelper/
 
-	cp -r lua/LazyDeveloperHelper/python /tmp/ldh_release/LazyDeveloperHelper/
+	cp -r lua/LazyDeveloperHelper/python/c_installers /tmp/ldh_release/LazyDeveloperHelper/
+	cp -r lua/LazyDeveloperHelper/python/requirements_installers /tmp/ldh_release/LazyDeveloperHelper/
+	find lua/LazyDeveloperHelper/python/java_installer -name 'gradle_install.py' -exec cp --parents {} /tmp/ldh_release/LazyDeveloperHelper/ \;
+	find lua/LazyDeveloperHelper/python/java_installer -name 'build.kotlin.kts' -exec cp --parents {} /tmp/ldh_release/LazyDeveloperHelper/ \;
+
 	echo "[*] Copying License, commit-generator.py, changelog.md"
 	cp LICENSE commit_generation.py CHANGELOG.md /tmp/ldh_release/LazyDeveloperHelper/
 
