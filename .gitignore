@@ -49,6 +49,7 @@ gradle.properties
 !lua/LazyDeveloperHelper/python/java_installer/settings.gradle.kts
 
 # Manual tests files
+test_files/build/
 test_files/gradle*/
 test_files/gradlew*
 test_files/*.gradle*
