@@ -71,7 +71,7 @@ And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 - [x] (1:01, 21.10.2024) - will be added installing libs right from requirements.txt for python, or from Cargo.toml ([Dependencies] block on corresponding file) <- Completed in 21.10.2025 15:00
 
 ## Roadmap
-If you wanna to see roadmap for 2026 and current year (2025, if you forget) - this for you:  
+If you wanna to see roadmap for 2026 and current year (2025, if you forget) - this for you:
 [Go to Roadmap.sh](https://roadmap.sh/r/lazydeveloperhelper-roadmap-for-2026-year)
 
 

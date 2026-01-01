@@ -1,3 +1,5 @@
+# LazyDeveloper TODO
+
 1. Add auto-detecting of file-type (.lua, .py, etc.)
    - [x] Check it from vim.bo.filetype
    - [x] Save to "file_type" variable
