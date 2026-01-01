@@ -18,12 +18,11 @@ class UvInstaller(BaseInstaller):
 if __name__ == "__main__":
     installer = UvInstaller()
     if installer.is_installed():
-        print("uv знайдено в PATH!")
-        # Тест установки (обережно — реально встановить!)
+        print("uv not found on PATH")
+        # Install test (careful - really install!)
         # result = installer.install("requests")
         # print(result.stdout)
         # print(result.stderr)
     else:
         print(
-            "uv не встановлено.Встанови:curl -LsSf https://astral.sh/uv/install.sh | sh"
-        )
+            "uv not found. Install it: curl -LsSf https://astral.sh/uv/install.sh | sh)
