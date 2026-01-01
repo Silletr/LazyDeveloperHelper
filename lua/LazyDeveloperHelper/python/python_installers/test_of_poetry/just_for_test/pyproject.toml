@@ -1,0 +1,17 @@
+[project]
+name = "test-of-poetry"
+version = "0.1.0"
+description = "Just a test for Poetry Installer"
+authors = [
+    {name = "Silletr",email = "SilletrMain@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
