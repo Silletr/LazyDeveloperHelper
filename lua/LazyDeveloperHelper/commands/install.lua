@@ -27,7 +27,7 @@ function M.register()
 
         local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/"
         local installers = {
-            python = "pip_install.py",
+            python = "/python_installers/pip_install.py",
             lua = "luarocks_install.py",
             rust = "cargo_install.py",
             javascript = "npm_install.py",
