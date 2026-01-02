@@ -1,100 +1,95 @@
 local M = {}
 
+local function detect_manager(lang)
+    local map = {
+        python = "pip",
+        lua = "luarocks",
+        rust = "cargo",
+        javascript = "npm",
+        typescript = "npm",
+        ruby = "ruby-gem",
+        c = "conan",
+        cpp = "conan",
+        kotlin = "gradle",
+        java = "gradle",
+    }
+    return map[lang] or "pip"
+end
+
+local function install_packages(packages, manager, quiet)
+    local python_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python"
+    local factory_path = python_path .. "/python_installers/factory.py"
+
+    for _, pkg in ipairs(packages) do
+        local cmd = { "python3", factory_path, manager, pkg }
+        if quiet then
+            table.insert(cmd, "--quiet")
+        end
+
+        local result = vim.system(cmd, { text = true })
+
+        if result.code == 0 then
+            if not quiet then
+                vim.notify("✅ Installed " .. pkg .. " (" .. manager .. ")", vim.log.levels.INFO)
+            end
+        else
+            vim.notify("❌ Failed to install " .. pkg .. " (" .. manager .. ")", vim.log.levels.ERROR)
+            if result.stderr and result.stderr ~= "" then
+                vim.notify(result.stderr, vim.log.levels.ERROR)
+            end
+        end
+    end
+end
+
 function M.register()
     vim.api.nvim_create_user_command("LazyDevInstall", function(opts)
         local fargs = vim.deepcopy(opts.fargs)
-        local flag = false
-        local lang = vim.api.nvim_buf_get_option(0, "filetype")
+        local manager = nil
+        local quiet = false
+        local packages = {}
 
+        -- Parse arguments in reverse to handle --manager value correctly
         for i = #fargs, 1, -1 do
-            if fargs[i] == "--quiet" or fargs[i] == "-q" then
-                flag = true
+            local arg = fargs[i]
+            if arg == "--quiet" or arg == "-q" then
+                quiet = true
                 table.remove(fargs, i)
-                break
+            elseif arg:match("^%-%-manager=") then
+                local captured = arg:match("^%-%-manager=(.*)")
+                if captured then
+                    manager = captured
+                    vim.notify("Manager: " .. manager)
+                    table.remove(fargs, i)
+                else
+                    vim.notify("❌ Invalid --manager= format", vim.log.levels.ERROR)
+                end
+            elseif arg == "--manager" then
+                if i + 1 <= #fargs then
+                    manager = fargs[i + 1]
+                    table.remove(fargs, i + 1)
+                    table.remove(fargs, i)
+                else
+                    vim.notify("❌ --manager requires a value", vim.log.levels.ERROR)
+                    return
+                end
+            else
+                table.insert(packages, arg)
             end
         end
-        local args = fargs
-        if #args == 0 then
-            vim.notify("❌ You must specify at least one library!", vim.log.levels.ERROR)
+
+        if #packages == 0 then
+            vim.notify("❌ Specify at least one package", vim.log.levels.ERROR)
             return
         end
 
-        vim.notify("Detected filetype: " .. lang, vim.log.levels.INFO)
-        vim.notify("Active flags: " .. tostring(flag), vim.log.levels.DEBUG)
-
-        local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/"
-        local installers = {
-            python = "pip_install.py",
-            lua = "luarocks_install.py",
-            rust = "cargo_install.py",
-            javascript = "npm_install.py",
-            ruby = "ruby_gem_install.py",
-            c = "c_installers/conan_install.py",
-            kotlin = "java_installer/gradle_install.py",
-        }
-        local script_name = installers[lang]
-
-        if not script_name then
-            vim.notify("❌ No installer configured for filetype: " .. lang, vim.log.levels.WARN)
-            return
+        if not manager then
+            -- Auto-detect by filetype - for convenience
+            local lang = vim.api.nvim_buf_get_option(0, "filetype")
+            manager = detect_manager(lang)
         end
 
-        local script_path = config_path .. script_name
-
-        local function execute_async(lib)
-            local stdout = vim.loop.new_pipe(false)
-            local stderr = vim.loop.new_pipe(false)
-
-            vim.notify("📦 Installing: " .. lib .. (flag and " (with flag)" or ""))
-
-            local spawn_args = { script_path, lib }
-            if flag and lang == "python3" then
-                table.insert(spawn_args, "-quiet")
-            elseif flag and (lang == "lua" or lang == "javascript") then
-                table.insert(spawn_args, "-q")
-            end
-
-            local handle
-            handle = vim.loop.spawn("python3", {
-                args = spawn_args,
-                stdio = { nil, stdout, stderr },
-            }, function(code)
-                stdout:read_stop()
-                stderr:read_stop()
-                stdout:close()
-                stderr:close()
-                handle:close()
-
-                vim.schedule(function()
-                    if code == 0 then
-                        vim.notify("✅ Successfully installed " .. lib)
-                    else
-                        vim.notify("❌ Failed to install " .. lib .. " (code: " .. code .. ")", vim.log.levels.ERROR)
-                    end
-                end)
-            end)
-
-            stdout:read_start(function(err, data)
-                if data then
-                    vim.schedule(function()
-                        vim.notify(data, vim.log.levels.INFO)
-                    end)
-                end
-            end)
-
-            stderr:read_start(function(err, data)
-                if data then
-                    vim.schedule(function()
-                        vim.notify(data, vim.log.levels.ERROR)
-                    end)
-                end
-            end)
-        end
-
-        for _, lib in ipairs(args) do
-            execute_async(lib)
-        end
-    end, { nargs = "+" })
+        install_packages(packages, manager, quiet)
+    end, { nargs = "*" })
 end
 
 return M
