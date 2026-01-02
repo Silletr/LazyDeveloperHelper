@@ -44,3 +44,9 @@ New point (01.11.2025, 13:25):
 - [x] Add C++, C# support
 - [x] Add Java support (by gradle + MavenCentral)
 - [ ] Add Go Support
+
+---
+
+01.01.2026, 15:37:
+
+- [ ] Add supporting: `uv add`, `poetry install`, `pip install .` for `pyproject.toml` files

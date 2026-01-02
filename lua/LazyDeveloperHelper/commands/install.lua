@@ -3,33 +3,37 @@ local M = {}
 function M.register()
     vim.api.nvim_create_user_command("LazyDevInstall", function(opts)
         local fargs = vim.deepcopy(opts.fargs)
-        local flag = false
-        local lang = vim.api.nvim_buf_get_option(0, "filetype")
+        local quiet = false
+        local packages = {}
 
+        -- Parse arguments in reverse to handle --quiet correctly
         for i = #fargs, 1, -1 do
-            if fargs[i] == "--quiet" or fargs[i] == "-q" then
-                flag = true
+            local arg = fargs[i]
+            if arg == "--quiet" or arg == "-q" then
+                quiet = true
                 table.remove(fargs, i)
-                break
+            else
+                table.insert(packages, arg)
             end
         end
-        local args = fargs
-        if #args == 0 then
-            vim.notify("❌ You must specify at least one library!", vim.log.levels.ERROR)
+
+        if #packages == 0 then
+            vim.notify("❌ Specify at least one package", vim.log.levels.ERROR)
             return
         end
 
+        local lang = vim.api.nvim_buf_get_option(0, "filetype")
         vim.notify("Detected filetype: " .. lang, vim.log.levels.INFO)
-        vim.notify("Active flags: " .. tostring(flag), vim.log.levels.DEBUG)
 
         local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/"
         local installers = {
-            python = "pip_install.py",
+            python = "/python_installers/pip_install.py",
             lua = "luarocks_install.py",
             rust = "cargo_install.py",
             javascript = "npm_install.py",
             ruby = "ruby_gem_install.py",
             c = "c_installers/conan_install.py",
+            cpp = "c_installers/nuget_install.py",
             kotlin = "java_installer/gradle_install.py",
         }
         local script_name = installers[lang]
@@ -39,62 +43,29 @@ function M.register()
             return
         end
 
-        local script_path = config_path .. script_name
+        local python_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python"
+        local factory_path = python_path .. "/python_installers/factory.py"
+        local cmd = { "python3", factory_path, lang, script_name, unpack(packages) }
+        if quiet then
+            table.insert(cmd, "--quiet")
+        end
 
-        local function execute_async(lib)
-            local stdout = vim.loop.new_pipe(false)
-            local stderr = vim.loop.new_pipe(false)
+        local result = vim.system(cmd, { text = true })
 
-            vim.notify("📦 Installing: " .. lib .. (flag and " (with flag)" or ""))
-
-            local spawn_args = { script_path, lib }
-            if flag and lang == "python3" then
-                table.insert(spawn_args, "-quiet")
-            elseif flag and (lang == "lua" or lang == "javascript") then
-                table.insert(spawn_args, "-q")
+        if result.code == 0 then
+            if not quiet then
+                vim.notify("✅ Installed " .. table.concat(packages, ", ") .. " (" .. lang .. ")", vim.log.levels.INFO)
             end
-
-            local handle
-            handle = vim.loop.spawn("python3", {
-                args = spawn_args,
-                stdio = { nil, stdout, stderr },
-            }, function(code)
-                stdout:read_stop()
-                stderr:read_stop()
-                stdout:close()
-                stderr:close()
-                handle:close()
-
-                vim.schedule(function()
-                    if code == 0 then
-                        vim.notify("✅ Successfully installed " .. lib)
-                    else
-                        vim.notify("❌ Failed to install " .. lib .. " (code: " .. code .. ")", vim.log.levels.ERROR)
-                    end
-                end)
-            end)
-
-            stdout:read_start(function(err, data)
-                if data then
-                    vim.schedule(function()
-                        vim.notify(data, vim.log.levels.INFO)
-                    end)
-                end
-            end)
-
-            stderr:read_start(function(err, data)
-                if data then
-                    vim.schedule(function()
-                        vim.notify(data, vim.log.levels.ERROR)
-                    end)
-                end
-            end)
+        else
+            vim.notify(
+                "❌ Failed to install " .. table.concat(packages, ", ") .. " (" .. lang .. ")",
+                vim.log.levels.ERROR
+            )
+            if result.stderr and result.stderr ~= "" then
+                vim.notify(result.stderr, vim.log.levels.ERROR)
+            end
         end
-
-        for _, lib in ipairs(args) do
-            execute_async(lib)
-        end
-    end, { nargs = "+" })
+    end, { nargs = "*" })
 end
 
 return M
