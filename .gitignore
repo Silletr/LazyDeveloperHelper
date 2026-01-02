@@ -13,13 +13,8 @@ requirements.txt
 dist/
 
 # Rust
-src/
-main.rs
+test_files/rust_test/
 Cargo.lock
-Cargo.toml
-
-# Added by cargo
-/target
 
 # ---
 

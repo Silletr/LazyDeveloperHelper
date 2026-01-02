@@ -1,20 +1,17 @@
 import subprocess
 from abc import ABC, abstractmethod
+from shutil import which
 
 
 class BaseInstaller(ABC):
     """Base class for all installers"""
 
-    def __init__(self, cmd_name: str):
-        self.cmd_name = cmd_name
+    def __init__(self, cmd: str) -> None:
+        self.cmd = cmd
 
-    def is_installed(self, installer: str = "pip3") -> bool:
+    def is_installed(self) -> bool:
         """Checks is installer installed (wtf, too confused :D)"""
-        self.installer = installer
-        result = subprocess.run(
-            ["which", self.installer], capture_output=True, text=True
-        )
-        return result.returncode == 0
+        return which(self.cmd) is not None
 
     @abstractmethod
     def install(self, package: str) -> subprocess.CompletedProcess:
@@ -26,10 +23,10 @@ class BaseInstaller(ABC):
         """Return command for subprocess"""
         pass
 
-    def run_install(self, package: str) -> subprocess.CompletedProcess:
-        """Unique installer with logging"""
+    def run(self, package: str) -> subprocess.CompletedProcess:
         if not self.is_installed():
-            raise RuntimeError(f"{self.cmd_name} not found in PATH")
+            raise RuntimeError(f"{self.cmd} not found in PATH!")
 
-        cmd = self.get_command(package)
-        return subprocess.run(cmd, capture_output=True, text=True)
+        return subprocess.run(
+            self.get_command(package), capture_output=True, text=True, check=True
+        )
