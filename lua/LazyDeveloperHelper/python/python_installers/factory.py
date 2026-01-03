@@ -10,7 +10,7 @@ def get_python_installer(kind: PythonProjectType):
         return UvInstaller("uv")
 
     if kind == PythonProjectType.REQUIREMENTS:
-        return PipInstaller("pip3")
+        return PipInstaller()
 
     if kind == PythonProjectType.POETRY:
         return PoetryInstaller("poetry")
