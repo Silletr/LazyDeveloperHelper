@@ -1,4 +1,4 @@
-# Symlink to ~/.config/nvim/lua/
+# Symlink
 LazyDeveloperHelper
 
 # JS
@@ -18,6 +18,14 @@ dist/
 # Rust
 test_files/rust_test/
 Cargo.lock
+<<<<<<< HEAD
+=======
+Cargo.toml
+test_files/rust_test/target/
+
+# Added by cargo
+/target
+>>>>>>> e452834 ([TRYING TO RECOVER PROJECT ARCHITECTURE TO NORMAL VEIW])
 
 # ---
 
