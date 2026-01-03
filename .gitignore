@@ -1,6 +1,3 @@
-# Symlink
-LazyDeveloperHelper
-
 # JS
 package.json
 package-lock.json
@@ -16,16 +13,13 @@ requirements.txt
 dist/
 
 # Rust
-test_files/rust_test/
+src/
+main.rs
 Cargo.lock
-<<<<<<< HEAD
-=======
 Cargo.toml
-test_files/rust_test/target/
 
 # Added by cargo
 /target
->>>>>>> e452834 ([TRYING TO RECOVER PROJECT ARCHITECTURE TO NORMAL VEIW])
 
 # ---
 
@@ -37,25 +31,5 @@ conanrun*
 deactivate_*
 CMakePresets.json
 
-# Gradle trash
-gradle/
-.gradle/
-gradlew
-gradlew.bat
-gradle-wrapper.jar
-gradle-wrapper.properties
-*.gradle.kts
-settings.gradle.kts
-libs.versions.toml
-gradle.properties
-
-# Neccessary files
-!lua/LazyDeveloperHelper/python/java_installer/gradle_install.py
-!lua/LazyDeveloperHelper/python/java_installer/build.gradle.kts
-!lua/LazyDeveloperHelper/python/java_installer/settings.gradle.kts
-
-# Manual tests files
-test_files/build/
-test_files/gradle*/
-test_files/gradlew*
-test_files/*.gradle*
+# Gradle
+test_files/.gradle/
