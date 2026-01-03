@@ -97,7 +97,7 @@ def install_package(lib: str) -> bool:
     # Step 2: Run gradle build (download + build)
     try:
         result = subprocess.run(
-            ["gradle", "build", "--refresh-dependencies"],
+            [str(gradle), "build", "--refresh-dependencies"],
             cwd=project_dir,
             capture_output=True,
             text=True,

@@ -5,7 +5,7 @@ import sys
 from logger import log_message
 
 # --- npm PATH ---
-npm_path = which("npm")
+npm_path = str(which("npm"))
 
 
 # --- CHECKING npm INSTALLED
@@ -35,7 +35,7 @@ def install_npm(lib: str) -> None:
     log_message(f"Installing npm package: {lib} ...", "info")
     try:
         result = run(
-            [str(npm_path), "list", lib],
+            [npm_path, "list", lib],
             stdout=PIPE,
             stderr=PIPE,
             text=True,
