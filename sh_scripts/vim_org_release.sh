@@ -1,25 +1,29 @@
 vim_org_release() {
-  echo "[*] Preparing clean release…"
+	echo "[*] Preparing clean release…"
 
-  rm -f dist/LazyDeveloperHelper.zip
-  rm -rf /tmp/ldh_release
+	rm -f dist/LazyDeveloperHelper.zip
+	rm -rf /tmp/ldh_release
 
-  echo "[*] Copying folders"
-  mkdir -p /tmp/ldh_release/LazyDeveloperHelper
-  cp -r lua/LazyDeveloperHelper/commands/ /tmp/ldh_release/LazyDeveloperHelper/
-  cp -r lua/LazyDeveloperHelper/init.lua /tmp/ldh_release/LazyDeveloperHelper/
-  cp -r lua/LazyDeveloperHelper/python /tmp/ldh_release/LazyDeveloperHelper/
-  echo "[*] Copying License, commit-generator.py"
-  cp LICENSE commit_generation.py /tmp/ldh_release/LazyDeveloperHelper/
+	echo "[*] Copying folders"
+	mkdir -p /tmp/ldh_release/LazyDeveloperHelper
+	cp -r lua/LazyDeveloperHelper/commands/ /tmp/ldh_release/LazyDeveloperHelper/
+	cp -r lua/LazyDeveloperHelper/init.lua /tmp/ldh_release/LazyDeveloperHelper/
 
-  echo "[*] Zipping..."
-  cd /tmp/ldh_release
-  zip -r LazyDeveloperHelper.zip LazyDeveloperHelper >/dev/null
+	echo "[*] Copying files for test workability"
+	cp -r test_files/test.* /tmp/ldh_release/LazyDeveloperHelper/
 
-  echo "[*] Moving..."
-  mkdir -p ~/Projects/LazyDeveloperHelper/dist
-  mv LazyDeveloperHelper.zip ~/Projects/LazyDeveloperHelper/dist/
+	cp -r lua/LazyDeveloperHelper/python /tmp/ldh_release/LazyDeveloperHelper/
+	echo "[*] Copying License, commit-generator.py, changelog.md"
+	cp LICENSE commit_generation.py CHANGELOG.md /tmp/ldh_release/LazyDeveloperHelper/
 
-  echo "[✓] Done. Clean .zip is in dist/, size:"
-  du -h ~/Projects/LazyDeveloperHelper/dist/LazyDeveloperHelper.zip
+	echo "[*] Zipping..."
+	cd /tmp/ldh_release
+	zip -r LazyDeveloperHelper.zip LazyDeveloperHelper >/dev/null
+
+	echo "[*] Moving..."
+	mkdir -p ~/Projects/LazyDeveloperHelper/dist
+	mv LazyDeveloperHelper.zip ~/Projects/LazyDeveloperHelper/dist/
+
+	echo "[✓] Done. Clean .zip is in dist/, size:"
+	du -h ~/Projects/LazyDeveloperHelper/dist/LazyDeveloperHelper.zip
 }
