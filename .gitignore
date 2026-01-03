@@ -1,4 +1,4 @@
-# Symlink to ~/.config/nvim/lua/
+# Symlink
 LazyDeveloperHelper
 
 # JS
@@ -16,8 +16,13 @@ requirements.txt
 dist/
 
 # Rust
+src/
+main.rs
+Cargo.toml
 test_files/rust_test/
-Cargo.lock
+!test_files/test.rs
+# Added by cargo
+/target
 
 # ---
 
