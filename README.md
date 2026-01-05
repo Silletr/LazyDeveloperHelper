@@ -54,9 +54,18 @@ Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 
 
 ## Introduction
-Have you ever found yourself adding multiple dependencies to your code before installing them? Do you hate switching between your editor and terminal for installing libs? 🤔
+*Have you ever found yourself adding multiple dependencies to your code before installing them?* **Do you hate switching between your editor and terminal for installing libs?** 🤔
 
-LazyDevHelper solves this problem! It's a Neovim plugin that lets you manage Python dependencies directly from your editor, eliminating the need to switch to the terminal.
+**LazyDeveloperHelper solves this problem!** It's a Neovim plugin that lets you manage:
+  - 1. *Python via pip*
+  - 2. *Rust via Cargo*
+  - 3. *Kotlin/Groovy via Gradle with Maven-Central*
+  - 4. *JavaScript via npm*
+  - 5. *C++ via Nuget* (In future will be used `vim.ui.select` for choose cause will be added Vckpg)
+	- 6. *C via Conan*
+	- 7. *Ruby via Ruby-Gem*
+	- 8. *Lua via Luarocks*
+...dependencies directly from your editor, eliminating the need to switch to the terminal.
 And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 
@@ -99,7 +108,7 @@ Then: `:PackerSync`
 ```lua
 return {
     "Silletr/LazyDeveloperHelper",
-    config = function ()
+    config = function()
         require("LazyDeveloperHelper").setup()
     end
   }
