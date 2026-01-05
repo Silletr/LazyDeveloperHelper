@@ -45,6 +45,7 @@ function M.register()
         local function execute_async(lib)
             local stdout = vim.loop.new_pipe(false)
             local stderr = vim.loop.new_pipe(false)
+            local current_file_dir = vim.fn.expand("%:p:h")
 
             vim.notify("📦 Installing: " .. lib .. (flag and " (with flag)" or ""))
 
@@ -58,6 +59,7 @@ function M.register()
             local handle
             handle = vim.loop.spawn("python3", {
                 args = spawn_args,
+                cwd = current_file_dir,
                 stdio = { nil, stdout, stderr },
             }, function(code)
                 stdout:read_stop()

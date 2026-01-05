@@ -7,7 +7,7 @@ from logger import log_message
 
 
 # -- VARIABLES --
-GEM_PATH = str(which("gem"))
+GEM_PATH = which("gem")
 
 
 # --- CHECK IS GEM EXIST ---
