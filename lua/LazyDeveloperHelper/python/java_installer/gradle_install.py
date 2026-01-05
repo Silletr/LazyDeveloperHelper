@@ -124,7 +124,13 @@ def install_package(lib: str) -> bool:
         return False
 
     try:
-        subprocess.run([gradle, "build"], cwd=project_dir, check=True)
+        subprocess.run(
+            [gradle, "build"],
+            cwd=project_dir,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
         log_message(f"Successfully downloaded '{lib}'", "success")
         return True
     except subprocess.CalledProcessError:
