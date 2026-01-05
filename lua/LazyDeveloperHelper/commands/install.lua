@@ -30,6 +30,8 @@ function M.register()
             javascript = "npm_install.py",
             ruby = "ruby_gem_install.py",
             c = "c_installers/conan_install.py",
+            cpp = "c_installers/nuget_install.py",
+            kotlin = "java_installer/gradle_install.py",
         }
         local script_name = installers[lang]
 
