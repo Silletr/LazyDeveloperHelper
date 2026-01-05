@@ -7,7 +7,7 @@ import subprocess
 from pathlib import Path
 
 # --- CHECK GRADLE ---
-gradle = wh("gradle")
+gradle = str(wh("gradle"))
 
 
 # --- LOGGING MESSAGE ---
@@ -32,87 +32,109 @@ def gradle_exists() -> bool:
 
 # --- FIND GRADLE PROJECT ---
 def find_gradle_project() -> Path | None:
-    """Find nearest Gradle project (build.gradle OR build.gradle.kts)"""
     current_dir = Path.cwd()
-    for depth in range(5):
-        # Check both Groovy and Kotlin DSL
-        for gradle_file in ["build.gradle", "build.gradle.kts"]:
-            build_gradle = current_dir / gradle_file
-            if build_gradle.exists():
-                log_message(
-                    f"Found Gradle {
-                        'Kotlin DSL' if 'kts' in gradle_file else 'Groovy'
-                    } project: {build_gradle}"
-                )
-                return current_dir  # ✅ Return PROJECT DIR, not file parent
+    for _ in range(10):
+        for gradle_file in ["build.gradle.kts", "build.gradle"]:
+            if (current_dir / gradle_file).exists():
+                log_message(f"Found Gradle project: {current_dir / gradle_file}")
+                return current_dir
+        if current_dir.parent == current_dir:
+            break
         current_dir = current_dir.parent
     return None
 
 
 # --- ADD DEPENDENCY TO BUILD.GRADLE(.KTS) ---
 def add_dependency_to_build(project_dir: Path, lib: str) -> bool:
-    for gradle_file in ["build.gradle", "build.gradle.kts"]:
-        build_file = project_dir / gradle_file
-        if not build_file.exists():
-            continue
+    build_file = project_dir / "build.gradle.kts"
+    if not build_file.exists():
+        template = """plugins {
+    kotlin("jvm") version "1.9.24"
+}
 
-        content = build_file.read_text()
+repositories {
+    mavenCentral()
+}
 
-        if "::" in lib:
-            # "commons-lang3::org.apache.commons:commons-lang3:3.12.0"
-            #   ↑ artifact    ↑ group:artifact:version
-            # gav = "org.apache.commons:commons-lang3:3.12.0"
-            artifact, gav = lib.split("::", 1)
+dependencies {
+}
+"""
+        build_file.write_text(template)
+        log_message(f"Created new {build_file.name} with minimal template", "success")
 
-            dep_line = f'    implementation("{gav}")'
-            log_msg = gav
-        else:
-            dep_line = f'    implementation("{lib}:latest.release")'
-            log_msg = f"{lib}:latest.release"
+    content = build_file.read_text()
 
-        if "dependencies {" not in content:
-            continue
+    if "::" in lib:
+        _, gav = lib.split("::", 1)
+        dep_line = f'    implementation("{gav}")'
+        log_msg = gav
+        search_dep = gav
+    else:
+        dep_line = f'    implementation("{lib}:latest.release")'
+        log_msg = f"{lib}:latest.release"
+        search_dep = f"{lib}:latest.release"
 
-        new_content = content.replace("dependencies {", f"dependencies {{\n{dep_line}")
-
-        build_file.write_text(new_content)
-        log_message(f"✅ Added '{log_msg}' to {gradle_file}", "success")
+    if any(search_dep in line for line in content.splitlines()):
+        log_message(f"'{log_msg}' already present", "info")
         return True
 
-    return False
+    if 'kotlin("jvm")' not in content:
+        if "plugins {" not in content:
+            content = 'plugins {\n    kotlin("jvm") version "1.9.24"\n}\n\n' + content
+        else:
+            content = content.replace(
+                "plugins {", 'plugins {\n    kotlin("jvm") version "1.9.24"'
+            )
+        log_message("Added kotlin('jvm') plugin", "info")
+
+    if "mavenCentral()" not in content:
+        if "repositories {" not in content:
+            content += "\nrepositories {\n    mavenCentral()\n}\n"
+        else:
+            content = content.replace(
+                "repositories {", "repositories {\n    mavenCentral()"
+            )
+        log_message("Added mavenCentral()", "info")
+
+    lines = content.splitlines()
+    deps_start = next(
+        (i for i, line in enumerate(lines) if "dependencies {" in line), None
+    )
+    if deps_start is None:
+        lines.append("")
+        lines.append("dependencies {")
+        lines.append(dep_line)
+        lines.append("}")
+    else:
+        lines.insert(deps_start + 1, dep_line)
+
+    build_file.write_text("\n".join(lines))
+    log_message(f"Added '{log_msg}' → {build_file.name}", "success")
+    return True
 
 
 # --- INSTALLING GRADLE PACKAGE ---
 def install_package(lib: str) -> bool:
-    """Add lib to build.gradle THEN run gradle build"""
     project_dir = find_gradle_project()
     if not project_dir:
-        log_message("No Gradle project found nearby!", "error")
+        log_message("No Gradle project found!", "error")
         return False
 
-    # Step 1: Add dependency to build.gradle (like conan)
     if not add_dependency_to_build(project_dir, lib):
         return False
 
-    # Step 2: Run gradle build (download + build)
     try:
-        result = subprocess.run(
-            [str(gradle), "build", "--refresh-dependencies"],
+        subprocess.run(
+            [gradle, "build"],
             cwd=project_dir,
             capture_output=True,
             text=True,
             check=True,
         )
-        log_message(f"✅ '{lib}' added and built successfully!", "success")
-        print(result.stdout)
+        log_message(f"Successfully downloaded '{lib}'", "success")
         return True
-    except subprocess.CalledProcessError as e:
-        log_message(f"Build failed for '{lib}'", "error")
-        print(e.stdout)
-        print(e.stderr)
-        return False
-    except Exception as e:
-        log_message(f"Install error: {e}", "error")
+    except subprocess.CalledProcessError:
+        log_message("Gradle build failed — check syntax", "error")
         return False
 
 
@@ -122,9 +144,7 @@ def main() -> None:
         return
 
     if len(sys.argv) < 2:
-        log_message("Provide at least one gradle package name", "error")
-        print(f"Usage: {sys.argv[0]} group::artifact:version")
-        print("Example: commons-lang3::commons-lang3:3.12.0")
+        log_message("Usage: lib or artifact::group:artifact:version", "error")
         return
 
     for lib in sys.argv[1:]:

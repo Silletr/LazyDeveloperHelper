@@ -22,7 +22,7 @@ function M.register()
         vim.notify("Detected filetype: " .. lang, vim.log.levels.INFO)
         vim.notify("Active flags: " .. tostring(flag), vim.log.levels.DEBUG)
 
-        local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/python/"
+        local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/lua/LazyDeveloperHelper/python/"
         local installers = {
             python = "pip_install.py",
             lua = "luarocks_install.py",
@@ -30,6 +30,7 @@ function M.register()
             javascript = "npm_install.py",
             ruby = "ruby_gem_install.py",
             c = "c_installers/conan_install.py",
+            cpp = "c_installers/nuget_install.py",
             kotlin = "java_installer/gradle_install.py",
         }
         local script_name = installers[lang]
@@ -44,6 +45,7 @@ function M.register()
         local function execute_async(lib)
             local stdout = vim.loop.new_pipe(false)
             local stderr = vim.loop.new_pipe(false)
+            local current_file_dir = vim.fn.expand("%:p:h")
 
             vim.notify("📦 Installing: " .. lib .. (flag and " (with flag)" or ""))
 
@@ -57,6 +59,7 @@ function M.register()
             local handle
             handle = vim.loop.spawn("python3", {
                 args = spawn_args,
+                cwd = current_file_dir,
                 stdio = { nil, stdout, stderr },
             }, function(code)
                 stdout:read_stop()

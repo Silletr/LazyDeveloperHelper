@@ -1,5 +1,3 @@
-# LazyDeveloper TODO
-
 1. Add auto-detecting of file-type (.lua, .py, etc.)
    - [x] Check it from vim.bo.filetype
    - [x] Save to "file_type" variable
@@ -44,9 +42,3 @@ New point (01.11.2025, 13:25):
 - [x] Add C++, C# support
 - [x] Add Java support (by gradle + MavenCentral)
 - [ ] Add Go Support
-
----
-
-01.01.2026, 15:37:
-
-- [ ] Add supporting: `uv add`, `poetry install`, `pip install .` for `pyproject.toml` files
