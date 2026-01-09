@@ -14,7 +14,7 @@ vim_org_release() {
 
 	cp -r lua/LazyDeveloperHelper/python /tmp/ldh_release/LazyDeveloperHelper/
 	echo "[*] Copying License, commit-generator.py, changelog.md"
-	cp LICENSE commit_generation.py CHANGELOG.md /tmp/ldh_release/LazyDeveloperHelper/
+	cp LICENSE CHANGELOG.md /tmp/ldh_release/LazyDeveloperHelper/
 
 	echo "[*] Zipping..."
 	cd /tmp/ldh_release
