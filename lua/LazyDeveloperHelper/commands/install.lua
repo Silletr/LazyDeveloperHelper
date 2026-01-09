@@ -22,7 +22,6 @@ function M.register()
         vim.notify("Detected filetype: " .. lang, vim.log.levels.INFO)
         vim.notify("Active flags: " .. tostring(flag), vim.log.levels.DEBUG)
 
-        local config_path = vim.fn.stdpath("config") .. "/lua/LazyDeveloperHelper/lua/LazyDeveloperHelper/python/"
         local installers = {
             python = "pip_install.py",
             lua = "luarocks_install.py",
@@ -32,6 +31,7 @@ function M.register()
             c = "c_installers/conan_install.py",
             cpp = "c_installers/nuget_install.py",
             kotlin = "java_installer/gradle_install.py",
+            go = "go_installer/go_installer.py",
         }
         local script_name = installers[lang]
 
@@ -40,8 +40,19 @@ function M.register()
             return
         end
 
-        local script_path = config_path .. script_name
+        local function get_plugin_python_path()
+            local runtime_paths = vim.api.nvim_list_runtime_paths()
+            for _, path in ipairs(runtime_paths) do
+                if path:match("LazyDeveloperHelper") then
+                    return path .. "/lua/LazyDeveloperHelper/python/"
+                end
+            end
+            error("LazyDeveloperHelper not found in runtimepath!")
+        end
 
+        local python_dir = get_plugin_python_path()
+
+        local script_path = python_dir .. script_name
         local function execute_async(lib)
             local stdout = vim.loop.new_pipe(false)
             local stderr = vim.loop.new_pipe(false)
