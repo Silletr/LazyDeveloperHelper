@@ -65,12 +65,14 @@ Want to see status of plugin at any day? [Thats file for u](STATUS.md)
 	- 6. *C via Conan*
 	- 7. *Ruby via Ruby-Gem*
 	- 8. *Lua via Luarocks*
+
 ...dependencies directly from your editor, eliminating the need to switch to the terminal.
+
 And plugin have Discord channel [from now](https://discord.gg/QnthFV3Zgp)
 
 
 ## Features
-1. - ✨ Install Python, Lua, Javascript, Ruby, Rust packages directly from Neovim,
+1. - ✨ Install Python, Lua, Javascript, Ruby, Rust, Java,  packages directly from Neovim,
 2. - ✨ Manage dependencies without leaving your editor,
 3. - ✨ Compatible with modern Neovim configurations
 
@@ -128,4 +130,4 @@ Example output:
 ![Alt](https://repobeats.axiom.co/api/embed/91c0a59ebb003b31f4184cc769db134500a0fde8.svg "Repobeats analytics image")
 
 ## Plugin History
-![If you want to know more - read the plugin history!](./PLUGIN_HISTORY.md)
+[If you want to know more - read the plugin history!](./PLUGIN_HISTORY.md)
